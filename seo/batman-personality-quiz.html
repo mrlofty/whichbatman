@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Batman Personality Quiz | WhichBatman Alternative Entry</title>
+  <meta
+    name="description"
+    content="Try the Batman personality quiz from a dark, cinematic perspective and get your results instantly with a fresh entry point to the main WhichBatman experience."
+  />
+  <meta name="keywords" content="batman personality quiz, which batman are you quiz, batman archetype quiz">
+  <link rel="canonical" href="https://whichbatman.com/seo/batman-personality-quiz.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Batman Personality Quiz | WhichBatman" />
+  <meta property="og:description" content="A fresh entry point to explore which Batman archetype fits you best." />
+  <meta property="og:url" content="https://whichbatman.com/seo/batman-personality-quiz.html" />
+  <meta property="og:image" content="https://whichbatman.com/assets/og-quiz.jpg" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Batman Personality Quiz | WhichBatman" />
+  <meta name="twitter:description" content="Take the Batman personality quiz and discover your Gotham identity." />
+  <meta name="twitter:image" content="https://whichbatman.com/assets/og-quiz.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Quiz",
+    "name": "Batman Personality Quiz",
+    "description": "Alternative landing entry for users searching for a batman personality quiz.",
+    "url": "https://whichbatman.com/seo/batman-personality-quiz.html",
+    "about": {
+      "@type": "Thing",
+      "name": "Personality Quiz"
+    },
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Comic and film fans"
+    },
+    "isPartOf": {
+      "@type": "CreativeWork",
+      "name": "WhichBatman"
+    }
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg-primary: #09090f;
+      --bg-secondary: #12121a;
+      --bg-card: #1a1a24;
+      --border: #2a2a3a;
+      --accent: #d4af37;
+      --accent-hover: #f0c849;
+      --text-primary: #f5f5f5;
+      --text-secondary: #b0b0c0;
+    }
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: linear-gradient(180deg, #0a0a12 0%, #0e0e16 40%, #090910 100%);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+    .nav-strip {
+      margin-bottom: 16px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .chip {
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      background: rgba(18, 18, 26, 0.85);
+      border-radius: 999px;
+      padding: 10px 14px;
+      text-decoration: none;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .chip:hover { border-color: var(--accent); color: var(--text-primary); }
+    .hero {
+      background: linear-gradient(155deg, rgba(26, 26, 36, 0.96), rgba(13, 13, 20, 0.98));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 6vw, 3.1rem);
+      color: var(--accent);
+      margin-bottom: 12px;
+      line-height: 1.05;
+      text-shadow: 0 3px 20px rgba(212, 175, 55, 0.3);
+    }
+    .hero p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      max-width: 740px;
+      margin-bottom: 18px;
+    }
+    .hero-banner {
+      position: absolute;
+      right: -110px;
+      top: -110px;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.24), transparent 72%);
+      pointer-events: none;
+    }
+    .hero-media {
+      margin-top: 14px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .hero-media img {
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+    .cta-row {
+      margin-top: 16px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      background: var(--accent);
+      color: var(--bg-primary);
+      text-decoration: none;
+      border: none;
+      border-radius: 10px;
+      padding: 13px 18px;
+      font-weight: 700;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .btn:hover { background: var(--accent-hover); }
+    .btn.subtle {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+    .btn.subtle:hover { border-color: var(--accent); }
+    .panel {
+      margin-top: 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+    }
+    .panel h2 {
+      color: var(--accent);
+      margin-bottom: 8px;
+      font-size: 1.5rem;
+    }
+    .panel p {
+      margin-bottom: 12px;
+      color: var(--text-secondary);
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .feature {
+      background: rgba(12, 12, 22, 0.86);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+    }
+    .feature h3 {
+      color: var(--accent);
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+    .feature p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-bottom: 0;
+    }
+    .quiz-preview {
+      margin-top: 14px;
+      border-left: 3px solid var(--accent);
+      padding: 12px 12px 12px 16px;
+      background: rgba(212, 175, 55, 0.07);
+      border-radius: 10px;
+    }
+    .faq details {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 10px;
+      padding: 10px;
+      background: rgba(12, 12, 20, 0.72);
+    }
+    .faq summary {
+      color: var(--text-primary);
+      font-weight: 600;
+      cursor: pointer;
+    }
+    footer {
+      margin: 18px 0 8px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    @media (max-width: 800px) {
+      .feature-grid { grid-template-columns: 1fr; }
+      .hero { padding: 22px; }
+      .hero-banner { width: 190px; height: 190px; right: -90px; top: -90px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav-strip" aria-label="Main links">
+      <a class="chip" href="../index.html">Home</a>
+      <a class="chip" href="../quiz.html">Main Quiz</a>
+      <a class="chip" href="../battles.html">Battles</a>
+      <a class="chip" href="../villains.html">Villains</a>
+    </nav>
+
+    <header class="hero">
+      <div class="hero-banner"></div>
+      <p style="color: var(--accent); text-transform: uppercase; letter-spacing: .15em; font-size: .8rem; font-weight: 700; margin-bottom: 10px;">
+        Alternative entry point
+      </p>
+      <h1>Batman Personality Quiz</h1>
+      <p>
+        Different page, same core scoring engine. If you search for "batman personality quiz", this route
+        takes you straight to your result in a cinematic briefing format: quick start, trait summary, and
+        a direct jump to the full quiz experience.
+      </p>
+      <div class="cta-row">
+        <a class="btn" href="../quiz.html?source=batman-personality-quiz">Take the Quiz Now</a>
+        <a class="btn subtle" href="../timeline.html">Explore the Timeline</a>
+      </div>
+      <figure class="hero-media">
+        <img
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='520' viewBox='0 0 1200 520'%3E%3Crect width='1200' height='520' fill='%230f1118'/%3E%3Crect x='18' y='18' width='1164' height='484' fill='none' stroke='%23d4af37' stroke-width='8'/%3E%3Ctext x='600' y='200' text-anchor='middle' font-size='52' fill='%23d4af37' font-family='Arial' font-weight='700'%3EBatman%20Personality%20Map%3C/text%3E%3Ctext x='600' y='260' text-anchor='middle' font-size='26' fill='%23b7b7c8' font-family='Arial'%3EBased%20on%20choices%2C%20motivation%2C%20and%20moral%20style%3C/text%3E%3Cpath d='M280 340c120 40 360 40 480 0' stroke='%23d4af37' stroke-width='10' fill='none'/%3E%3Cpath d='M380 340l30 46h80M620 340l-30 46h-80' stroke='%23d4af37' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"
+          alt="Minimal Batman personality quiz flow diagram"
+        />
+      </figure>
+    </header>
+
+    <section class="panel">
+      <h2>How this entry point works</h2>
+      <p>
+        This page is built for search intent. The content focuses directly on "Batman personality quiz" intent:
+        who you are, how your traits map to portrayals, and a direct path to results.
+      </p>
+      <div class="feature-grid">
+        <div class="feature">
+          <h3>Fast route</h3>
+          <p>Skip long intro text, read your archetype, and jump into the full quiz in one click.</p>
+        </div>
+        <div class="feature">
+          <h3>Character clarity</h3>
+          <p>Each result is framed by moral voice, risk tolerance, and emotional style.</p>
+        </div>
+        <div class="feature">
+          <h3>Share-ready</h3>
+          <p>Results work as social-ready snippets so fans can compare who they think they are.</p>
+        </div>
+        <div class="feature">
+          <h3>Cross-feature funnel</h3>
+          <p>Every result points to battles, timeline, trivia, and the main quiz engine.</p>
+        </div>
+      </div>
+
+      <div class="quiz-preview">
+        <strong>Sample prompt:</strong> Do you approach threats with prevention, confrontation, or investigation first?
+        This single decision shifts your archetype score toward caution, dominance, or adaptive strategy.
+      </div>
+    </section>
+
+    <section class="panel faq">
+      <h2>Questions from search users</h2>
+      <details>
+        <summary>Is this the same quiz as the home page?</summary>
+        <p>Yes. It points to the same quiz engine and scoring, with a different entry section and keyword intent.</p>
+      </details>
+      <details>
+        <summary>Do I need to create an account?</summary>
+        <p>No login is required. Results are generated instantly in-session.</p>
+      </details>
+      <details>
+        <summary>What if I want to vote against other actors?</summary>
+        <p>Use the Battles page after getting your result and challenge your match directly.</p>
+      </details>
+    </section>
+
+    <footer>
+      Alternate query page designed for organic traffic, then routed into WhichBatman core conversion paths.
+    </footer>
+  </div>
+</body>
+</html>

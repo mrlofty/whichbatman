@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Batman vs Battles | Vote on the Best Batman</title>
+  <meta name="description" content="Vote in Batman vs Battles and decide the ultimate Dark Knight. Compare Adam West, Michael Keaton, Val Kilmer, George Clooney, Christian Bale, Ben Affleck, Robert Pattinson, and Batman: The Animated Series.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Batman vs Battles | WhichBatman">
+  <meta property="og:description" content="Keaton vs Bale? Pattinson vs Affleck? Vote, compare, and share the live results.">
+  <meta property="og:url" content="https://whichbatman.com/battles.html">
+  <meta property="og:image" content="https://whichbatman.com/assets/og-battles.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Batman vs Battles">
+  <meta name="twitter:description" content="Vote on the best Batman and share the matchup results.">
+  <meta name="twitter:image" content="https://whichbatman.com/assets/og-battles.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Batman vs Battles",
+    "description": "A Batman voting page where fans choose between different Batman portrayals."
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-battles">
+  <div class="container">
+    <div class="topbar">
+      <div class="crumbs">
+        <a href="index.html">← Home</a>
+        <a href="quiz.html">Take Quiz</a>
+      </div>
+      <a href="#results" class="pill-link">Jump to Results</a>
+    </div>
+
+    <header class="hero">
+      <div class="eyebrow">Fan Voting Arena</div>
+      <h1>Batman vs Battles</h1>
+      <p>Pick your winner, watch the numbers move, then hit the next matchup. The best version of Batman is too important to settle in one vote.</p>
+      <div class="hero-meta">
+        <div class="meta-chip">8 Batman versions</div>
+        <div class="meta-chip">Random head-to-heads</div>
+        <div class="meta-chip">Local live results</div>
+      </div>
+    </header>
+
+    <section class="battle-card">
+      <div class="battle-header">
+        <div>
+          <div class="battle-kicker" id="battleTitle">Tonight's Main Event</div>
+          <div class="battle-subtitle" id="battleSubtitle">Two Batmen enter. Your vote decides the rooftop winner.</div>
+        </div>
+        <div class="pulse">
+          <span class="pulse-dot"></span>
+          <span id="battleStatus">Waiting for your vote</span>
+        </div>
+      </div>
+
+      <div class="battle-grid">
+        <article class="fighter" id="fighterA">
+          <div class="fighter-top">
+            <div class="image-placeholder">
+              <div class="image-symbol" id="fighterASymbol">🦇</div>
+              <div class="image-label" id="fighterAImageLabel">Image Placeholder</div>
+            </div>
+            <div>
+              <h2 class="fighter-name" id="fighterAName"></h2>
+              <p class="fighter-era" id="fighterAEra"></p>
+            </div>
+          </div>
+          <p class="fighter-desc" id="fighterADescription"></p>
+          <div class="traits" id="fighterATraits"></div>
+          <button class="vote-button" id="voteA">Vote for Batman A</button>
+        </article>
+
+        <article class="fighter" id="fighterB">
+          <div class="fighter-top">
+            <div class="image-placeholder">
+              <div class="image-symbol" id="fighterBSymbol">🦇</div>
+              <div class="image-label" id="fighterBImageLabel">Image Placeholder</div>
+            </div>
+            <div>
+              <h2 class="fighter-name" id="fighterBName"></h2>
+              <p class="fighter-era" id="fighterBEra"></p>
+            </div>
+          </div>
+          <p class="fighter-desc" id="fighterBDescription"></p>
+          <div class="traits" id="fighterBTraits"></div>
+          <button class="vote-button" id="voteB">Vote for Batman B</button>
+        </article>
+      </div>
+
+      <div class="action-row">
+        <button class="action-button primary" id="nextBattleButton">Next Battle →</button>
+        <button class="action-button secondary" id="shareButton">Share Results</button>
+      </div>
+    </section>
+
+    <section class="results-card" id="results">
+      <div class="results-header">
+        <div class="results-title">Live Vote Results</div>
+        <div class="battle-subtitle" id="resultsMatchupLabel">Current matchup</div>
+      </div>
+
+      <div class="results-grid">
+        <div class="result-bar-card">
+          <div class="result-label-row">
+            <div class="result-name" id="resultAName"></div>
+            <div class="result-value" id="resultAValue"></div>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill" id="resultABar"></div>
+          </div>
+        </div>
+
+        <div class="result-bar-card">
+          <div class="result-label-row">
+            <div class="result-name" id="resultBName"></div>
+            <div class="result-value" id="resultBValue"></div>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill" id="resultBBar"></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="results-footer" id="resultsFooter">No votes yet for this matchup. Break the tie and keep the bracket moving.</p>
+    </section>
+  </div>
+
+  <script>
+    const batmen = [
+      {
+        id: 'west',
+        name: 'Adam West',
+        era: '1966-1968 TV Era',
+        symbol: '🎭',
+        imageLabel: 'Camp Crusader Placeholder',
+        description: 'Bright, earnest, and perfectly prepared with anti-shark spray for situations no one else can survive.',
+        traits: ['Camp icon', 'Civic hero', 'Pure morals', 'Utility belt maximalist']
+      },
+      {
+        id: 'keaton',
+        name: 'Michael Keaton',
+        era: '1989-1992 Burton Era',
+        symbol: '🦇',
+        imageLabel: 'Gothic Knight Placeholder',
+        description: 'The haunted urban myth version of Batman who turned Gotham into a neon gothic fever dream.',
+        traits: ['Gothic', 'Intense', 'Unpredictable', 'Shadow operator']
+      },
+      {
+        id: 'kilmer',
+        name: 'Val Kilmer',
+        era: '1995 Schumacher Era',
+        symbol: '🛡️',
+        imageLabel: 'Neon Detective Placeholder',
+        description: 'A sleek, psychologically conflicted Batman balancing trauma, charisma, and a surprisingly strong detective streak.',
+        traits: ['Stylish', 'Reflective', 'Agile', 'Underrated']
+      },
+      {
+        id: 'clooney',
+        name: 'George Clooney',
+        era: '1997 Schumacher Era',
+        symbol: '✨',
+        imageLabel: 'Silver Age Placeholder',
+        description: 'Confident, polished, and fully committed to the high-camp blockbuster version of Gotham.',
+        traits: ['Charming', 'Playful', 'Smooth', 'Bat-family energy']
+      },
+      {
+        id: 'bale',
+        name: 'Christian Bale',
+        era: '2005-2012 Nolan Era',
+        symbol: '⚔️',
+        imageLabel: 'Tactical Legend Placeholder',
+        description: 'The disciplined tactician who weaponized fear, military hardware, and a gravel voice into a full doctrine.',
+        traits: ['Strategic', 'Relentless', 'Disciplined', 'Iconic trilogy']
+      },
+      {
+        id: 'affleck',
+        name: 'Ben Affleck',
+        era: '2016-2023 DCEU Era',
+        symbol: '💥',
+        imageLabel: 'Warehouse Beast Placeholder',
+        description: 'A bruised veteran with tank-level presence, warehouse-level violence, and the weight of decades on his cowl.',
+        traits: ['Battle-worn', 'Powerhouse', 'Older Bruce', 'Brutal combat']
+      },
+      {
+        id: 'pattinson',
+        name: 'Robert Pattinson',
+        era: '2022-Current Reeves Era',
+        symbol: '🔍',
+        imageLabel: 'Year Two Placeholder',
+        description: 'Raw, obsessive, and drenched in noir rain, this Batman is still becoming Gotham’s symbol of hope.',
+        traits: ['Detective-first', 'Noir', 'Vengeful', 'Year Two chaos']
+      },
+      {
+        id: 'btas',
+        name: 'BTAS Batman',
+        era: '1992-1995 Animated Era',
+        symbol: '🖤',
+        imageLabel: 'Animated Legend Placeholder',
+        description: 'The definitive animated Dark Knight: composed, mythic, empathetic, and absurdly consistent across the board.',
+        traits: ['Definitive voice', 'Balanced', 'Animated icon', 'Peak mythology']
+      }
+    ];
+
+    const battleTitle = document.getElementById('battleTitle');
+    const battleSubtitle = document.getElementById('battleSubtitle');
+    const battleStatus = document.getElementById('battleStatus');
+    const voteAButton = document.getElementById('voteA');
+    const voteBButton = document.getElementById('voteB');
+    const nextBattleButton = document.getElementById('nextBattleButton');
+    const shareButton = document.getElementById('shareButton');
+
+    const storageKeys = {
+      battles: 'whichBatmanBattleVotes',
+      votedPairs: 'whichBatmanBattleVotedPairs',
+      lastPair: 'whichBatmanBattleLastPair'
+    };
+
+    let currentPair = [];
+
+    function getBattleKey(idA, idB) {
+      return [idA, idB].sort().join('__');
+    }
+
+    function loadVotes() {
+      return JSON.parse(localStorage.getItem(storageKeys.battles) || '{}');
+    }
+
+    function saveVotes(votes) {
+      localStorage.setItem(storageKeys.battles, JSON.stringify(votes));
+    }
+
+    function loadVotedPairs() {
+      return JSON.parse(localStorage.getItem(storageKeys.votedPairs) || '{}');
+    }
+
+    function saveVotedPairs(votedPairs) {
+      localStorage.setItem(storageKeys.votedPairs, JSON.stringify(votedPairs));
+    }
+
+    function getPairVotes(pair) {
+      const votes = loadVotes();
+      const key = getBattleKey(pair[0].id, pair[1].id);
+      return votes[key] || {[pair[0].id]: 0, [pair[1].id]: 0};
+    }
+
+    function randomPair() {
+      const available = [...batmen];
+      const first = available.splice(Math.floor(Math.random() * available.length), 1)[0];
+      const second = available[Math.floor(Math.random() * available.length)];
+      const pair = [first, second];
+      const pairKey = getBattleKey(pair[0].id, pair[1].id);
+      const lastKey = localStorage.getItem(storageKeys.lastPair);
+
+      if (batmen.length > 2 && pairKey === lastKey) {
+        return randomPair();
+      }
+
+      localStorage.setItem(storageKeys.lastPair, pairKey);
+      return pair;
+    }
+
+    function getBatmanById(id) {
+      return batmen.find((fighter) => fighter.id === id);
+    }
+
+    function pairFromQuery() {
+      const battleParam = new URLSearchParams(window.location.search).get('battle');
+      if (!battleParam) {
+        return null;
+      }
+
+      const [idA, idB] = battleParam.split('-vs-');
+      if (!idA || !idB || idA === idB) {
+        return null;
+      }
+
+      const fighterA = getBatmanById(idA);
+      const fighterB = getBatmanById(idB);
+
+      if (!fighterA || !fighterB) {
+        return null;
+      }
+
+      localStorage.setItem(storageKeys.lastPair, getBattleKey(fighterA.id, fighterB.id));
+      return [fighterA, fighterB];
+    }
+
+    function renderTraits(elementId, traits) {
+      document.getElementById(elementId).innerHTML = traits
+        .map((trait) => `<span class="trait">${trait}</span>`)
+        .join('');
+    }
+
+    function renderFighter(prefix, fighter) {
+      document.getElementById(prefix + 'Name').textContent = fighter.name;
+      document.getElementById(prefix + 'Era').textContent = fighter.era;
+      document.getElementById(prefix + 'Description').textContent = fighter.description;
+      document.getElementById(prefix + 'Symbol').textContent = fighter.symbol;
+      document.getElementById(prefix + 'ImageLabel').textContent = fighter.imageLabel;
+      renderTraits(prefix + 'Traits', fighter.traits);
+    }
+
+    function updateVoteButtons() {
+      const votedPairs = loadVotedPairs();
+      const pairKey = getBattleKey(currentPair[0].id, currentPair[1].id);
+      const hasVoted = Boolean(votedPairs[pairKey]);
+
+      voteAButton.disabled = hasVoted;
+      voteBButton.disabled = hasVoted;
+
+      voteAButton.textContent = hasVoted ? 'Voted' : `Vote for ${currentPair[0].name}`;
+      voteBButton.textContent = hasVoted ? 'Voted' : `Vote for ${currentPair[1].name}`;
+
+      battleStatus.textContent = hasVoted ? 'Vote locked for this matchup' : 'Waiting for your vote';
+    }
+
+    function updateResults() {
+      const votes = getPairVotes(currentPair);
+      const countA = votes[currentPair[0].id] || 0;
+      const countB = votes[currentPair[1].id] || 0;
+      const total = countA + countB;
+      const percentA = total ? Math.round((countA / total) * 100) : 50;
+      const percentB = total ? 100 - percentA : 50;
+
+      document.getElementById('resultsMatchupLabel').textContent = `${currentPair[0].name} vs ${currentPair[1].name}`;
+      document.getElementById('resultAName').textContent = currentPair[0].name;
+      document.getElementById('resultBName').textContent = currentPair[1].name;
+      document.getElementById('resultAValue').textContent = `${percentA}% · ${countA} vote${countA === 1 ? '' : 's'}`;
+      document.getElementById('resultBValue').textContent = `${percentB}% · ${countB} vote${countB === 1 ? '' : 's'}`;
+      document.getElementById('resultABar').style.width = `${percentA}%`;
+      document.getElementById('resultBBar').style.width = `${percentB}%`;
+
+      const footer = document.getElementById('resultsFooter');
+      if (!total) {
+        footer.textContent = 'No votes yet for this matchup. Break the tie and keep the bracket moving.';
+      } else if (countA === countB) {
+        footer.textContent = `Dead heat. ${total} total vote${total === 1 ? '' : 's'} and Gotham still has no consensus.`;
+      } else {
+        const leader = countA > countB ? currentPair[0].name : currentPair[1].name;
+        footer.textContent = `${leader} is leading this battle with ${total} total vote${total === 1 ? '' : 's'} logged on this device.`;
+      }
+    }
+
+    function renderBattle() {
+      renderFighter('fighterA', currentPair[0]);
+      renderFighter('fighterB', currentPair[1]);
+      battleTitle.textContent = `${currentPair[0].name} vs ${currentPair[1].name}`;
+      battleSubtitle.textContent = `${currentPair[0].era} collides with ${currentPair[1].era}. Pick your rooftop winner.`;
+      updateVoteButtons();
+      updateResults();
+    }
+
+    function setRandomBattle() {
+      currentPair = randomPair();
+      syncBattleUrl();
+      renderBattle();
+    }
+
+    function syncBattleUrl() {
+      if (!currentPair.length || !history.replaceState) {
+        return;
+      }
+
+      const battleSlug = `${currentPair[0].id}-vs-${currentPair[1].id}`;
+      history.replaceState({battle: battleSlug}, '', `?battle=${battleSlug}`);
+    }
+
+    function setBattle(pair) {
+      currentPair = pair;
+      syncBattleUrl();
+      renderBattle();
+    }
+
+    function trackVote(winner, loser) {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'battle_vote', {
+          event_category: 'engagement',
+          event_label: `${winner.id}_over_${loser.id}`,
+          batman_a: currentPair[0].id,
+          batman_b: currentPair[1].id,
+          winner: winner.id,
+          value: 1
+        });
+      }
+    }
+
+    function castVote(winner) {
+      const loser = currentPair.find((fighter) => fighter.id !== winner.id);
+      const pairKey = getBattleKey(currentPair[0].id, currentPair[1].id);
+      const votedPairs = loadVotedPairs();
+
+      if (votedPairs[pairKey]) {
+        updateVoteButtons();
+        return;
+      }
+
+      const votes = loadVotes();
+      const pairVotes = votes[pairKey] || {[currentPair[0].id]: 0, [currentPair[1].id]: 0};
+
+      pairVotes[winner.id] = (pairVotes[winner.id] || 0) + 1;
+      pairVotes[loser.id] = pairVotes[loser.id] || 0;
+      votes[pairKey] = pairVotes;
+      saveVotes(votes);
+
+      votedPairs[pairKey] = winner.id;
+      saveVotedPairs(votedPairs);
+
+      battleStatus.textContent = `${winner.name} takes your vote`;
+      updateVoteButtons();
+      updateResults();
+      trackVote(winner, loser);
+    }
+
+    function shareResults() {
+      const votes = getPairVotes(currentPair);
+      const countA = votes[currentPair[0].id] || 0;
+      const countB = votes[currentPair[1].id] || 0;
+      const total = countA + countB;
+      const percentA = total ? Math.round((countA / total) * 100) : 50;
+      const percentB = total ? 100 - percentA : 50;
+      const shareText = `${currentPair[0].name} vs ${currentPair[1].name}: ${percentA}% to ${percentB}% on WhichBatman. Cast your vote.`;
+      const shareUrl = `${window.location.origin}${window.location.pathname}?battle=${currentPair[0].id}-vs-${currentPair[1].id}`;
+
+      if (navigator.share) {
+        navigator.share({
+          title: 'Batman vs Battles',
+          text: shareText,
+          url: shareUrl
+        });
+      } else {
+        navigator.clipboard.writeText(`${shareText} ${shareUrl}`);
+        alert('Battle results link copied to clipboard.');
+      }
+    }
+
+    voteAButton.addEventListener('click', () => castVote(currentPair[0]));
+    voteBButton.addEventListener('click', () => castVote(currentPair[1]));
+    nextBattleButton.addEventListener('click', setRandomBattle);
+    shareButton.addEventListener('click', shareResults);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const sharedPair = pairFromQuery();
+      if (sharedPair) {
+        setBattle(sharedPair);
+        return;
+      }
+
+      setRandomBattle();
+    });
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+</body>
+</html>

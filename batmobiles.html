@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Batmobile Rankings | WhichBatman</title>
+  <meta name="description" content="Rank every iconic Batmobile from across Batman history. Drag, save, share, and compare your ranking against the community leaderboard.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Batmobile Rankings | WhichBatman">
+  <meta property="og:description" content="Sort the full Batmobile timeline, save your ranking, and compare against the community.">
+  <meta property="og:url" content="https://whichbatman.com/batmobiles.html">
+  <meta property="og:image" content="https://whichbatman.com/assets/og-batmobiles.jpg">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Batmobile Rankings">
+  <meta name="twitter:description" content="Reorder every Batmobile, save it, and see community favorites.">
+  <meta name="twitter:image" content="https://whichbatman.com/assets/og-batmobiles.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-batmobiles">
+  <div class="container">
+    <div class="topbar">
+      <div class="crumbs">
+        <a href="index.html">← Home</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="battles.html">Battles</a>
+      </div>
+      <div class="pill" id="statusPill">Build your ultimate list</div>
+    </div>
+
+    <header class="hero">
+      <div class="hero-eyebrow">Batmobile Archive</div>
+      <h1>🦇 Batmobile Rankings</h1>
+      <p>Rank all iconic Batmobiles, build your dream garage, and compare directly with the crowd. Drag cards to reorder, save your lineup, and share a link people can replay.</p>
+      <div class="hero-meta">
+        <div class="hero-chip">8 vehicles covered</div>
+        <div class="hero-chip">Touch and mouse drag</div>
+        <div class="hero-chip">Community aggregate</div>
+      </div>
+    </header>
+
+    <div class="controls">
+      <button id="saveBtn" class="primary">Save Ranking</button>
+      <button id="shareBtn">Share Ranking</button>
+      <button id="shuffleBtn">Shuffle Cards</button>
+      <button id="resetBtn">Reset to Saved</button>
+    </div>
+    <p class="status" id="statusText">Tip: drag the <span class="accent">handle</span> to reorder. Long press on mobile if needed.</p>
+
+    <section class="ranking-layout">
+      <article class="panel" aria-labelledby="your-ranking-heading">
+        <div class="panel-head">
+          <h2 id="your-ranking-heading">Your Ranking</h2>
+          <div class="panel-note" id="savedAtText">No local ranking yet.</div>
+        </div>
+        <ul class="ranking-list" id="rankingList" aria-label="Reorderable Batmobile ranking list"></ul>
+        <p class="copy-line">
+          Share link:
+          <span id="shareUrlPreview" class="share-url">No changes to share yet.</span>
+        </p>
+      </article>
+
+      <aside class="panel" aria-labelledby="community-heading">
+        <div class="panel-head">
+          <h2 id="community-heading">Community Ladder</h2>
+          <div class="panel-note" id="communitySubmissions">No community data yet.</div>
+        </div>
+        <ol class="community-list" id="communityList" aria-label="Community ranking order"></ol>
+        <div class="match-bar-wrap">
+          <div class="match-bar-track"><div class="match-bar-fill" id="matchBar"></div></div>
+        </div>
+        <p class="match-text" id="matchText">Save a ranking to begin building global consensus on this device.</p>
+      </aside>
+    </section>
+  </div>
+
+  <script>
+    const BATMOBILES = [
+      {
+        id: '1966-lincoln',
+        name: '1966 Batmobile (Lincoln Futura custom)',
+        year: '1966',
+        era: 'TV and 1960s Cinema',
+        symbol: '🚗',
+        imageLabel: 'Original Show Stopper Placeholder',
+        description: 'Glamour, chrome, and attitude: the first Batmobile most people instantly picture. Built from a concept car chassis, it became a mobile symbol of camp-era theatrics.',
+        features: ['Tri-fold body lines', 'Bubble canopy styling', 'Huge rear fins', 'Spy gadgets']
+      },
+      {
+        id: '1989-keaton',
+        name: '1989 Keaton Batmobile',
+        year: '1989',
+        era: 'Burton Gotham Era',
+        symbol: '🦇',
+        imageLabel: 'Gothic Muscle Placeholder',
+        description: 'A dramatic, armored machine that defined the blockbuster standard. It made a statement before every scene and turned every lane into a gothic showcase.',
+        features: ['Deep bat-shape profile', 'Longitudinal armor plates', 'Nose-mounted light cannon', 'Heavy customization']
+      },
+      {
+        id: '1995-forever',
+        name: '1995 Forever Batmobile',
+        year: '1995',
+        era: 'Schumacher Neon Period',
+        symbol: '🟣',
+        imageLabel: 'Neon Beast Placeholder',
+        description: 'A brighter, bolder shape from the Schumacher playground era. It felt like a cyberpunk monster made for rooftop chases and comic-book chaos.',
+        features: ['High-gloss black finish', 'Twin rear lights', 'Weaponized grille', 'Flair-heavy bodywork']
+      },
+      {
+        id: '1997-batman-br',
+        name: '1997 Batman & Robin Batmobile',
+        year: '1997',
+        era: 'Schumacher Late Era',
+        symbol: '✨',
+        imageLabel: 'Shiny Utility Placeholder',
+        description: 'The most over-the-top and colorful chapter, built as a rolling spectacle for bigger gadgets and larger-than-life villain showdowns.',
+        features: ['Segmented armor shell', 'Extended rear fins', 'Gadget-laced rear deck', 'Flashy lighting']
+      },
+      {
+        id: '2005-tumbler',
+        name: '2005 Tumbler',
+        year: '2005',
+        era: 'Nolan Realist Era',
+        symbol: '🚘',
+        imageLabel: 'Tactical Tank Placeholder',
+        description: 'The anti-gimmick Batmobile. Rugged, practical, and brutal, this was a tactical support vehicle that could disappear as quickly as it dominated the screen.',
+        features: ['Jump-jets', 'Reinforced frame', 'Armored plating', 'Military-grade utility']
+      },
+      {
+        id: '2016-batfleck',
+        name: '2016 Batfleck Batmobile',
+        year: '2016',
+        era: 'DCEU Reinvention',
+        symbol: '💥',
+        imageLabel: 'War Machine Placeholder',
+        description: 'Built for intimidation and raw impact. This Batmobile turns the battlefield into a statement: brutal power first, speed second.',
+        features: ['Heavy diesel silhouette', 'Aggressive front split', 'Combat oriented stance', 'Hardline steel styling']
+      },
+      {
+        id: '2022-battinson',
+        name: '2022 Battinson Batmobile',
+        year: '2022',
+        era: 'Reeves Era',
+        symbol: '🖤',
+        imageLabel: 'Muscle Car Placeholder',
+        description: 'A modern, compact muscle interpretation designed for detective work and relentless night chases. It looks dangerous without the excess of earlier eras.',
+        features: ['Compact dark silhouette', 'Noir body geometry', 'Balanced speed profile', 'Urban pursuit tuning']
+      },
+      {
+        id: 'animated-series',
+        name: 'Animated Series Batmobile',
+        year: '1992',
+        era: 'Batman: The Animated Series',
+        symbol: '🖤',
+        imageLabel: 'Animated Legend Placeholder',
+        description: 'A timeless cartoon icon with sleek lines and cinematic personality. It may be animated, but its presence is pure myth.',
+        features: ['Slick aerodynamic shape', 'Integrated jet profile', 'Fitted weapon pylons', 'Classic red-gold accents']
+      }
+    ];
+
+    const STORAGE_KEYS = {
+      ranking: 'whichBatmanBatmobileRanking',
+      community: 'whichBatmanBatmobileCommunity',
+    };
+
+    const rankingList = document.getElementById('rankingList');
+    const saveBtn = document.getElementById('saveBtn');
+    const shareBtn = document.getElementById('shareBtn');
+    const shuffleBtn = document.getElementById('shuffleBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const statusText = document.getElementById('statusText');
+    const statusPill = document.getElementById('statusPill');
+    const savedAtText = document.getElementById('savedAtText');
+    const shareUrlPreview = document.getElementById('shareUrlPreview');
+    const communityList = document.getElementById('communityList');
+    const communitySubmissions = document.getElementById('communitySubmissions');
+    const matchText = document.getElementById('matchText');
+    const matchBar = document.getElementById('matchBar');
+
+    const vehicleIndex = Object.fromEntries(BATMOBILES.map((entry) => [entry.id, entry]));
+    const totalItems = BATMOBILES.length;
+    const defaultOrder = BATMOBILES.map((entry) => entry.id);
+    let activeDragItem = null;
+    let activePointerId = null;
+    let savedOrder = [];
+
+    const touchTimerMs = 180;
+
+    function arraysEqual(a, b) {
+      if (a.length !== b.length) {
+        return false;
+      }
+
+      return a.every((value, index) => value === b[index]);
+    }
+
+    function safeParse(raw) {
+      if (!raw) return null;
+      try {
+        return JSON.parse(raw);
+      } catch {
+        return null;
+      }
+    }
+
+    function isValidOrder(order) {
+      if (!Array.isArray(order) || order.length !== totalItems) {
+        return false;
+      }
+
+      const seen = new Set();
+      return order.every((id) => {
+        if (!vehicleIndex[id] || seen.has(id)) {
+          return false;
+        }
+        seen.add(id);
+        return true;
+      });
+    }
+
+    function parseSharedOrder() {
+      const query = new URLSearchParams(window.location.search).get('ranking');
+      if (!query) {
+        return null;
+      }
+
+      const raw = query.split(',').map((item) => item.trim()).filter(Boolean);
+      if (!isValidOrder(raw)) {
+        return null;
+      }
+
+      return raw;
+    }
+
+    function loadSavedOrder() {
+      const saved = safeParse(localStorage.getItem(STORAGE_KEYS.ranking));
+      if (!saved) {
+        return null;
+      }
+
+      const order = Array.isArray(saved) ? saved : saved.order;
+      if (!isValidOrder(order)) {
+        return null;
+      }
+      return order;
+    }
+
+    function loadCommunityProfile() {
+      const defaults = { submissions: 0, vehicles: {} };
+      const parsed = safeParse(localStorage.getItem(STORAGE_KEYS.community));
+      if (!parsed) {
+        return defaults;
+      }
+
+      if (!parsed.vehicles) {
+        return defaults;
+      }
+
+      return parsed;
+    }
+
+    function saveCommunityProfile(profile) {
+      localStorage.setItem(STORAGE_KEYS.community, JSON.stringify(profile));
+    }
+
+    function buildShareUrl(order) {
+      const baseUrl = `${window.location.origin}${window.location.pathname}`;
+      const params = new URLSearchParams();
+      params.set('ranking', order.join(','));
+      return `${baseUrl}?${params.toString()}`;
+    }
+
+    function currentOrder() {
+      return [...rankingList.querySelectorAll('.ranking-item')].map((item) => item.dataset.id);
+    }
+
+    function setDragHandleListeners() {
+      rankingList.querySelectorAll('.drag-handle').forEach((handle) => {
+        handle.addEventListener('pointerdown', onDragStart);
+      });
+    }
+
+    function setMoveButtons() {
+      rankingList.querySelectorAll('.move-button').forEach((button) => {
+        button.addEventListener('click', (event) => {
+          event.preventDefault();
+          const buttonAction = event.currentTarget.dataset.direction;
+          const item = event.currentTarget.closest('.ranking-item');
+          const order = currentOrder();
+          const index = order.indexOf(item.dataset.id);
+
+          const destination = buttonAction === 'up' ? index - 1 : index + 1;
+          if (destination < 0 || destination >= totalItems) {
+            return;
+          }
+
+          const moved = [...order];
+          const [car] = moved.splice(index, 1);
+          moved.splice(destination, 0, car);
+          renderRanking(moved);
+          setUnsavedState();
+        });
+      });
+    }
+
+    function onDragStart(event) {
+      const item = event.currentTarget.closest('.ranking-item');
+      if (!item) {
+        return;
+      }
+
+      event.preventDefault();
+      activeDragItem = item;
+      activePointerId = event.pointerId;
+      item.classList.add('dragging');
+      document.body.classList.add('dragging-glow');
+      document.body.style.userSelect = 'none';
+      item.setPointerCapture(activePointerId);
+    }
+
+    function getDragAfterElement(container, y) {
+      const items = [...container.querySelectorAll('.ranking-item:not(.dragging)')];
+      let closest = { offset: Number.NEGATIVE_INFINITY, element: null };
+
+      for (const child of items) {
+        const box = child.getBoundingClientRect();
+        const offset = y - box.top - box.height / 2;
+        if (offset < 0 && offset > closest.offset) {
+          closest = { offset, element: child };
+        }
+      }
+
+      return closest.element;
+    }
+
+    function onDragMove(event) {
+      if (!activeDragItem) {
+        return;
+      }
+
+      event.preventDefault();
+      const after = getDragAfterElement(rankingList, event.clientY);
+      if (!after) {
+        rankingList.appendChild(activeDragItem);
+      } else {
+        rankingList.insertBefore(activeDragItem, after);
+      }
+      updateRankingMeta();
+    }
+
+    function onDragEnd() {
+      if (!activeDragItem) {
+        return;
+      }
+
+      try {
+        activeDragItem.releasePointerCapture(activePointerId);
+      } catch (error) {
+        // Pointer capture may already be released in some mobile edge cases.
+      }
+
+      activeDragItem.classList.remove('dragging');
+      activeDragItem = null;
+      activePointerId = null;
+      document.body.classList.remove('dragging-glow');
+      document.body.style.userSelect = '';
+      updateRankingMeta();
+      setUnsavedState();
+    }
+
+    function communityPositionMap(profile) {
+      const order = getCommunityOrder(profile);
+      const map = {};
+      order.forEach((id, index) => {
+        map[id] = index + 1;
+      });
+      return map;
+    }
+
+    function getCommunityOrder(profile) {
+      if (!profile || profile.submissions === 0) {
+        return [];
+      }
+
+      const entries = BATMOBILES.map((vehicle) => {
+        const stats = profile.vehicles[vehicle.id] || { score: 0, positionSum: 0, submissions: 0 };
+        const avgPosition = stats.submissions ? stats.positionSum / stats.submissions : totalItems;
+        return {
+          id: vehicle.id,
+          name: vehicle.name,
+          score: stats.score,
+          avgPosition,
+          submissions: stats.submissions,
+        };
+      });
+
+      entries.sort((a, b) => {
+        if (b.score !== a.score) {
+          return b.score - a.score;
+        }
+        return a.avgPosition - b.avgPosition;
+      });
+
+      return entries.map((entry) => entry.id);
+    }
+
+    function updateRankingMeta() {
+      const order = currentOrder();
+      const profile = loadCommunityProfile();
+      const communityOrder = getCommunityOrder(profile);
+      const communityMap = communityPositionMap(profile);
+      const hasCommunity = communityOrder.length > 0;
+
+      rankingList.querySelectorAll('.ranking-item').forEach((item, index) => {
+        const itemId = item.dataset.id;
+        item.querySelector('.rank-pill').textContent = index + 1;
+        const deltaEl = item.querySelector('.community-delta');
+        const delta = hasCommunity ? (index + 1) - (communityMap[itemId] || 0) : 0;
+
+        if (!hasCommunity) {
+          deltaEl.textContent = 'Community: no data yet';
+          deltaEl.className = 'community-delta';
+          return;
+        }
+
+        if (delta === 0) {
+          deltaEl.textContent = 'Matches community at this position';
+          deltaEl.className = 'community-delta delta-even';
+          return;
+        }
+
+        if (delta > 0) {
+          deltaEl.textContent = `${delta} rank${delta === 1 ? '' : 's'} lower than community`;
+          deltaEl.className = 'community-delta delta-down';
+          return;
+        }
+
+        const rise = Math.abs(delta);
+        deltaEl.textContent = `${rise} rank${rise === 1 ? '' : 's'} above community`;
+        deltaEl.className = 'community-delta delta-up';
+      });
+
+      updateComparison(order, communityMap, hasCommunity);
+      const shareUrl = buildShareUrl(order);
+      shareUrlPreview.textContent = shareUrl;
+      history.replaceState({ ranking: order }, '', `${window.location.pathname}?ranking=${encodeURIComponent(order.join(','))}`);
+      setActionState(order);
+    }
+
+    function updateComparison(order, communityMap, hasCommunity) {
+      if (!hasCommunity) {
+        matchText.textContent = 'Save a ranking to start community comparison.';
+        matchBar.style.width = '0%';
+        return;
+      }
+
+      let matches = 0;
+      let distance = 0;
+
+      order.forEach((id, index) => {
+        const target = (communityMap[id] || index + 1) - 1;
+        distance += Math.abs(index - target);
+        if (target === index) {
+          matches += 1;
+        }
+      });
+
+      const maxDistance = totalItems * (totalItems - 1);
+      const matchScore = Math.max(0, Math.round((1 - distance / maxDistance) * 100));
+      matchBar.style.width = `${matchScore}%`;
+      matchText.textContent = `Your ranking matches the community on ${matches}/${totalItems} exact spots. Match score: ${matchScore}%.`;
+      statusPill.textContent = `Community match: ${matchScore}%`;
+      statusPill.className = `pill ${matchScore >= 75 ? 'match-pill' : ''}`;
+    }
+
+    function setActionState(order) {
+      const hasChanges = !arraysEqual(order, savedOrder);
+      saveBtn.disabled = !hasChanges;
+      const source = history.state && history.state.ranking ? 'shared link' : 'local ranking';
+      statusText.textContent = hasChanges ? `Unsaved edits on your ${source}.` : `Saved to local storage from ${source}.`;
+    }
+
+    function setUnsavedState() {
+      const order = currentOrder();
+      setActionState(order);
+    }
+
+    function setSavedAtUI(timestamp) {
+      if (!timestamp) {
+        savedAtText.textContent = 'No local ranking yet.';
+        return;
+      }
+      const parsed = new Date(timestamp);
+      if (Number.isNaN(parsed.getTime())) {
+        savedAtText.textContent = 'Saved.';
+        return;
+      }
+      savedAtText.textContent = `Saved locally: ${parsed.toLocaleString()}`;
+    }
+
+    function renderRankingList(order) {
+      rankingList.textContent = '';
+
+      order.forEach((id, index) => {
+        const vehicle = vehicleIndex[id];
+        const item = document.createElement('li');
+        item.className = 'ranking-item';
+        item.dataset.id = vehicle.id;
+        item.style.cursor = 'grab';
+
+        item.innerHTML = `
+          <span class="rank-pill">${index + 1}</span>
+          <div class="vehicle-image">
+            <span class="vehicle-symbol">${vehicle.symbol}</span>
+            <span class="image-label">${vehicle.imageLabel}</span>
+          </div>
+          <div class="vehicle-content">
+            <h3>${vehicle.name}</h3>
+            <p class="vehicle-year">${vehicle.year}</p>
+            <p class="vehicle-era">${vehicle.era}</p>
+            <p class="vehicle-description">${vehicle.description}</p>
+            <div class="vehicle-features">
+              ${vehicle.features.map((feature) => `<span>${feature}</span>`).join('')}
+            </div>
+            <p class="community-delta">Community: loading…</p>
+          </div>
+          <div class="actions">
+            <button class="move-button" data-direction="up" aria-label="Move ${vehicle.name} up">↑</button>
+            <button class="drag-handle" aria-label="Drag ${vehicle.name}">≡</button>
+            <button class="move-button" data-direction="down" aria-label="Move ${vehicle.name} down">↓</button>
+          </div>
+        `;
+        rankingList.appendChild(item);
+      });
+
+      const upButtons = rankingList.querySelectorAll('[data-direction="up"]');
+      const downButtons = rankingList.querySelectorAll('[data-direction="down"]');
+
+      upButtons.forEach((button, index) => {
+        if (index === 0) {
+          button.disabled = true;
+        }
+      });
+      downButtons.forEach((button, index) => {
+        if (index === totalItems - 1) {
+          button.disabled = true;
+        }
+      });
+
+      setDragHandleListeners();
+      setMoveButtons();
+      updateRankingMeta();
+    }
+
+    function renderCommunity(profile) {
+      const submissions = profile.submissions || 0;
+      if (!submissions) {
+        communityList.innerHTML = '<li class="empty-state">No community rankings yet. Save your ranking to create the first public consensus.</li>';
+        communitySubmissions.textContent = '0 community saves';
+        updateComparison(currentOrder(), {}, false);
+        return;
+      }
+
+      const ordered = getCommunityOrder(profile);
+      const positionMap = {};
+      ordered.forEach((id, index) => {
+        positionMap[id] = index + 1;
+      });
+
+      communityList.textContent = '';
+      ordered.forEach((id, index) => {
+        const vehicle = vehicleIndex[id];
+        const stats = profile.vehicles[id] || { score: 0, positionSum: 0, submissions: 0 };
+        const avgPosition = stats.submissions ? (stats.positionSum / stats.submissions).toFixed(1) : '-';
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span class="name">${index + 1}. ${vehicle.name}</span>
+          <span class="meta">Avg pos ${avgPosition} · ${stats.score} points</span>
+        `;
+        communityList.appendChild(li);
+      });
+
+      communitySubmissions.textContent = `${submissions} community submissions`;
+      updateComparison(currentOrder(), positionMap, true);
+    }
+
+    function addCommunityRanking(order) {
+      const profile = loadCommunityProfile();
+      profile.submissions = (profile.submissions || 0) + 1;
+      profile.vehicles = profile.vehicles || {};
+
+      order.forEach((id, index) => {
+        profile.vehicles[id] = profile.vehicles[id] || { score: 0, positionSum: 0, submissions: 0 };
+        profile.vehicles[id].score += (totalItems - index);
+        profile.vehicles[id].positionSum += (index + 1);
+        profile.vehicles[id].submissions += 1;
+      });
+
+      profile.updatedAt = new Date().toISOString();
+      saveCommunityProfile(profile);
+    }
+
+    function shuffleOrder(order) {
+      const copy = [...order];
+      for (let index = copy.length - 1; index > 0; index -= 1) {
+        const random = Math.floor(Math.random() * (index + 1));
+        [copy[index], copy[random]] = [copy[random], copy[index]];
+      }
+      return copy;
+    }
+
+    function saveRanking() {
+      const order = currentOrder();
+      const payload = {
+        order,
+        updatedAt: new Date().toISOString(),
+      };
+
+      localStorage.setItem(STORAGE_KEYS.ranking, JSON.stringify(payload));
+      addCommunityRanking(order);
+      savedOrder = [...order];
+      setActionState(order);
+      renderCommunity(loadCommunityProfile());
+      setSavedAtUI(payload.updatedAt);
+      statusText.textContent = 'Ranking saved and counted for community aggregate.';
+
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'ranking_save', {
+          event_category: 'engagement',
+          event_label: 'batmobile_ranking',
+          value: 1,
+        });
+      }
+    }
+
+    function shareRanking() {
+      const order = currentOrder();
+      const shareUrl = buildShareUrl(order);
+      const text = `My Batmobile ranking on WhichBatman: ${order.slice(0, 3).join(', ')}...`;
+
+      if (navigator.share) {
+        navigator.share({
+          title: 'WhichBatman Batmobile Rankings',
+          text,
+          url: shareUrl
+        }).catch(() => {
+          navigator.clipboard.writeText(shareUrl);
+          statusText.textContent = 'Share link copied to clipboard.';
+        });
+      } else {
+        navigator.clipboard.writeText(shareUrl);
+        statusText.textContent = 'Share link copied to clipboard.';
+      }
+
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'ranking_share', {
+          event_category: 'engagement',
+          event_label: 'batmobile_ranking',
+          value: 1,
+        });
+      }
+    }
+
+    function resetRanking() {
+      if (savedOrder.length) {
+        renderRankingList([...savedOrder]);
+        setActionState(savedOrder);
+        statusText.textContent = 'Restored your last saved ranking.';
+      } else {
+        renderRankingList([...defaultOrder]);
+        setActionState(defaultOrder);
+        statusText.textContent = 'No saved ranking found, loaded default order.';
+      }
+      const profile = loadCommunityProfile();
+      renderCommunity(profile);
+    }
+
+    function init() {
+      const queryOrder = parseSharedOrder();
+      const localOrder = loadSavedOrder();
+      const order = queryOrder || localOrder || defaultOrder;
+      savedOrder = localOrder || [];
+
+      renderRankingList(order);
+      if (queryOrder) {
+        statusText.textContent = 'Loaded ranking from shared link.';
+      }
+
+      const profile = loadCommunityProfile();
+      renderCommunity(profile);
+      const savedRaw = safeParse(localStorage.getItem(STORAGE_KEYS.ranking));
+      if (savedRaw && savedRaw.updatedAt) {
+        setSavedAtUI(savedRaw.updatedAt);
+      }
+      setActionState(order);
+      updateRankingMeta();
+      shareUrlPreview.textContent = buildShareUrl(order);
+
+      if (!savedOrder.length && !queryOrder) {
+        saveBtn.disabled = true;
+      }
+
+      saveBtn.addEventListener('click', saveRanking);
+      shareBtn.addEventListener('click', shareRanking);
+      shuffleBtn.addEventListener('click', () => {
+        renderRankingList(shuffleOrder(currentOrder()));
+        setUnsavedState();
+      });
+      resetBtn.addEventListener('click', resetRanking);
+      document.addEventListener('pointermove', onDragMove, { passive: false });
+      document.addEventListener('pointerup', onDragEnd);
+      document.addEventListener('pointercancel', onDragEnd);
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+</body>
+</html>

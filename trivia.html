@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Batman Movie Trivia | WhichBatman</title>
+  <meta
+    name="description"
+    content="Endless Batman movie trivia with 59 multi-choice questions: production trivia, actor lore, box office, director swaps, easter eggs, and behind-the-scenes facts."
+  />
+  <meta property="og:title" content="Batman Movie Trivia | WhichBatman" />
+  <meta property="og:description" content="Test your knowledge with endless randomized Batman movie trivia across easy, medium, and hard levels." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://whichbatman.com/trivia.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-trivia">
+  <div class="page">
+    <header class="bat-header">
+      <p class="bat-kicker">WhichBatman</p>
+      <h1>Batman Movie Trivia</h1>
+      <p class="subtitle">
+        Endless multi-choice trivia with 59 questions on Batman films, TV references, lore, production
+        stories, and Easter eggs. Pick a difficulty, play until your score breaks, then beat your high score
+        on the local leaderboard.
+      </p>
+      <a class="home-link" href="index.html">← Back to Home</a>
+    </header>
+
+    <section class="panel">
+      <div class="layout-grid">
+        <div>
+          <div class="section-title">Session setup</div>
+          <label for="playerName" class="meta-row">Name for leaderboard</label>
+          <input
+            id="playerName"
+            type="text"
+            placeholder="Enter your name"
+            maxlength="28"
+          />
+
+          <div class="difficulty-row">
+            <label><input type="radio" name="difficulty" value="easy" checked />Easy</label>
+            <label><input type="radio" name="difficulty" value="medium" />Medium</label>
+            <label><input type="radio" name="difficulty" value="hard" />Hard</label>
+          </div>
+
+          <div class="meta-row">
+            <span>Easy = production facts and core cast.</span>
+            <span>Medium = behind-the-scenes + deeper lore.</span>
+            <span>Hard = deep cuts and number-heavy trivia.</span>
+          </div>
+
+          <div class="action-row">
+            <button class="btn" id="startBtn">Start New Session</button>
+            <button class="btn secondary" id="shuffleBtn">Shuffle Questions</button>
+          </div>
+          <div class="action-row stack-gap-sm">
+            <button class="btn secondary" id="shareBtn">Share Last Score</button>
+            <button class="btn secondary" id="resetStatsBtn">Clear Local Stats</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-title">Career stats (this device)</div>
+          <div class="hud">
+            <div class="stat-card">
+              <p class="stat-label">Best Score</p>
+              <p class="stat-value" id="bestScore">0</p>
+            </div>
+            <div class="stat-card">
+              <p class="stat-label">Games Played</p>
+              <p class="stat-value" id="gamesPlayed">0</p>
+            </div>
+            <div class="stat-card">
+              <p class="stat-label">Accuracy</p>
+              <p class="stat-value" id="globalAccuracy">0%</p>
+            </div>
+          </div>
+          <div class="scoreline">
+            <p>
+              <strong>Easy best:</strong>
+              <span id="bestEasy">0</span> •
+              <strong>Medium best:</strong>
+              <span id="bestMedium">0</span> •
+              <strong>Hard best:</strong>
+              <span id="bestHard">0</span>
+            </p>
+            <p><strong>Best streak:</strong> <span id="bestStreak">0</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="quizPanel" class="panel game-card">
+      <div class="section-title" id="difficultyBadge">Difficulty: Easy</div>
+      <div class="hud">
+        <div class="stat-card">
+          <p class="stat-label">Question</p>
+          <p class="stat-value" id="questionCount">0</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-label">Score</p>
+          <p class="stat-value" id="scoreCount">0</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-label">Streak</p>
+          <p class="stat-value" id="streakCount">0</p>
+        </div>
+      </div>
+
+      <p class="tiny" id="progressHint">Correct answer revealed after each question.</p>
+      <p class="question-text" id="questionText"></p>
+      <div id="optionsWrap" class="options"></div>
+
+      <div id="feedbackPanel" class="feedback">
+        <p class="result" id="feedbackResult"></p>
+        <p id="feedbackText"></p>
+      </div>
+
+      <div class="action-row">
+        <button class="btn secondary" id="skipBtn">Skip</button>
+        <button class="btn" id="nextBtn" disabled>Next Question</button>
+        <button class="btn danger" id="endBtn">End Session</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="section-title">Leaderboards (local only)</div>
+      <div class="filters">
+        <button class="btn secondary" data-view="all">All</button>
+        <button class="btn secondary" data-view="easy">Easy</button>
+        <button class="btn secondary" data-view="medium">Medium</button>
+        <button class="btn secondary" data-view="hard">Hard</button>
+      </div>
+      <p class="tiny top-gap">
+        Scores are saved to your device only using <code>localStorage</code>.
+      </p>
+      <ul id="leaderboardList" class="leaderboard-list"></ul>
+    </section>
+
+    <footer>
+      <p>&copy; WhichBatman — Batman Movie Trivia</p>
+    </footer>
+  </div>
+
+  <script>
+    const KEY_STATS = "whichbatman_trivia_stats_v1";
+    const KEY_LEADERBOARD = "whichbatman_trivia_leaderboard_v1";
+    const KEY_NAME = "whichbatman_trivia_player_name_v1";
+
+    const QUESTIONS = [
+      {
+        id: 1,
+        difficulty: "easy",
+        question: "What year was <strong>Batman (1989)</strong> released?",
+        options: ["1988", "1989", "1990", "1991"],
+        answer: 1,
+        explanation: "It opened in 1989 and helped launch the Tim Burton era of Batman films.",
+      },
+      {
+        id: 2,
+        difficulty: "easy",
+        question: "Who directed Batman (1989)?",
+        options: ["Christopher Nolan", "John Carpenter", "Tim Burton", "Joel Schumacher"],
+        answer: 2,
+        explanation: "Tim Burton directed the 1989 dark, gothic reboot.",
+      },
+      {
+        id: 3,
+        difficulty: "easy",
+        question: "Who played Batman in the 1989 film?",
+        options: ["Adam West", "Val Kilmer", "Michael Keaton", "Ben Affleck"],
+        answer: 2,
+        explanation: "Michael Keaton was cast as Bruce Wayne/Batman and reintroduced the character for a new generation.",
+      },
+      {
+        id: 4,
+        difficulty: "easy",
+        question: "Which actor played the Joker in Batman (1989)?",
+        options: ["Heath Ledger", "Nicolas Cage", "Jack Nicholson", "Joaquin Phoenix"],
+        answer: 2,
+        explanation: "Jack Nicholson brought a theatrical, unpredictable Joker to the 1989 movie.",
+      },
+      {
+        id: 5,
+        difficulty: "easy",
+        question: "Who played Vicki Vale in Batman (1989)?",
+        options: ["Michelle Pfeiffer", "Kim Basinger", "Nicole Kidman", "Katie Holmes"],
+        answer: 1,
+        explanation: "Kim Basinger played reporter Vicki Vale in Tim Burton's film.",
+      },
+      {
+        id: 6,
+        difficulty: "easy",
+        question: "In what year was <strong>Batman Returns</strong> released?",
+        options: ["1990", "1991", "1992", "1993"],
+        answer: 2,
+        explanation: "The sequel released in 1992 after a year of mixed reactions to the first reboot.",
+      },
+      {
+        id: 7,
+        difficulty: "easy",
+        question: "Who directed Batman Returns?",
+        options: ["Joel Schumacher", "Christopher Nolan", "Tim Burton", "Sam Mendes"],
+        answer: 2,
+        explanation: "Tim Burton returned as director for the sequel.",
+      },
+      {
+        id: 8,
+        difficulty: "easy",
+        question: "Who played Catwoman in Batman Returns?",
+        options: ["Zoë Kravitz", "Anne Hathaway", "Michelle Pfeiffer", "Mark Ruffalo"],
+        answer: 2,
+        explanation: "Michelle Pfeiffer's Selina Kyle is one of the era's most iconic Catwoman performances.",
+      },
+      {
+        id: 9,
+        difficulty: "easy",
+        question: "Which actor played the Penguin in Batman Returns?",
+        options: ["Nicolas Cage", "Danny DeVito", "Paul Dano", "Alec Baldwin"],
+        answer: 1,
+        explanation: "Danny DeVito played the deformed and theatrical Penguin character.",
+      },
+      {
+        id: 10,
+        difficulty: "easy",
+        question: "Who wrote the score for Batman (1989)?",
+        options: ["John Williams", "Hans Zimmer", "Danny Elfman", "James Horner"],
+        answer: 2,
+        explanation: "Danny Elfman created the signature gothic musical palette used in Burton's version.",
+      },
+      {
+        id: 11,
+        difficulty: "easy",
+        question: "What year did <strong>Batman Forever</strong> release?",
+        options: ["1994", "1995", "1996", "1997"],
+        answer: 1,
+        explanation: "Batman Forever was released in 1995 under Joel Schumacher.",
+      },
+      {
+        id: 12,
+        difficulty: "easy",
+        question: "Who directed Batman Forever?",
+        options: ["Tim Burton", "Christopher Nolan", "Joel Schumacher", "David Fincher"],
+        answer: 2,
+        explanation: "Joel Schumacher took over after the first two films.",
+      },
+      {
+        id: 13,
+        difficulty: "easy",
+        question: "Who played Batman in Batman Forever?",
+        options: ["Michael Keaton", "Val Kilmer", "George Clooney", "Christian Bale"],
+        answer: 1,
+        explanation: "Val Kilmer replaced Michael Keaton in the title role.",
+      },
+      {
+        id: 14,
+        difficulty: "easy",
+        question: "Who played the Riddler in Batman Forever?",
+        options: ["Tommy Lee Jones", "Jim Carrey", "Cillian Murphy", "Nicolas Cage"],
+        answer: 1,
+        explanation: "Jim Carrey played the puzzle-mad Riddler, Edward Nygma.",
+      },
+      {
+        id: 15,
+        difficulty: "easy",
+        question: "Which actor portrayed Two-Face in Batman Forever?",
+        options: ["Tommy Lee Jones", "Nicolas Cage", "Armand Assante", "Aaron Eckhart"],
+        answer: 0,
+        explanation: "Tommy Lee Jones took over as Harvey Dent/Two-Face.",
+      },
+      {
+        id: 16,
+        difficulty: "easy",
+        question: "Which year was <strong>Batman &amp; Robin</strong> released?",
+        options: ["1995", "1996", "1997", "1998"],
+        answer: 2,
+        explanation: "1997's <strong>Batman &amp; Robin</strong> closed the Schumacher trilogy of movies.",
+      },
+      {
+        id: 17,
+        difficulty: "easy",
+        question: "Who directed Batman &amp; Robin?",
+        options: ["Tim Burton", "Joel Schumacher", "Christopher Nolan", "Clint Eastwood"],
+        answer: 1,
+        explanation: "Joel Schumacher directed again for this colorful, heavily criticized entry.",
+      },
+      {
+        id: 18,
+        difficulty: "easy",
+        question: "Who played Batman in Batman &amp; Robin?",
+        options: ["Adam West", "Christian Bale", "Val Kilmer", "George Clooney"],
+        answer: 3,
+        explanation: "George Clooney stepped in as Bruce Wayne/Batman.",
+      },
+      {
+        id: 19,
+        difficulty: "easy",
+        question: "Which actor played Mr. Freeze in Batman &amp; Robin?",
+        options: ["Chris Evans", "Val Kilmer", "Arnold Schwarzenegger", "Pierce Brosnan"],
+        answer: 2,
+        explanation: "Arnold Schwarzenegger played a flamboyant Victor Fries (Mr. Freeze).",
+      },
+      {
+        id: 20,
+        difficulty: "easy",
+        question: "Who played Poison Ivy in Batman &amp; Robin?",
+        options: ["Uma Thurman", "Margot Robbie", "Anne Hathaway", "Jodie Comer"],
+        answer: 0,
+        explanation: "Uma Thurman took over Poison Ivy with a theatrical camp performance.",
+      },
+      {
+        id: 21,
+        difficulty: "medium",
+        question: "What year did <strong>Batman Begins</strong> release?",
+        options: ["2004", "2005", "2006", "2007"],
+        answer: 1,
+        explanation: "Batman Begins rebooted the franchise in 2005 and started the Nolan trilogy.",
+      },
+      {
+        id: 22,
+        difficulty: "medium",
+        question: "Who directed Batman Begins?",
+        options: ["Joel Schumacher", "Christopher Nolan", "Ridley Scott", "David Fincher"],
+        answer: 1,
+        explanation: "Christopher Nolan directed and reset the tone with grounded realism.",
+      },
+      {
+        id: 23,
+        difficulty: "medium",
+        question: "Who played Batman in Batman Begins?",
+        options: ["Val Kilmer", "Ben Affleck", "Christian Bale", "Cillian Murphy"],
+        answer: 2,
+        explanation: "Christian Bale became the signature Nolan Batman in the trilogy.",
+      },
+      {
+        id: 24,
+        difficulty: "medium",
+        question: "Who played Scarecrow in Batman Begins?",
+        options: ["Cillian Murphy", "Mark Ruffalo", "Tom Wilkinson", "Ben Mendelsohn"],
+        answer: 0,
+        explanation: "Cillian Murphy played Dr. Jonathan Crane, one of Gotham's recurring threats.",
+      },
+      {
+        id: 25,
+        difficulty: "medium",
+        question: "Who played Lucius Fox in the Nolan trilogy?",
+        options: ["Morgan Freeman", "Ralph Fiennes", "Alec Baldwin", "Gary Oldman"],
+        answer: 0,
+        explanation: "Morgan Freeman's Lucius was the intelligence and technical hub of Wayne Enterprises.",
+      },
+      {
+        id: 26,
+        difficulty: "medium",
+        question: "Who took over the role of Rachel Dawes between Batman Begins and The Dark Knight?",
+        options: ["Katie Holmes", "Maggie Gyllenhaal", "Kirsten Dunst", "Rooney Mara"],
+        answer: 1,
+        explanation: "Katie Holmes played Rachel in Batman Begins; Maggie Gyllenhaal replaced her in The Dark Knight.",
+      },
+      {
+        id: 27,
+        difficulty: "medium",
+        question: "Who played Ra's al Ghul in Batman Begins?",
+        options: ["Liam Neeson", "Ken Watanabe", "Michael Caine", "Liam Hemsworth"],
+        answer: 1,
+        explanation: "Ken Watanabe was revealed to be Ra's al Ghul in Batman Begins.",
+      },
+      {
+        id: 28,
+        difficulty: "medium",
+        question: "Who was the composer for Batman Begins?",
+        options: ["Danny Elfman", "James Newton Howard", "Hans Zimmer", "Michael Giacchino"],
+        answer: 1,
+        explanation: "James Newton Howard and Hans Zimmer both handled different parts, giving it a darker tone.",
+      },
+      {
+        id: 29,
+        difficulty: "medium",
+        question: "What year did <strong>The Dark Knight</strong> release?",
+        options: ["2006", "2007", "2008", "2009"],
+        answer: 2,
+        explanation: "The Dark Knight came out in 2008 and became one of the highest-rated superhero films.",
+      },
+      {
+        id: 30,
+        difficulty: "medium",
+        question: "Who directed The Dark Knight?",
+        options: ["Christopher Nolan", "David Fincher", "Guillermo del Toro", "Tim Burton"],
+        answer: 0,
+        explanation: "Christopher Nolan returned after Batman Begins with a more politically charged sequel.",
+      },
+      {
+        id: 31,
+        difficulty: "medium",
+        question: "Who played the Joker in The Dark Knight?",
+        options: ["Jared Leto", "Heath Ledger", "Joaquin Phoenix", "Jack Nicholson"],
+        answer: 1,
+        explanation: "Heath Ledger's Joker performance became a cultural touchpoint.",
+      },
+      {
+        id: 32,
+        difficulty: "medium",
+        question: "Who became Harvey Dent/Two-Face in The Dark Knight?",
+        options: ["Aaron Eckhart", "Colin Farrell", "Tom Hardy", "Gary Oldman"],
+        answer: 0,
+        explanation: "Aaron Eckhart played Harvey Dent before his transformation into Two-Face.",
+      },
+      {
+        id: 33,
+        difficulty: "medium",
+        question: "Who played Commissioner Gordon in The Dark Knight?",
+        options: ["Gary Oldman", "Pat Hingle", "Jorja Fox", "Nikolaj Coster-Waldau"],
+        answer: 0,
+        explanation: "Gary Oldman replaced Michael Gough's earlier portrayal.",
+      },
+      {
+        id: 34,
+        difficulty: "medium",
+        question: "Who played Alfred in the Nolan trilogy?",
+        options: ["Michael Caine", "Morgan Freeman", "Nicolas Cage", "Michael Gough"],
+        answer: 0,
+        explanation: "Michael Caine returned as Alfred Pennyworth and anchored Gotham's emotional core.",
+      },
+      {
+        id: 35,
+        difficulty: "medium",
+        question: "What was the name of the bat-vehicle used in the Nolan trilogy?",
+        options: ["Batmobile", "The Tumbler", "Arkham Cruiser", "Batarang One"],
+        answer: 1,
+        explanation: "Nolan's military-inspired design was nicknamed The Tumbler.",
+      },
+      {
+        id: 36,
+        difficulty: "medium",
+        question: "Which film did <strong>The Dark Knight Rises</strong> release in?",
+        options: ["2009", "2010", "2011", "2012"],
+        answer: 3,
+        explanation: "The trilogy concluded in 2012.",
+      },
+      {
+        id: 37,
+        difficulty: "medium",
+        question: "Who directed The Dark Knight Rises?",
+        options: ["Ridley Scott", "Christopher Nolan", "David Fincher", "Gore Verbinski"],
+        answer: 1,
+        explanation: "Christopher Nolan directed and concluded his planned trilogy arc.",
+      },
+      {
+        id: 38,
+        difficulty: "medium",
+        question: "Who played Bane in The Dark Knight Rises?",
+        options: ["Vince Vaughn", "Tom Hardy", "Tommy Lee Jones", "Rami Malek"],
+        answer: 1,
+        explanation: "Tom Hardy portrayed the physically imposing Bane.",
+      },
+      {
+        id: 39,
+        difficulty: "medium",
+        question: "Who played Selina Kyle/Catwoman in The Dark Knight Rises?",
+        options: ["Zoë Kravitz", "Michelle Pfeiffer", "Anne Hathaway", "Marion Cotillard"],
+        answer: 2,
+        explanation: "Anne Hathaway played Selina Kyle as a morally ambiguous antihero.",
+      },
+      {
+        id: 40,
+        difficulty: "medium",
+        question: "Who played the role of Ra's al Ghul in The Dark Knight Rises?",
+        options: ["Liam Neeson", "Ken Watanabe", "Nicolas Cage", "Mark Boone Junior"],
+        answer: 0,
+        explanation: "Liam Neeson returned under the alias of the wealthy businessman.",
+      },
+      {
+        id: 41,
+        difficulty: "hard",
+        question: "What year did <strong>The Batman</strong> with Robert Pattinson release?",
+        options: ["2021", "2022", "2023", "2024"],
+        answer: 1,
+        explanation: "Matt Reeves' noir-inspired <strong>The Batman</strong> was released in 2022.",
+      },
+      {
+        id: 42,
+        difficulty: "hard",
+        question: "Who directed The Batman (2022)?",
+        options: ["Damien Chazelle", "Matt Reeves", "Zack Snyder", "Denis Villeneuve"],
+        answer: 1,
+        explanation: "Matt Reeves directed the film and focused on a younger, detective-style Batman.",
+      },
+      {
+        id: 43,
+        difficulty: "hard",
+        question: "Who played Batman in The Batman (2022)?",
+        options: ["Ben Affleck", "Christian Bale", "Robert Pattinson", "Adam West"],
+        answer: 2,
+        explanation: "Robert Pattinson took over the title role.",
+      },
+      {
+        id: 44,
+        difficulty: "hard",
+        question: "Which actor plays the Riddler in The Batman (2022)?",
+        options: ["Joaquin Phoenix", "Paul Dano", "Jared Leto", "Jesse Eisenberg"],
+        answer: 1,
+        explanation: "Paul Dano's Riddler is a city-wide villain tied to puzzle clues and hidden motives.",
+      },
+      {
+        id: 45,
+        difficulty: "hard",
+        question: "Who played the Penguin in The Batman (2022)?",
+        options: ["Colin Farrell", "Nicolas Cage", "Danny DeVito", "Mark Strong"],
+        answer: 0,
+        explanation: "Colin Farrell played a scarred and physically transformed Penguin.",
+      },
+      {
+        id: 46,
+        difficulty: "hard",
+        question: "Who is the Catwoman in The Batman (2022)?",
+        options: ["Anne Hathaway", "Julie Newmar", "Zoë Kravitz", "Michelle Pfeiffer"],
+        answer: 2,
+        explanation: "Zoë Kravitz plays Selina Kyle in a grounded, modern interpretation.",
+      },
+      {
+        id: 47,
+        difficulty: "hard",
+        question: "Who composed the score for The Batman (2022)?",
+        options: ["Hans Zimmer", "Michael Giacchino", "Danny Elfman", "James Horner"],
+        answer: 1,
+        explanation: "Michael Giacchino wrote a dark orchestral score that mirrored the film's mood.",
+      },
+      {
+        id: 48,
+        difficulty: "hard",
+        question: "Who voiced Batman in <strong>Batman: The Animated Series</strong>?",
+        options: ["Adam West", "Kevin Conroy", "Christian Bale", "Tom Allen"],
+        answer: 1,
+        explanation: "Kevin Conroy is widely recognized as the definitive animated Batman voice.",
+      },
+      {
+        id: 49,
+        difficulty: "hard",
+        question: "Who voiced the Joker in Batman: The Animated Series?",
+        options: ["Joaquin Phoenix", "Mark Hamill", "Nicolas Cage", "Jack Nicholson"],
+        answer: 1,
+        explanation: "Mark Hamill's Joker voice work is iconic across animation history.",
+      },
+      {
+        id: 50,
+        difficulty: "hard",
+        question: "Who played Batman in the 1966 TV series?",
+        options: ["Paul Dano", "George Clooney", "Adam West", "Christian Bale"],
+        answer: 2,
+        explanation: "Adam West defined Batman for television in the 1960s camp era.",
+      },
+      {
+        id: 51,
+        difficulty: "hard",
+        question: "Who played Commissioner Gordon in the 1966 Batman TV series?",
+        options: ["Neil Hamilton", "Gary Oldman", "William Shatner", "Adam West"],
+        answer: 0,
+        explanation: "Neil Hamilton portrayed the long-suffering but loyal Commissioner.",
+      },
+      {
+        id: 52,
+        difficulty: "hard",
+        question: "Which actress played Catwoman in most of the 1966 Batman TV series episodes?",
+        options: ["Yvonne Craig", "Julie Newmar", "Zoë Kravitz", "Pamela Isley"],
+        answer: 1,
+        explanation: "Julie Newmar is the best-known Catwoman from the original television run.",
+      },
+      {
+        id: 53,
+        difficulty: "hard",
+        question: "Which Batman film had the highest opening weekend in the franchise at the time of release?",
+        options: ["Batman Forever", "Batman Begins", "The Dark Knight", "The Dark Knight Rises"],
+        answer: 2,
+        explanation: "The Dark Knight set a franchise opening standard in 2008.",
+      },
+      {
+        id: 54,
+        difficulty: "hard",
+        question: "Which Batman film was the first in the series to top $1 billion in global box office?",
+        options: ["Batman &amp; Robin", "The Dark Knight Rises", "The Dark Knight", "The Dark Knight Rises"],
+        answer: 1,
+        explanation: "The sequel broke major global box office territory for the franchise.",
+      },
+      {
+        id: 55,
+        difficulty: "hard",
+        question: "Which of these used major IMAX sequences during production, a technical milestone for a superhero film of its era?",
+        options: ["Batman Begins", "Batman (1989)", "The Dark Knight", "The Batman (2022)"],
+        answer: 2,
+        explanation: "The Dark Knight used IMAX extensively for select sequences.",
+      },
+      {
+        id: 56,
+        difficulty: "hard",
+        question: "Which city was one of the primary stand-ins for Gotham in The Dark Knight?",
+        options: ["Chicago", "Las Vegas", "New Orleans", "San Francisco"],
+        answer: 0,
+        explanation: "Chicago's dense urban core stood in for modern Gotham in many scenes.",
+      },
+      {
+        id: 57,
+        difficulty: "hard",
+        question: "Who gave Heath Ledger a posthumous Academy Award tied to a Batman role?",
+        options: ["Michael Keaton", "Morgan Freeman", "Heath Ledger", "Joaquin Phoenix"],
+        answer: 2,
+        explanation: "Ledger won the posthumous Oscar for his performance as the Joker.",
+      },
+      {
+        id: 58,
+        difficulty: "hard",
+        question: "What production detail was criticized as a meme-like design in Batman &amp; Robin's suit work?",
+        options: [
+          "LED panels in the cowl",
+          "Exaggerated pectoral bumps often called 'nipples'",
+          "A rotating utility belt",
+          "Built-in jet propulsion"
+        ],
+        answer: 1,
+        explanation: "Costume details on early B&amp;R concepts drew fan jokes; practical suit design was later adjusted.",
+      },
+      {
+        id: 59,
+        difficulty: "hard",
+        question: "What was the commonly reported rough budget range for George Clooney's Batman suit?",
+        options: ["Under $10,000", "About $250,000", "Over $2 million", "Less than $500"],
+        answer: 1,
+        explanation: "Sources differ, but production chatter often puts the suit budget around a few hundred thousand dollars.",
+      }
+    ];
+
+    const state = {
+      difficulty: "easy",
+      name: "",
+      session: null,
+      sessionRunning: false,
+      questionPool: [],
+      poolIndex: 0,
+      lastSessionSummary: null,
+      leaderboardFilter: "all",
+      answeredThisQuestion: false,
+    };
+
+    const gameEl = document.getElementById("quizPanel");
+    const questionText = document.getElementById("questionText");
+    const optionsWrap = document.getElementById("optionsWrap");
+    const feedbackPanel = document.getElementById("feedbackPanel");
+    const feedbackResult = document.getElementById("feedbackResult");
+    const feedbackText = document.getElementById("feedbackText");
+    const nextBtn = document.getElementById("nextBtn");
+    const skipBtn = document.getElementById("skipBtn");
+    const endBtn = document.getElementById("endBtn");
+    const startBtn = document.getElementById("startBtn");
+    const shuffleBtn = document.getElementById("shuffleBtn");
+    const shareBtn = document.getElementById("shareBtn");
+    const resetStatsBtn = document.getElementById("resetStatsBtn");
+    const difficultyBadge = document.getElementById("difficultyBadge");
+    const questionCount = document.getElementById("questionCount");
+    const scoreCount = document.getElementById("scoreCount");
+    const streakCount = document.getElementById("streakCount");
+    const bestScore = document.getElementById("bestScore");
+    const bestEasy = document.getElementById("bestEasy");
+    const bestMedium = document.getElementById("bestMedium");
+    const bestHard = document.getElementById("bestHard");
+    const bestStreak = document.getElementById("bestStreak");
+    const gamesPlayed = document.getElementById("gamesPlayed");
+    const globalAccuracy = document.getElementById("globalAccuracy");
+    const playerName = document.getElementById("playerName");
+    const leaderboardList = document.getElementById("leaderboardList");
+
+    const difficultyButtons = Array.from(document.querySelectorAll("input[name='difficulty']"));
+    const leaderboardFilters = Array.from(document.querySelectorAll("[data-view]"));
+
+    const storage = {
+      stats: {
+        bestScore: 0,
+        gamesPlayed: 0,
+        totalAnswered: 0,
+        totalCorrect: 0,
+        streak: 0,
+        bestEasy: 0,
+        bestMedium: 0,
+        bestHard: 0,
+      },
+      leaderboard: []
+    };
+
+    function shuffle(list) {
+      const out = [...list];
+      for (let i = out.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [out[i], out[j]] = [out[j], out[i]];
+      }
+      return out;
+    }
+
+    function safeParse(key, fallback) {
+      try {
+        const saved = localStorage.getItem(key);
+        if (!saved) return fallback;
+        const parsed = JSON.parse(saved);
+        return parsed && typeof parsed === "object" ? parsed : fallback;
+      } catch {
+        return fallback;
+      }
+    }
+
+    function saveStats() {
+      localStorage.setItem(KEY_STATS, JSON.stringify(storage.stats));
+      localStorage.setItem(KEY_LEADERBOARD, JSON.stringify(storage.leaderboard));
+      localStorage.setItem(KEY_NAME, state.name);
+    }
+
+    function loadFromStorage() {
+      storage.stats = safeParse(KEY_STATS, storage.stats);
+      storage.leaderboard = safeParse(KEY_LEADERBOARD, []);
+      state.name = localStorage.getItem(KEY_NAME) || "Dark Knight Fan";
+      playerName.value = state.name;
+      refreshStats();
+      renderLeaderboard();
+    }
+
+    function refreshStats() {
+      bestScore.textContent = storage.stats.bestScore;
+      bestEasy.textContent = storage.stats.bestEasy;
+      bestMedium.textContent = storage.stats.bestMedium;
+      bestHard.textContent = storage.stats.bestHard;
+      bestStreak.textContent = storage.stats.streak;
+      gamesPlayed.textContent = storage.stats.gamesPlayed;
+      const acc = storage.stats.totalAnswered > 0
+        ? Math.round((storage.stats.totalCorrect / storage.stats.totalAnswered) * 100)
+        : 0;
+      globalAccuracy.textContent = `${acc}%`;
+    }
+
+    function chooseDifficulty() {
+      const selected = difficultyButtons.find((btn) => btn.checked);
+      state.difficulty = selected ? selected.value : "easy";
+      difficultyBadge.textContent = `Difficulty: ${state.difficulty.toUpperCase()}`;
+      return state.difficulty;
+    }
+
+    function buildQuestionPool(difficulty) {
+      const base = QUESTIONS.filter((q) => q.difficulty === difficulty);
+      return shuffle(base);
+    }
+
+    function startSession() {
+      state.name = playerName.value.trim() || "Dark Knight Fan";
+      chooseDifficulty();
+      state.session = {
+        difficulty: state.difficulty,
+        questionIndex: 0,
+        score: 0,
+        correct: 0,
+        answered: 0,
+        streak: 0,
+      };
+      state.questionPool = buildQuestionPool(state.difficulty);
+      state.poolIndex = 0;
+      state.sessionRunning = true;
+      state.answeredThisQuestion = false;
+      gameEl.classList.add("active");
+      nextBtn.disabled = true;
+      renderNextQuestion();
+      updateHud();
+      saveStats();
+    }
+
+    function renderNextQuestion() {
+      if (!state.sessionRunning) {
+        return;
+      }
+      if (!state.questionPool.length || state.poolIndex >= state.questionPool.length) {
+        state.questionPool = buildQuestionPool(state.session.difficulty);
+        state.poolIndex = 0;
+      }
+      state.currentQuestion = state.questionPool[state.poolIndex];
+      state.poolIndex++;
+      state.session.questionIndex++;
+      state.answeredThisQuestion = false;
+      feedbackPanel.classList.remove("show");
+      questionText.innerHTML = `${state.session.questionIndex}. ${state.currentQuestion.question}`;
+      optionsWrap.innerHTML = "";
+      state.currentQuestion.options.forEach((option, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        btn.type = "button";
+        btn.textContent = option;
+        btn.addEventListener("click", () => submitAnswer(idx));
+        optionsWrap.appendChild(btn);
+      });
+      nextBtn.disabled = true;
+      updateHud();
+    }
+
+    function submitAnswer(selectedIndex, skipped = false) {
+      if (!state.sessionRunning || state.answeredThisQuestion) {
+        return;
+      }
+      state.answeredThisQuestion = true;
+      const question = state.currentQuestion;
+      state.session.answered += 1;
+      const correct = selectedIndex === question.answer;
+      const optionButtons = Array.from(optionsWrap.querySelectorAll(".option-btn"));
+      optionButtons.forEach((btn, idx) => {
+        btn.disabled = true;
+        if (idx === question.answer) {
+          btn.classList.add("correct");
+        }
+        if (idx === selectedIndex && !correct) {
+          btn.classList.add("wrong");
+        }
+      });
+      if (correct) {
+        state.session.correct += 1;
+        state.session.score += 1;
+        state.session.streak += 1;
+        feedbackResult.textContent = `Correct`;
+        feedbackResult.className = "result correct";
+      } else {
+        state.session.streak = 0;
+        feedbackResult.textContent = skipped
+          ? `Skipped`
+          : `Not quite`;
+        feedbackResult.className = "result wrong";
+      }
+
+      feedbackText.textContent = `${question.explanation} Correct answer: ${question.options[question.answer]}`;
+      feedbackPanel.classList.add("show");
+      nextBtn.disabled = false;
+
+      if (state.session.streak > storage.stats.streak) {
+        storage.stats.streak = state.session.streak;
+      }
+      saveStats();
+      updateHud();
+      renderLeaderboard();
+      refreshStats();
+    }
+
+    function skipQuestion() {
+      if (!state.sessionRunning || state.answeredThisQuestion) {
+        return;
+      }
+      submitAnswer(-1, true);
+    }
+
+    function updateHud() {
+      if (!state.session) {
+        return;
+      }
+      questionCount.textContent = `${state.session.questionIndex}`;
+      scoreCount.textContent = `${state.session.score}`;
+      streakCount.textContent = `${state.session.streak}`;
+      if (!state.session.questionIndex) {
+        return;
+      }
+      const acc = Math.round((state.session.correct / state.session.answered) * 100) || 0;
+      globalAccuracy.textContent = `${acc}%`;
+    }
+
+    function endSession() {
+      if (!state.sessionRunning || !state.session) {
+        return;
+      }
+      state.sessionRunning = false;
+      state.lastSessionSummary = null;
+
+      const accuracy = state.session.answered
+        ? Math.round((state.session.correct / state.session.answered) * 100)
+        : 0;
+      const entry = {
+        name: state.name,
+        difficulty: state.session.difficulty,
+        score: state.session.score,
+        answered: state.session.answered,
+        correct: state.session.correct,
+        accuracy,
+        streak: state.session.streak,
+        playedAt: Date.now(),
+      };
+      state.lastSessionSummary = entry;
+
+      storage.leaderboard.push(entry);
+      storage.leaderboard.sort((a, b) => {
+        if (b.score !== a.score) return b.score - a.score;
+        if (b.accuracy !== a.accuracy) return b.accuracy - a.accuracy;
+        if (b.answered !== a.answered) return b.answered - a.answered;
+        return b.playedAt - a.playedAt;
+      });
+      if (storage.leaderboard.length > 50) {
+        storage.leaderboard = storage.leaderboard.slice(0, 50);
+      }
+
+      storage.stats.gamesPlayed += 1;
+      storage.stats.totalAnswered += state.session.answered;
+      storage.stats.totalCorrect += state.session.correct;
+      if (state.session.score > storage.stats.bestScore) {
+        storage.stats.bestScore = state.session.score;
+      }
+
+      if (state.session.difficulty === "easy" && state.session.score > storage.stats.bestEasy) {
+        storage.stats.bestEasy = state.session.score;
+      }
+      if (state.session.difficulty === "medium" && state.session.score > storage.stats.bestMedium) {
+        storage.stats.bestMedium = state.session.score;
+      }
+      if (state.session.difficulty === "hard" && state.session.score > storage.stats.bestHard) {
+        storage.stats.bestHard = state.session.score;
+      }
+
+      saveStats();
+      refreshStats();
+      renderLeaderboard();
+      alert(
+        `Session saved.\n` +
+          `${state.lastSessionSummary.name} scored ${state.lastSessionSummary.score} out of ${state.lastSessionSummary.answered}` +
+          ` (${state.lastSessionSummary.accuracy}% accuracy).`
+      );
+    }
+
+    function nextQuestion() {
+      if (!state.sessionRunning) {
+        if (state.session) {
+          startSession();
+        }
+        return;
+      }
+      if (!state.answeredThisQuestion) {
+        return;
+      }
+      renderNextQuestion();
+    }
+
+    function formatDate(timestamp) {
+      const date = new Date(timestamp);
+      return date.toLocaleDateString(undefined, {
+        month: "short",
+        day: "2-digit",
+        year: "numeric",
+      });
+    }
+
+    function renderLeaderboard() {
+      const filtered = storage.leaderboard.filter((entry) =>
+        state.leaderboardFilter === "all" ? true : entry.difficulty === state.leaderboardFilter
+      );
+      leaderboardList.innerHTML = "";
+      if (!filtered.length) {
+        const empty = document.createElement("li");
+        empty.textContent = "No scores yet. Start a session and end it to claim your spot.";
+        leaderboardList.appendChild(empty);
+        return;
+      }
+
+      filtered.slice(0, 10).forEach((entry, idx) => {
+        const li = document.createElement("li");
+        const line1 = document.createElement("div");
+        const line2 = document.createElement("div");
+        line1.className = "line1 tiny";
+        line2.className = "tiny";
+        line1.textContent = `#${idx + 1} ${entry.name} — ${entry.score} pts`;
+        line2.textContent = `${entry.difficulty.toUpperCase()} • ${entry.correct}/${entry.answered} • ${entry.accuracy}% accuracy • ${formatDate(entry.playedAt)}`;
+        li.appendChild(line1);
+        li.appendChild(line2);
+        leaderboardList.appendChild(li);
+      });
+    }
+
+    function setLeaderboardFilter(filter) {
+      state.leaderboardFilter = filter;
+      renderLeaderboard();
+    }
+
+    function resetStats() {
+      if (!window.confirm("This will erase local trivia stats and leaderboard scores on this device.")) {
+        return;
+      }
+      storage.stats = {
+        bestScore: 0,
+        gamesPlayed: 0,
+        totalAnswered: 0,
+        totalCorrect: 0,
+        streak: 0,
+        bestEasy: 0,
+        bestMedium: 0,
+        bestHard: 0,
+      };
+      storage.leaderboard = [];
+      saveStats();
+      refreshStats();
+      renderLeaderboard();
+      if (state.session) {
+        state.session.running = false;
+      }
+      alert("Local stats and leaderboard cleared.");
+    }
+
+    function getShareText() {
+      if (!state.lastSessionSummary) {
+        return `${state.name} is challenging themselves in Batman Movie Trivia with local score tracking.`;
+      }
+      return `${state.name} scored ${state.lastSessionSummary.score}/${state.lastSessionSummary.answered} in ${state.lastSessionSummary.difficulty.toUpperCase()} mode on Batman Movie Trivia (${state.lastSessionSummary.accuracy}% accuracy).`;
+    }
+
+    async function shareScore() {
+      const message = getShareText();
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: "Batman Movie Trivia",
+            text: message,
+            url: location.href,
+          });
+          return;
+        } catch {}
+      }
+      try {
+        await navigator.clipboard.writeText(`${message} ${location.href}`);
+        alert("Score copied to clipboard.");
+      } catch {
+        alert(message);
+      }
+    }
+
+    function shuffleSession() {
+      if (!state.session) return;
+      state.questionPool = shuffle(state.questionPool);
+      state.poolIndex = 0;
+      if (!state.sessionRunning) {
+        return;
+      }
+      renderNextQuestion();
+    }
+
+    startBtn.addEventListener("click", startSession);
+    skipBtn.addEventListener("click", skipQuestion);
+    nextBtn.addEventListener("click", nextQuestion);
+    endBtn.addEventListener("click", endSession);
+    shuffleBtn.addEventListener("click", shuffleSession);
+    shareBtn.addEventListener("click", shareScore);
+    resetStatsBtn.addEventListener("click", resetStats);
+    playerName.addEventListener("change", () => {
+      state.name = playerName.value.trim() || "Dark Knight Fan";
+    });
+
+    difficultyButtons.forEach((btn) => {
+      btn.addEventListener("change", () => {
+        chooseDifficulty();
+      });
+    });
+
+    leaderboardFilters.forEach((btn) => {
+      btn.addEventListener("click", () => setLeaderboardFilter(btn.dataset.view));
+    });
+
+    loadFromStorage();
+  </script>
+</body>
+</html>

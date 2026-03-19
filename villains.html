@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Batman Villain Database | WhichBatman - Deep Dives on the Dark Side</title>
+  <meta name="description" content="Explore a comprehensive Batman villain database: Joker, Penguin, Riddler, Catwoman, Two-Face, Poison Ivy, Mr. Freeze, Bane, Scarecrow, Ra's al Ghul, Harley Quinn, Killer Croc, Clayface, Mad Hatter, Hugo Strange, Black Mask, and Hush. Search by name, filter by threat level, method, and appearance in movies, animated shows, comics, and games.">
+  <meta name="keywords" content="Batman villains database, who is the Joker, who is Penguin in Batman, Harley Quinn in Batman movies, Poison Ivy powers, Two-Face first appearance, Batman villain search">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://whichbatman.com/villains.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Batman Villain Database - WhichBatman">
+  <meta property="og:description" content="Search, filter, and explore the major Batman villains with first appearance year, threat levels, powers, motivations, and notable portrayals.">
+  <meta property="og:url" content="https://whichbatman.com/villains.html">
+  <meta property="og:image" content="https://whichbatman.com/assets/og-villains.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "WhichBatman Villain Database",
+    "description": "Major Batman villains with first appearance year, threat levels, abilities, motivations, and media appearances.",
+    "url": "https://whichbatman.com/villains.html"
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-villains">
+  <div class="container">
+    <div class="topbar">
+      <div class="crumbs">
+        <a href="index.html" class="crumb">← Home</a>
+        <a href="quiz.html" class="crumb">Quiz</a>
+        <a href="battles.html" class="crumb">Battles</a>
+        <a href="timeline.html" class="crumb">Timeline</a>
+      </div>
+      <a href="#villains" class="jump">Jump to Dossiers</a>
+    </div>
+
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="hero-kicker">Batman Villain Intelligence</div>
+        <h1>The Batcave Villain Database</h1>
+        <p>Search and filter major Batman adversaries by how they operate. Use this page like a case file: filter by threat scale, method of conflict, and where they appear across movies, animated titles, comics, and games.</p>
+        <div class="hero-meta">
+          <div class="hero-pill">16+ major villain dossiers</div>
+          <div class="hero-pill">Name search + filters</div>
+          <div class="hero-pill">Expand each card for threat and media profile</div>
+          <div class="hero-pill">Villain-of-the-Day</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="daily-panel" aria-label="villain of the day">
+      <h2>Villain of the Day</h2>
+      <div class="daily-body">
+        <p id="villainOfDayText"></p>
+        <div class="daily-meta" id="villainOfDayMeta"></div>
+      </div>
+    </section>
+
+    <section class="filters" aria-label="villain filters">
+      <div class="filter-row">
+        <div class="filter">
+          <label for="searchInput">Search villain name</label>
+          <input id="searchInput" type="text" placeholder="Try: Riddler, Scarecrow, Black Mask" aria-describedby="searchInputHint">
+        </div>
+        <div class="filter">
+          <label for="threatFilter">Threat level</label>
+          <select id="threatFilter" aria-label="Threat level filter">
+            <option value="all">All levels</option>
+            <option value="street">Street</option>
+            <option value="city">City</option>
+            <option value="global">Global</option>
+          </select>
+        </div>
+        <div class="filter">
+          <label for="typeFilter">Type</label>
+          <select id="typeFilter" aria-label="Villain type filter">
+            <option value="all">All methods</option>
+            <option value="psychological">Psychological</option>
+            <option value="physical">Physical</option>
+            <option value="strategic">Strategic</option>
+            <option value="chaotic">Chaotic</option>
+          </select>
+        </div>
+        <div class="filter">
+          <label>Media presence</label>
+          <div class="media-checks" role="group" aria-label="Media filters">
+            <label><input type="checkbox" value="movies" checked> movies</label>
+            <label><input type="checkbox" value="animated" checked> animated</label>
+            <label><input type="checkbox" value="comics" checked> comics</label>
+            <label><input type="checkbox" value="games" checked> games</label>
+          </div>
+        </div>
+      </div>
+      <div class="filter-inline-wrap">
+        <p id="searchInputHint">Tip: combine all filters for precision. For example, city-level + physical + movies.</p>
+        <button class="reset" id="resetFilters">Reset all filters</button>
+      </div>
+    </section>
+
+    <div class="results-bar">
+      <div class="controls-meta" id="resultsCount" aria-live="polite"></div>
+    </div>
+
+    <section id="villains" class="villain-grid" aria-live="polite"></section>
+
+    <section class="seo-zone" aria-label="batman villain deep dives">
+      <h2>Long-tail villain deep dives for Batman fans</h2>
+      <p>Looking for “who is the Joker in Batman?”, “who played Ra's al Ghul” or “what happens when Batman faces a city-level threat from Bane?” This section includes in-depth pages-to-search language and context for each major villain profile.</p>
+      <div class="seo-grid" id="seoContent"></div>
+    </section>
+
+    <footer>
+      <p>© 2026 WhichBatman. Fan-run profile archive for Dark Knight enthusiasts.</p>
+    </footer>
+  </div>
+
+  <script>
+    const villainData = [
+      {
+        name: "Joker",
+        slug: "joker",
+        firstAppearanceYear: 1940,
+        firstAppearance: "Batman #1 (Detective Comics style origin era, 1940)",
+        firstAppearanceDetails: "His first on-page appearance in mainstream Batman is commonly tied to the 1940 debut of the Joker as Batman's chaos archetype.",
+        keyTraits: ["Master manipulator", "unpredictable chaos strategist", "theatrical sadist", "obsession with social collapse"],
+        powers: ["No metahuman powers", "chemically engineered toxins", "expert body language and fear manipulation", "urban-level planning"],
+        portrayals: ["Cesar Romero", "Jack Nicholson", "Jackie Earle Haley", "Heath Ledger", "Jared Leto", "Joaquin Phoenix"],
+        threat: "global",
+        motivation: "Demonstrate that social order is a fragile performance by forcing Gotham's institutions into moral panic.",
+        types: ["psychological", "chaotic"],
+        media: {
+          movies: true,
+          animated: true,
+          comics: true,
+          games: true
+        },
+        summary: "The Joker's value as a Batman villain is that he is never just one person; he is a system breaker, designed to expose fear through absurdity.",
+        seoLines: [
+          "Searchers asking \"who is the Joker in Batman\" are usually after the villain who balances noir paranoia, chemical chaos, and psychological torment.",
+          "What began as a comic-book face-painted menace became a signature challenge to Bruce Wayne's moral law in every adaptation. Fans asking \"who played the Joker\" will find many interpretations: from Cesar Romero to Joaquin Phoenix, each changing the tone of Gotham's darkest joke."
+        ]
+      },
+      {
+        name: "Penguin",
+        slug: "penguin",
+        firstAppearanceYear: 1941,
+        firstAppearance: "Detective Comics #58 (1941)",
+        firstAppearanceDetails: "Oswald Cobblepot entered Batman comics during the Golden Age as a criminal baron with social ambitions and hidden menace.",
+        keyTraits: ["Mob-connected aristocrat", "political infiltrator", "cold logistics mind", "obsession with control"],
+        powers: ["Crime network command", "weaponized umbrella and gadgets", "master strategist", "high-level corruption leverage"],
+        portrayals: ["Burgess Meredith", "Danny DeVito", "Tom Waits (voice)", "Robin Atkin Downes (voice)", "Colin Farrell (voice)"],
+        threat: "city",
+        motivation: "Rule Gotham's underworld through legitimate fronts, extortion, and blackmail while preserving influence.",
+        types: ["strategic", "psychological"],
+        media: {
+          movies: true,
+          animated: true,
+          comics: true,
+          games: true
+        },
+        summary: "Penguin combines social class power with brutal criminal infrastructure, making him one of Gotham's most practical villains.",
+        seoLines: [
+          "For people searching \"who is Penguin in Batman\", the answer is both a mob boss and social architect of Gotham's fear economy.",
+          "Penguin is often found where crime and governance overlap. A practical villain profile for SEO often appears in searches like \"Penguin first appearance\" or \"who played Penguin in Batman\"."
+        ]
+      },
+      {
+        name: "Riddler",
+        slug: "riddler",
+        firstAppearanceYear: 1948,
+        firstAppearance: "Detective Comics #140 (1948)",
+        firstAppearanceDetails: "Edward Nigma uses puzzle logic as a direct offensive tactic against Batman's detective process.",
+        keyTraits: ["Pattern-based criminal", "coded threats", "egotistical theorist", "obsessive intellect"],
+        powers: ["Near-perfect cryptographic reasoning", "hacking and puzzle-based engineering", "urban planning knowledge", "deception through symbolism"],
+        portrayations: ["Frank Gorshin", "John Glover", "Mark Hamill (voice)", "Jonny Lee Miller", "Paul Dano", "Aaron Eckhart (Riddler portrayal in film?)", "Colin McFarlane (voice)"],
+        threat: "city",
+        motivation: "Force Batman into a losing-to-win game by proving superior intelligence can bend every system.",
+        types: ["psychological", "strategic", "chaotic"],
+        media: {
+          movies: true,
+          animated: true,
+          comics: true,
+          games: true
+        },
+        summary: "Riddler becomes strongest when Batman's logic is the target of a taunt.",
+        seoLines: [
+          "\"Who is the Riddler in Batman\" usually points to a villain defined by clues, ciphers, and theatrical confession trails.",
+          "The villain also ranks highly in searches for \"Batman villain who uses riddles\" and \"Riddler first appearance date\"."
+        ]
+      },
+      {
+        name: "Catwoman",
+        slug: "catwoman",
+        firstAppearanceYear: 1940,
+        firstAppearance: "Batman #1 (1940)",
+        firstAppearanceDetails: "Selina Kyle began as Catwoman's first appearance and eventually moved from thief to antiheroine.",
+        keyTraits: ["Moral flexibility", "high-level thief", "charismatic rival", "survival-driven pragmatist"],
+        powers: ["Acrobatics", "combat improvisation", "social engineering", "masterful infiltration"],
+        portrayals: ["Julie Newmar", "Lee Meriwether", "Michelle Pfeiffer", "Halle Berry", "Anne Hathaway", "Zoë Kravitz", "Camille Cottin (voice)"],
+        threat: "street",
+        motivation: "Balance personal autonomy, wealth, and identity in a city where alliances are rarely permanent.",
+        types: ["physical", "strategic", "psychological"],
+        media: {
+          movies: true,
+          animated: true,
+          comics: true,
+          games: true
+        },
+        summary: "Catwoman is frequently searched as \"Is Catwoman a villain or antihero?\" because her threat profile changes with the story.",
+        seoLines: [
+          "The query \"who is Catwoman in Batman\" often reflects her reputation as thief, partner, and moral wildcard.",
+          "Catwoman's first appearance is often tied to Batman #1, and her media coverage is deep in movies, animated series, and comics with repeated role changes."
+        ]
+      },
+      {
+        name: "Two-Face",
+        slug: "two-face",
+        firstAppearanceYear: 1942,
+        firstAppearance: "Detective Comics #66 (1942)",
+        firstAppearanceDetails: "Harvey Dent begins as Gotham's white-collared district attorney before a brutal turning point creates Two-Face.",
+        keyTraits: ["Duality obsession", "retributive mindset", "legal corruption aftermath", "rule-by-chance behavior"],
+        powers: ["Expert trial/legal knowledge", "precision marksmanship", "fear-inducing scar psychology", "weaponized decision model (coin flip)"],
+        portrayals: ["Tommy Lee Jones (The Dark Knight), Aaron Eckhart", "Colin Farrell (voice)", "Clancy Brown (voice)", "Steve Blum (voice)"],
+        threat: "city",
+        motivation: "Turn every moral choice into fate by transforming personal trauma into public punishment.",
+        types: ["psychological", "physical", "chaotic"],
+        media: {
+          movies: true,
+          animated: true,
+          comics: true,
+          games: true
+        },
+        summary: "Two-Face is a top pick for users searching \"who is Two-Face\" due to his legal-to-criminal arc.",
+        seoLines: [
+          "If you're searching \"who is Two-Face and why does he flip a coin,\" the answer lies in a public tragedy layered over Gotham's legal system.",
+          "Two-Face appears in both comics and major film adaptations, and his portrayal list is frequently searched by fans using \"Two-Face in Batman movies\"."
+        ]
+      },
+      {
+        name: "Poison Ivy",
+        slug: "poison-ivy",
+        firstAppearanceYear: 1966,
+        firstAppearance: "Batman #181 (1966)",
+        firstAppearanceDetails: "Dr. Pamela Isley enters as a botanist whose research becomes ecological vengeance.",
+        keyTraits: ["Eco-terror mindset", "toxic flora command", "seductive persuasion", "anti-industry moral fury"],
+        powers: ["Plant pheromones", "toxic compound engineering", "hypnotic influence", "rapid urban plant adaptation"],
+        portrayals: ["Uma Thurman", "Drea de Matteo", "Camren Bicondova (TV)", "Peyton List (voice)", "Mara Wilson (voice)", "Ariane Labed (voice)"],
+        threat: "city",
+        motivation: "Use nature as justice against ecological harm and human arrogance.",
+        types: ["psychological", "chaotic", "strategic"],
+        media: {
+          movies: true,
+          animated: true,
+          comics: true,
+          games: true
+        },
+        summary: "Poison Ivy is a frequent search for \"who is Poison Ivy in Batman\" because threat and ideology are tightly linked.",
+        seoLines: [
+          "A common long-tail phrase is \"who played Poison Ivy in Batman movies\" and \"Poison Ivy first appearance\".",
+          "Her profile is unique: physical toxins and emotional persuasion make her both environmental strategist and tactical disruptor."
+        ]
+      },
+      {
+        name: "Mr. Freeze",
+        slug: "mr-freeze",
+        firstAppearanceYear: 1959,
+        firstAppearance: "Batman #121 (1959)",
+        firstAppearanceDetails: "Victor Fries begins as a tragic scientist and shifts into one of Batman's most emotional physical threats.",
+        keyTraits: ["scientist's grief", "cold weaponry", "surgical precision", "loyalty to a broken promise"],
+        powers: ["Cryo-tech control", "ice-based weapon systems", "high-level engineering", "cold environment warfare"],
+        portrayals: ["Dean Cain (voice)", "Arnold Schwarzenegger", "George Clooney", "Michael Keaton (voice)", "Corey Burton (voice)", "Nathan Fillion (voice)"],
+        threat: "city",
+        motivation: "Preserve control over his emotional catastrophe by weaponizing cryogenics.",
+        types: ["physical", "strategic"],
+        media: {
+          movies: true,
+          animated: true,
+          comics: true,
+          games: true
+        },
+        summary: "Mr. Freeze is one of the most searched villains for phrases like \"who is Mr. Freeze in Batman\" and \"who played Mr. Freeze\".",
+        seoLines: [
+          "People asking \"who is Mr. Freeze\" often combine emotional backstory with weaponized technology.",
+          "Mr. Freeze appears as both a movie staple and core comic figure, which makes his page valuable for combined intent searches."
+        ]
+      },
+      {
+        name: "Bane",
+        slug: "bane",
+        firstAppearanceYear: 1993,
+        firstAppearance: "Batman: Vengeance of Bane #1 (1993)",
+        firstAppearanceDetails: "Bane arrives as a physically dominant strategist with a strategic plan to break Gotham's best defenders.",
+        keyTraits: ["Brute-force discipline", "military discipline", "pain tolerance", "political patience"],
+        powers: ["Venom-enhanced strength", "combat command", "urban guerrilla tactics", "long-range planning"],
+        portrayals: ["Ken Watanabe (voice)", "Ted Levine (voice)", "Tom Hardy", "Nicolas Cage (voice)", "Robert Carlyle (voice)"],
+        threat: "global",
+        motivation: "Demonstrate that strength without limits can become the only remaining law.",
+        types: ["physical", "strategic"],
+        media: {
+          movies: true,
+          animated: true,
+          comics: true,
+          games: true
+        },
+        summary: "Bane is a major query topic for \"who is Bane\" and \"who played Bane in The Dark Knight Rises\".",
+        seoLines: [
+          "Bane is typically discovered through search phrases like \"who is Bane in Batman\" and \"Bane first appearance\".",
+          "He is both a force of physical destruction and a methodical planner, making him one of Gotham's most complete level-up villains."
+        ]
+      },
+      {
+        name: "Scarecrow",
+        slug: "scarecrow",
+        firstAppearanceYear: 1941,
+        firstAppearance: "World's Finest Comics #3 (1941)",
+        firstAppearanceDetails: "Dr. Jonathan Crane weaponizes fear from the psychology side, making terror itself a central attack vector.",
+        keyTraits: ["Fear exploitation", "psychological assault", "lab-trained cruelty", "symbolic theater"],
+        powers: ["Fear toxin engineering", "neurochemical compounds", "panic induction", "combat deception"],
+        portrayals: ["Leslie Mapp, Boris Karloff", "Cillian Murphy", "John Astin (voice)", "Danny Trejo (voice)", "Nolan North (voice)"],
+        threat: "city",
+        motivation: "Prove fear's authority can control populations better than law.",
+        types: ["psychological", "chaotic"],
+        media: {
+          movies: true,
+          animated: true,
+          comics: true,
+          games: true
+        },
+        summary: "Scarecrow ranks highly in searches around fear and psychology: \"who is Scarecrow in Batman\" and \"Scarecrow actor in Batman\".",
+        seoLines: [
+          "If the query is \"who is the Scarecrow\", keyword intent usually focuses on fear-based methods and Gotham psychology arcs.",
+          "Scarecrow links both cinematic and comics lore, improving long-tail relevance for Batman fear-villain searches."
+        ]
+      },
+      {
+        name: "Ra's al Ghul",
+        slug: "ras-al-ghul",
+        firstAppearanceYear: 1971,
+        firstAppearance: "Batman #232 (1971)",
+        firstAppearanceDetails: "Created as an immortal strategist, Ra's al Ghul turns personal revenge into global ideology.",
+        keyTraits: ["Strategic imperial vision", "centuries-old patience", "ideological absolutism", "anti-chaotic order"],
+        powers: ["Lazarus Pits life extension", "global-level planning", "political manipulation", "resource control"],
+        portrayals: ["Denholm Elliott (voice)", "Liam Neeson", "John Lone", "Ken Watanabe", "Nikolaj Coster-Waldau (voice)", "Brendan Gleeson (voice)"],
+        threat: "global",
+        motivation: "Reshape civilization through selective annihilation and replacement of corrupt systems.",
+        types: ["strategic", "psychological"],
+        media: {
+          movies: true,
+          animated: true,
+          comics: true,
+          games: true
+        },
+        summary: "For users searching \"who is Ra's al Ghul\" or \"Ra's al Ghul first appearance\" this profile captures his ideology-first antagonism.",
+        seoLines: [
+          "Long-tail examples include \"who played Ra's al Ghul in Batman\" and \"Ra's al Ghul first appearance Batman\".",
+          "He is a city-wide villain that repeatedly escalates to global stakes."
+        ]
+      },
+      {
+        name: "Harley Quinn",
+        slug: "harley-quinn",
+        firstAppearanceYear: 1992,
+        firstAppearance: "Batman: The Animated Series (1992)",
+        firstAppearanceDetails: "Debuting in animation, Harley Quinn became one of the most culturally recognized anti-heroes in the canon.",
+        keyTraits: ["Unpredictable loyalty", "trauma recovery arc", "chaotic charisma", "high emotional volatility"],
+        powers: ["Combat improvisation", "acid-smoke and firearms training", "psychological destabilization", "adaptive survival mindset"],
+        portrayals: ["Arleen Sorkin (voice)", "Margot Robbie", "Lake Bell (voice)", "Kaley Cuoco (voice)", "Maisie Williams (voice)"],
+        threat: "city",
+        motivation: "Alternate between self-reinvention and destructive attachment patterns within Gotham's villain ecosystem.",
+        types: ["chaotic", "psychological", "physical"],
+        media: {
+          movies: true,
+          animated: true,
+          comics: true,
+          games: true
+        },
+        summary: "Searches like \"who is Harley Quinn\" and \"who played Harley Quinn\" now exceed older villain searches due to cross-media expansion.",
+        seoLines: [
+          "A high-performing query is \"who played Harley Quinn in Batman\" and \"Harley Quinn character origin\".",
+          "Harley Quinn is a major draw in animated, comics, and live-action contexts, making this dossier relevant for multiple audience paths."
+        ]
+      },
+      {
+        name: "Killer Croc",
+        slug: "killer-croc",
+        firstAppearanceYear: 1983,
+        firstAppearance: "Batman #357 (1983)",
+        firstAppearanceDetails: "Waylon Jones becomes a hybrid physical threat using mutant pathology and brutal endurance.",
+        keyTraits: ["Heavy-force brute", "trauma-fueled ferocity", "low-tech brutality", "street-level terror"],
+        powers: ["Hydration-resistant skin adaptation", "superior jaw strength", "underwater endurance", "raw close-range assault"],
+        portrayals: ["Aron Kincaid", "Adewale Akinnuoye-Agbaje", "Mark Sheppard", "Ron Perlman (voice)"],
+        threat: "street",
+        motivation: "Survive in a city built to punish what it can't understand.",
+        types: ["physical", "strategic"],
+        media: {
+          movies: true,
+          animated: true,
+          comics: true,
+          games: true
+        },
+        summary: "Killer Croc is often paired with phrases like \"who is Killer Croc\" and \"Killer Croc appearance\" due to his physical horror archetype.",
+        seoLines: [
+          "Killer Croc is one of Batman's physically strongest recurring adversaries and is frequently searched in context of first appearance and portrayal history.",
+          "Because he appears in movies, animation, comics, and playable titles, he is highly useful for cross-media villain profiles."
+        ]
+      },
+      {
+        name: "Clayface",
+        slug: "clayface",
+        firstAppearanceYear: 1942,
+        firstAppearanceDetails: "Basil Karlo version debuted as a master of identity and fear through shapeshifting.",
+        firstAppearance: "Detective Comics #298 (1948)",
+        keyTraits: ["Identity fluidity", "shape mimicry", "psychological identity fracture", "deep impersonation skill"],
+        powers: ["Shape-shifting via chem-derivation", "face and voice mimicry", "physical resilience", "infiltration and disguise"],
+        portrayals: ["Dennis Franz", "Ron Perlman", "John DiMaggio (voice)", "Nicholas Hoult (video game)", "Jeff Bergman (voice)"],
+        threat: "city",
+        motivation: "Use unstable identity and disguise to destabilize Batman's trust network.",
+        types: ["psychological", "strategic", "physical"],
+        media: {
+          movies: true,
+          animated: true,
+          comics: true,
+          games: true
+        },
+        summary: "For searches like \"who is Clayface\" and \"Clayface actor\", this villain profile captures his impersonation legacy.",
+        seoLines: [
+          "Clayface is a long-tail target due to identity-specific storylines and film adaptations.",
+          "Users often search for \"Batman Clayface first appearance\" and \"actors who played Clayface\"."
+        ]
+      },
+      {
+        name: "Mad Hatter",
+        slug: "mad-hatter",
+        firstAppearanceYear: 1948,
+        firstAppearance: "Batman #49 (1948)",
+        firstAppearanceDetails: "Jervis Tetch transforms hatmaking into mind-control tools and mind-state manipulation.",
+        keyTraits: ["Obsession-driven criminal", "mind-control specialist", "precision engineering", "ritualistic method"],
+        powers: ["Hypnotic and sonic tech", "weaponized gadgets", "manipulative dialogue", "small-scale strategic deployments"],
+        portrayals: ["Roddy McDowall", "John Glover", "Steve Blum (voice)", "Liam O'Brien (voice)", "Christopher Gorham"],
+        threat: "street",
+        motivation: "Use technological obsession and control-based psychology to prove intelligence can be a weapon against freedom.",
+        types: ["psychological", "chaotic"],
+        media: {
+          movies: true,
+          animated: true,
+          comics: true,
+          games: true
+        },
+        summary: "Mad Hatter is frequently discovered by users who search \"who is Mad Hatter in Batman\" for his mind-control gadget lore.",
+        seoLines: [
+          "The phrase \"who is the Mad Hatter in Batman\" is often combined with \"Hat man\" and \"actors who played Mad Hatter\".",
+          "He stands out as a villain where psychological coercion beats pure combat power."
+        ]
+      },
+      {
+        name: "Hugo Strange",
+        slug: "hugo-strange",
+        firstAppearanceYear: 1940,
+        firstAppearance: "Detective Comics #36 (1940)",
+        firstAppearanceDetails: "One of Batman's earliest psychiatrist-turned-predator archetypes, Hugo combines mind games with medical authority.",
+        keyTraits: ["Psychological experimentation", "institutional cover", "obsessive surveillance", "institution hacking"],
+        powers: ["Clinical manipulation", "bio-tech prototypes", "combat science planning", "pattern prediction"],
+        portrayals: ["Frank Gorshin", "Richard Hamilton", "Derek McGrath", "Richard Brake", "Breckin Meyer (voice)"],
+        threat: "global",
+        motivation: "Treat Gotham as a test subject and force ethical collapse to prove clinical superiority.",
+        types: ["psychological", "strategic"],
+        media: {
+          movies: true,
+          animated: true,
+          comics: true,
+          games: true
+        },
+        summary: "Searches for \"who is Hugo Strange\" often appear when readers explore Batman's psychological horror tracks.",
+        seoLines: [
+          "A common query: \"who played Hugo Strange\" links to the villain's many appearances in noir and modern reinterpretations.",
+          "Hugo Strange demonstrates villain threat at global scale through information control and identity manipulation."
+        ]
+      },
+      {
+        name: "Black Mask",
+        slug: "black-mask",
+        firstAppearanceYear: 1986,
+        firstAppearance: "Batman #386 (1986)",
+        firstAppearanceDetails: "Roman Sionis evolves into a symbol of city-crime sovereignty through branding, brutality, and legacy politics.",
+        keyTraits: ["Gang empire organizer", "branding through fear", "business-like predator", "revenge narrative"],
+        powers: ["Organized criminal command", "tactical intimidation", "chemical skin armor", "network corruption"],
+        portrayals: ["Christopher Eccleston", "Richard Belzer", "Erik King", "Brian George", "Jamie Kenna (voice)"],
+        threat: "city",
+        motivation: "Turn Gotham's fractured institutions into a market he owns.",
+        types: ["strategic", "physical"],
+        media: {
+          movies: false,
+          animated: true,
+          comics: true,
+          games: true
+        },
+        summary: "For \"who is Black Mask\" and \"Black Mask first appearance\" queries, this profile links his street-to-city transition.",
+        seoLines: [
+          "Because Black Mask is less constant in film than animation and comics, many users now search his comics-first history.",
+          "He appears in major city-level villain comparisons where audiences weigh him against Penguin, Hush, and other operators."
+        ]
+      },
+      {
+        name: "Hush",
+        slug: "hush",
+        firstAppearanceYear: 2002,
+        firstAppearance: "Batman #608 (2002)",
+        firstAppearanceDetails: "A modern mystery villain who uses deception around identity and medical precision.",
+        keyTraits: ["Identity theft mastery", "friend-turned-threat", "surgical precision", "high social infiltration"],
+        powers: ["Medical and tactical planning", "narrative-level misdirection", "strategic patience", "resource access"],
+        portrayals: ["Seth Green", "Ari Fliakos (voice)", "Scott Porter (voice)", "M. C. Gainey", "Matt Frewer (voice)"],
+        threat: "global",
+        motivation: "Undermine Batman through personal trust, turning private history into strategic pressure.",
+        types: ["psychological", "strategic"],
+        media: {
+          movies: false,
+          animated: true,
+          comics: true,
+          games: true
+        },
+        summary: "Searchers for \"who is Hush in Batman\" often look up his first appearance and why he belongs to the identity-attack villain class.",
+        seoLines: [
+          "The long-tail search phrase \"who is Hush and who played him\" pulls in both comic and animated users.",
+          "Hush is a villain of deep plot significance, making keyword intent around story-first appearance particularly strong."
+        ]
+      }
+    ];
+
+    const villainGrid = document.getElementById('villains');
+    const resultsCount = document.getElementById('resultsCount');
+    const searchInput = document.getElementById('searchInput');
+    const threatFilter = document.getElementById('threatFilter');
+    const typeFilter = document.getElementById('typeFilter');
+    const mediaInputs = Array.from(document.querySelectorAll('.media-checks input'));
+    const resetBtn = document.getElementById('resetFilters');
+    const seoContent = document.getElementById('seoContent');
+    const dailyText = document.getElementById('villainOfDayText');
+    const dailyMeta = document.getElementById('villainOfDayMeta');
+
+    function buildListItem(villain) {
+      const threatClass = `threat-${villain.threat}`;
+      const typeChips = villain.types.map(type => `<span class="chip">${type}</span>`).join('');
+      const mediaActive = Object.entries(villain.media)
+        .filter(([, present]) => present)
+        .map(([mediaType]) => mediaType)
+        .map(type => `<span class="chip">${type}</span>`)
+        .join('');
+
+      return `
+        <article class="villain-card" data-slug="${villain.slug}">
+          <div class="card-head">
+            <div>
+              <h3>${villain.name}</h3>
+              <div class="appearance">First appearance: ${villain.firstAppearanceYear}</div>
+            </div>
+            <span class="chip chip ${threatClass}">${villain.threat}</span>
+          </div>
+          <p class="shortline">${villain.summary}</p>
+          <div class="chip-row">
+            ${typeChips}
+          </div>
+          <div class="chip-row">
+            ${mediaActive}
+          </div>
+          <div class="expand-wrap">
+            <button class="expand-btn" aria-expanded="false" aria-controls="detail-${villain.slug}">
+              Expand dossier
+            </button>
+            <section class="villain-detail" id="detail-${villain.slug}" aria-label="details for ${villain.name}">
+              <div class="detail-grid">
+                <h4>${villain.name} dossier</h4>
+                <p>${villain.firstAppearanceDetails}</p>
+                <dl>
+                  <dt>First appearance year</dt>
+                  <dd>${villain.firstAppearanceYear} (${villain.firstAppearance})</dd>
+                  <dt>Primary motivation</dt>
+                  <dd>${villain.motivation}</dd>
+                  <dt>Threat level</dt>
+                  <dd>${villain.threat}</dd>
+                </dl>
+                <h4>Key traits</h4>
+                <ul>
+                  ${villain.keyTraits.map(trait => `<li>${trait}</li>`).join('')}
+                </ul>
+                <h4>Powers and abilities</h4>
+                <ul>
+                  ${villain.powers.map(power => `<li>${power}</li>`).join('')}
+                </ul>
+                <h4>Notable portrayals (actors)</h4>
+                <p>${villain.portrayals.join(', ')}</p>
+                <h4>Primary media appearances</h4>
+                <p>${Object.entries(villain.media).filter(([, present]) => present).map(([mediaType]) => mediaType).join(' • ')}</p>
+              </div>
+            </section>
+          </div>
+        </article>
+      `;
+    }
+
+    function buildSeoContent(list) {
+      return list.map(villain => `
+        <article class="seo-item">
+          <h3>Who is ${villain.name}? (${villain.firstAppearanceYear})</h3>
+          <p>${villain.seoLines[0]} ${villain.seoLines[1]}</p>
+          <p>This profile includes details used by readers who search for \"${villain.name} first appearance\", \"who played ${villain.name}\", and \"${villain.name} threat level in Batman\".</p>
+        </article>
+      `).join('');
+    }
+
+    function villainPassesMediaFilter(villain, selected) {
+      if (selected.length === 0) return false;
+      return selected.every(mediaType => villain.media[mediaType]);
+    }
+
+    function filteredVillains() {
+      const query = searchInput.value.trim().toLowerCase();
+      const threat = threatFilter.value;
+      const type = typeFilter.value;
+      const mediaSelected = mediaInputs.filter(input => input.checked).map(input => input.value);
+
+      return villainData.filter(villain => {
+        const matchesName = !query || villain.name.toLowerCase().includes(query);
+        const matchesThreat = threat === 'all' ? true : villain.threat === threat;
+        const matchesType = type === 'all' ? true : villain.types.includes(type);
+        const matchesMedia = villainPassesMediaFilter(villain, mediaSelected);
+        return matchesName && matchesThreat && matchesType && matchesMedia;
+      });
+    }
+
+    function render(list) {
+      villainGrid.innerHTML = list.length
+        ? list.map(villain => buildListItem(villain)).join('')
+        : '<div class="empty-state">No villains match these filters yet. Try broadening threat or media settings.</div>';
+
+      resultsCount.textContent = `${list.length} villain${list.length === 1 ? '' : 's'} matched`;
+      attachExpandHandlers();
+    }
+
+    function attachExpandHandlers() {
+      const buttons = villainGrid.querySelectorAll('.expand-btn');
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          const card = button.closest('.villain-card');
+          const details = card.querySelector('.villain-detail');
+          const expanded = button.getAttribute('aria-expanded') === 'true';
+
+          if (expanded) {
+            button.setAttribute('aria-expanded', 'false');
+            button.textContent = 'Expand dossier';
+            details.classList.remove('open');
+          } else {
+            button.setAttribute('aria-expanded', 'true');
+            button.textContent = 'Hide dossier';
+            details.classList.add('open');
+          }
+        });
+      });
+    }
+
+    function applyFilters() {
+      const list = filteredVillains();
+      render(list);
+    }
+
+    function pickVillainOfDay() {
+      const key = 'whichBatman.villainOfDay.2026';
+      const today = new Date().toISOString().slice(0, 10);
+      const randomFallback = () => {
+        const random = Math.floor(Math.sin(today.split('-').join('')) * 10000);
+        const index = Math.abs(random % villainData.length);
+        return villainData[index];
+      };
+
+      let selected = null;
+      try {
+        const cached = JSON.parse(localStorage.getItem(key));
+        if (cached && cached.date === today && Number.isInteger(cached.index)) {
+          selected = villainData[cached.index % villainData.length];
+        } else {
+          const index = randomFallback();
+          localStorage.setItem(key, JSON.stringify({ date: today, index }));
+          selected = villainData[index];
+        }
+      } catch (error) {
+        selected = randomFallback();
+      }
+
+      dailyText.textContent = `${selected.name} is today's featured adversary. They debuted in ${selected.firstAppearance}, and are commonly framed as a ${selected.threat}-level threat because ${selected.motivation.toLowerCase()}`;
+      dailyMeta.innerHTML = `
+        <span>Threat: ${selected.threat}</span>
+        <span>Type: ${selected.types.join(', ')}</span>
+        <span>Appears in: ${Object.entries(selected.media).filter(([, value]) => value).map(([mediaType]) => mediaType).join(' / ')}</span>
+      `;
+    }
+
+    function resetFilters() {
+      searchInput.value = '';
+      threatFilter.value = 'all';
+      typeFilter.value = 'all';
+      mediaInputs.forEach(input => {
+        input.checked = true;
+      });
+      applyFilters();
+    }
+
+    searchInput.addEventListener('input', applyFilters);
+    threatFilter.addEventListener('change', applyFilters);
+    typeFilter.addEventListener('change', applyFilters);
+    mediaInputs.forEach(input => input.addEventListener('change', applyFilters));
+    resetBtn.addEventListener('click', resetFilters);
+
+    render(villainData);
+    seoContent.innerHTML = buildSeoContent(villainData);
+    pickVillainOfDay();
+  </script>
+</body>
+</html>

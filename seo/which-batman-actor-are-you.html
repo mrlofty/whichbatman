@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Which Batman Actor Are You? | WhichBatman</title>
+  <meta
+    name="description"
+    content="Which Batman actor are you? Take a personality quiz-style breakdown of the iconic Batmen and find the screen version that matches your style."
+  />
+  <meta name="keywords" content="which batman actor are you, adam west, michael keaton, christian bale, ben affleck, robert pattinson, batman quiz">
+  <link rel="canonical" href="https://whichbatman.com/seo/which-batman-actor-are-you.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Which Batman Actor Are You? | WhichBatman" />
+  <meta property="og:description" content="Explore the personality style of every major Batman actor and discover your Dark Knight match." />
+  <meta property="og:url" content="https://whichbatman.com/seo/which-batman-actor-are-you.html" />
+  <meta property="og:image" content="https://whichbatman.com/assets/og-quiz.jpg" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Which Batman Actor Are You? | WhichBatman" />
+  <meta name="twitter:description" content="Find which Batman actor you align with: tone, style, grit, humor, and morality." />
+  <meta name="twitter:image" content="https://whichbatman.com/assets/og-quiz.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Quiz",
+    "name": "Which Batman Actor Are You?",
+    "description": "A guided page that maps Batman personality traits to major screen portrayals.",
+    "about": {
+      "@type": "Thing",
+      "name": "Batman"
+    },
+    "url": "https://whichbatman.com/seo/which-batman-actor-are-you.html",
+    "inLanguage": "en",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Batman fans"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Batman actor archetypes and traits",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Adam West", "item": "https://whichbatman.com/quiz.html#actor-adam-west" },
+      { "@type": "ListItem", "position": 2, "name": "Michael Keaton", "item": "https://whichbatman.com/quiz.html#actor-michael-keaton" },
+      { "@type": "ListItem", "position": 3, "name": "Christian Bale", "item": "https://whichbatman.com/quiz.html#actor-christian-bale" },
+      { "@type": "ListItem", "position": 4, "name": "Ben Affleck", "item": "https://whichbatman.com/quiz.html#actor-ben-affleck" },
+      { "@type": "ListItem", "position": 5, "name": "Robert Pattinson", "item": "https://whichbatman.com/quiz.html#actor-robert-pattinson" }
+    ]
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #12121a;
+      --bg-card: #1a1a24;
+      --border: #2a2a3a;
+      --accent: #d4af37;
+      --accent-hover: #f0c849;
+      --text-primary: #f5f5f5;
+      --text-secondary: #b0b0c0;
+    }
+    body {
+      background: radial-gradient(circle at 20% 0%, rgba(212, 175, 55, 0.16), transparent 30%), #0a0a0f;
+      color: var(--text-primary);
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    .layout {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .top-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .top-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(18, 18, 26, 0.85);
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .top-links a:hover { border-color: var(--accent); color: var(--text-primary); }
+    .hero {
+      background: linear-gradient(155deg, rgba(26, 26, 36, 0.96), rgba(14, 14, 22, 0.96));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -120px;
+      top: -120px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.2), transparent 72%);
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 740px; }
+    .kicker { color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.78rem; font-weight: 700; margin-bottom: 12px; }
+    h1 { color: var(--accent); font-size: clamp(2rem, 6vw, 3.2rem); margin-bottom: 12px; line-height: 1.05; }
+    .hero p { color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 18px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      background: var(--accent); color: var(--bg-primary); border: none; text-decoration: none;
+      border-radius: 10px; padding: 13px 18px; font-weight: 700; font-size: 0.98rem; min-height: 44px;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .btn:hover { background: var(--accent-hover); }
+    .btn.secondary { background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border); }
+    .poster {
+      margin-top: 18px;
+      width: min(100%, 100%);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .poster img { display: block; width: 100%; height: auto; }
+    .section {
+      margin-top: 22px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+    }
+    .section h2 { color: var(--accent); margin-bottom: 12px; font-size: 1.45rem; }
+    .lead { color: var(--text-secondary); margin-bottom: 10px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .actor-card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      background: linear-gradient(180deg, rgba(18,18,26,0.92), rgba(10,10,15,0.95));
+    }
+    .actor-card h3 { margin-bottom: 8px; color: var(--accent); font-size: 1.2rem; }
+    .trait-line {
+      display: inline-block;
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 999px;
+      padding: 6px 10px;
+      margin: 4px 6px 0 0;
+      font-size: 0.84rem;
+      color: var(--text-primary);
+    }
+    .small-links {
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .small-links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .small-links a:hover { color: var(--accent-hover); }
+    .faq details {
+      background: rgba(12,12,20,0.72);
+      border: 1px solid var(--border);
+      padding: 12px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      color: var(--text-secondary);
+    }
+    .faq summary { color: var(--text-primary); font-weight: 600; cursor: pointer; padding: 4px; }
+    footer {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin: 20px 0 6px;
+    }
+    @media (max-width: 800px) {
+      .grid { grid-template-columns: 1fr; }
+      .hero { padding: 24px; }
+      .layout { padding: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <nav class="top-links" aria-label="Main feature links">
+      <a href="../index.html">Home</a>
+      <a href="../quiz.html">Main Quiz</a>
+      <a href="../battles.html">Battles</a>
+      <a href="../timeline.html">Timeline</a>
+      <a href="../trivia.html">Trivia</a>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <p class="kicker">Long-tail SEO landing page</p>
+        <h1>Which Batman Actor Are You?</h1>
+        <p>
+          If you want answers to a specific query like "which batman actor are you," this page helps
+          map your personality, mindset, and style to the major Batman interpretations.
+        </p>
+        <div class="actions">
+          <a class="btn" href="../quiz.html">Start the Main Quiz</a>
+          <a class="btn secondary" href="../battles.html">Compare in Battles</a>
+        </div>
+        <figure class="poster">
+          <img
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='520' viewBox='0 0 1200 520'%3E%3Crect width='1200' height='520' fill='%2311181f'/%3E%3Crect x='14' y='14' width='1172' height='492' fill='none' stroke='%23d4af37' stroke-width='8'/%3E%3Ccircle cx='600' cy='170' r='118' fill='none' stroke='%23d4af37' stroke-width='18'/%3E%3Cpath d='M534 310c33-54 99-54 132 0' stroke='%23d4af37' stroke-width='14' fill='none' stroke-linecap='round'/%3E%3Cpath d='M140 420h920' stroke='%23d4af37' stroke-width='8' opacity='0.7'/%3E%3Ctext x='600' y='468' text-anchor='middle' font-size='40' fill='%23d4af37' font-family='Arial' font-weight='700'%3EWhichBatman Cast Match %3C/text%3E%3C/svg%3E"
+            alt="Batman-themed comparison graphic for matching actors"
+          />
+        </figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Which actor archetypes are you likely to match</h2>
+      <p class="lead">
+        Our results are built around three identity drivers: moral discipline, emotional tone, and how
+        a character treats fear under pressure. You get your result by mapping your own answers to
+        these archetypes, then comparing to on-screen Batmen.
+      </p>
+      <div class="grid">
+        <article class="actor-card" id="actor-adam-west">
+          <h3>Adam West Era</h3>
+          <p>Classic and theatrical with a playful edge. Best fit for creators who lead with charm, moral clarity, and nostalgia.</p>
+          <span class="trait-line">campy style</span>
+          <span class="trait-line">public optimism</span>
+          <span class="trait-line">iconic simplicity</span>
+        </article>
+        <article class="actor-card" id="actor-michael-keaton">
+          <h3>Michael Keaton</h3>
+          <p>Intensity under pressure, emotional restraint, and a quiet strategic edge. Strong match for tactical leaders.</p>
+          <span class="trait-line">strategist</span>
+          <span class="trait-line">gritty emotional depth</span>
+          <span class="trait-line">low-key heroism</span>
+        </article>
+        <article class="actor-card" id="actor-christian-bale">
+          <h3>Christian Bale</h3>
+          <p>Vengeful discipline and mission focus. Ideal for people who prefer action-first decision making.</p>
+          <span class="trait-line">method intensity</span>
+          <span class="trait-line">justice obsession</span>
+          <span class="trait-line">hard edges</span>
+        </article>
+        <article class="actor-card" id="actor-ben-affleck">
+          <h3>Ben Affleck</h3>
+          <p>Dark, weary, and protective. Best for resilient personalities who work through pain, guilt, and duty.</p>
+          <span class="trait-line">world-weary</span>
+          <span class="trait-line">protective instincts</span>
+          <span class="trait-line">high tolerance for pressure</span>
+        </article>
+        <article class="actor-card" id="actor-robert-pattinson">
+          <h3>Robert Pattinson</h3>
+          <p>Moody, introspective, and physically grounded. Resonates with people who lead through observation and adaptation.</p>
+          <span class="trait-line">psychological tension</span>
+          <span class="trait-line">street detective logic</span>
+          <span class="trait-line">moral ambiguity</span>
+        </article>
+        <article class="actor-card">
+          <h3>Find your place</h3>
+          <p>Most fans sit between archetypes. Compare results with other fans in battles and use the quiz leaderboard flow to test changes.</p>
+          <span class="trait-line">mixed outcomes</span>
+          <span class="trait-line">multiple archetypes</span>
+          <span class="trait-line">re-play for better fit</span>
+        </article>
+      </div>
+      <div class="small-links">
+        <a href="../quiz.html">Take the full quiz now</a>
+        <a href="../battles.html">Vote in Batman vs battles</a>
+      </div>
+    </section>
+
+    <section class="section faq">
+      <h2>Frequently asked questions</h2>
+      <details>
+        <summary>Do I need to remember the quiz answers to know which Batman actor I am?</summary>
+        <p>No. The test gives immediate guidance from your responses and you can retake for a different angle.</p>
+      </details>
+      <details>
+        <summary>Is this page based on actual movie scores?</summary>
+        <p>It is based on portrayal style and fan consensus, not box office. For chronology and rankings, use the timeline page.</p>
+      </details>
+      <details>
+        <summary>How is this different from the battles page?</summary>
+        <p>Battles gives direct matchup voting; this page is personality mapping and archetype explanation.</p>
+      </details>
+    </section>
+
+    <footer>
+      Built for long-tail searches and funneling fans to the main quiz experience.
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,400 @@
+/* Layout rules extracted from index.html */
+/* Layout rules extracted from batmobiles.html */
+/* Layout rules extracted from battles.html */
+/* Layout rules extracted from quiz.html */
+/* Layout rules extracted from timeline.html */
+/* Layout rules extracted from trivia.html */
+/* Layout rules extracted from villains.html */
+
+/* Shared comic-book theme for WhichBatman */
+:root {
+  --comic-blue: #2563eb;
+  --comic-blue-bright: #3b82f6;
+  --comic-yellow: #fbbf24;
+  --comic-orange: #f59e0b;
+  --comic-red: #ef4444;
+  --comic-red-dark: #dc2626;
+  --comic-cream: #fef9c3;
+  --comic-cream-deep: #fef3c7;
+  --comic-paper: #fffdf3;
+  --comic-ink: #1e293b;
+  --comic-ink-soft: #475569;
+  --comic-line: #0f172a;
+  --comic-shadow: 8px 8px 0 rgba(30, 41, 59, 0.18);
+  --comic-shadow-strong: 10px 10px 0 rgba(37, 99, 235, 0.18);
+  --comic-radius: 18px;
+}
+
+body[class^="page-"] {
+  --bg-primary: var(--comic-cream);
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --border: var(--comic-blue);
+  --accent: var(--comic-yellow);
+  --accent-hover: var(--comic-orange);
+  --accent-soft: var(--comic-orange);
+  --text-primary: var(--comic-ink);
+  --text-secondary: var(--comic-ink-soft);
+  --danger: var(--comic-red);
+  --good: #10b981;
+  --line: rgba(37, 99, 235, 0.28);
+  --shadow: rgba(37, 99, 235, 0.18);
+  --shadow-strong: rgba(30, 41, 59, 0.18);
+  --success: #16a34a;
+  --street: #60a5fa;
+  --city: #f59e0b;
+  --global: #ef4444;
+  --panel: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(254, 249, 195, 0.95));
+  font-family: "Comic Neue", system-ui, sans-serif;
+  color: var(--text-primary);
+  background:
+    radial-gradient(circle at 20px 20px, rgba(37, 99, 235, 0.12) 0 2px, transparent 2px 100%),
+    radial-gradient(circle at 0 0, rgba(239, 68, 68, 0.08) 0 1.5px, transparent 1.5px 100%),
+    linear-gradient(135deg, var(--comic-cream) 0%, var(--comic-cream-deep) 48%, #fff7ed 100%);
+  background-size: 24px 24px, 18px 18px, auto;
+  color-scheme: light;
+}
+
+body[class^="page-"] a,
+body[class^="page-"] button,
+body[class^="page-"] input,
+body[class^="page-"] select,
+body[class^="page-"] textarea {
+  font: inherit;
+}
+
+body[class^="page-"] h1,
+body[class^="page-"] h2,
+body[class^="page-"] h3,
+body[class^="page-"] .section-title,
+body[class^="page-"] .results-title,
+body[class^="page-"] .battle-kicker,
+body[class^="page-"] .hero-kicker,
+body[class^="page-"] .hero-eyebrow,
+body[class^="page-"] .eyebrow,
+body[class^="page-"] .bat-kicker {
+  font-family: "Bangers", cursive;
+  letter-spacing: 0.04em;
+  color: var(--comic-blue);
+  text-shadow: 2px 2px 0 rgba(251, 191, 36, 0.5);
+}
+
+body[class^="page-"] .hero,
+body[class^="page-"] .quiz-card,
+body[class^="page-"] .panel,
+body[class^="page-"] .battle-card,
+body[class^="page-"] .results-card,
+body[class^="page-"] .daily-panel,
+body[class^="page-"] .filters,
+body[class^="page-"] .timeline-shell,
+body[class^="page-"] .bat-header {
+  background:
+    radial-gradient(circle at top right, rgba(59, 130, 246, 0.12) 0 18%, transparent 18% 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(254, 249, 195, 0.92));
+  border: 4px solid var(--comic-blue);
+  border-radius: var(--comic-radius);
+  box-shadow: var(--comic-shadow);
+}
+
+body[class^="page-"] .feature-card,
+body[class^="page-"] .fighter,
+body[class^="page-"] .ranking-item,
+body[class^="page-"] .timeline-entry,
+body[class^="page-"] .villain-card,
+body[class^="page-"] .seo-item,
+body[class^="page-"] .stat-card,
+body[class^="page-"] .result-bar-card {
+  background: var(--comic-paper);
+  border: 3px solid var(--comic-blue);
+  box-shadow: 6px 6px 0 rgba(30, 41, 59, 0.14);
+}
+
+body.page-home .feature-card:nth-child(odd),
+body.page-battles .fighter:first-child,
+body.page-villains .villain-card:nth-child(odd),
+body.page-timeline .timeline-entry:nth-child(odd),
+body.page-trivia .stat-card:nth-child(odd) {
+  transform: rotate(-1deg);
+}
+
+body.page-home .feature-card:nth-child(even),
+body.page-battles .fighter:last-child,
+body.page-villains .villain-card:nth-child(even),
+body.page-timeline .timeline-entry:nth-child(even),
+body.page-trivia .stat-card:nth-child(even) {
+  transform: rotate(1deg);
+}
+
+body[class^="page-"] .feature-card:hover,
+body[class^="page-"] .fighter:hover,
+body[class^="page-"] .ranking-item:hover,
+body[class^="page-"] .villain-card:hover,
+body[class^="page-"] .timeline-entry:hover {
+  transform: translate(-2px, -3px) rotate(0deg);
+  box-shadow: var(--comic-shadow-strong);
+}
+
+body[class^="page-"] .crumbs a,
+body[class^="page-"] .crumb,
+body[class^="page-"] .jump,
+body[class^="page-"] .jump-link,
+body[class^="page-"] .pill-link,
+body[class^="page-"] .pill,
+body[class^="page-"] .hero-pill,
+body[class^="page-"] .hero-chip,
+body[class^="page-"] .meta-chip,
+body[class^="page-"] .hero-meta span,
+body[class^="page-"] .daily-meta span,
+body[class^="page-"] .trait,
+body[class^="page-"] .chip {
+  background: #ffffff;
+  border: 3px solid var(--comic-red);
+  color: var(--comic-ink);
+  box-shadow: 4px 4px 0 rgba(239, 68, 68, 0.14);
+}
+
+body[class^="page-"] .cta-button,
+body[class^="page-"] .btn,
+body[class^="page-"] button,
+body[class^="page-"] .vote-button,
+body[class^="page-"] .action-button,
+body[class^="page-"] .filter-btn,
+body[class^="page-"] .expand-btn,
+body[class^="page-"] .move-button,
+body[class^="page-"] .drag-handle,
+body[class^="page-"] .reset {
+  background: linear-gradient(180deg, var(--comic-yellow), var(--comic-orange));
+  color: var(--comic-line);
+  border: 3px solid var(--comic-line);
+  border-radius: 14px;
+  box-shadow: 5px 5px 0 rgba(30, 41, 59, 0.16);
+  font-weight: 700;
+}
+
+body[class^="page-"] .btn.secondary,
+body[class^="page-"] button.secondary,
+body[class^="page-"] .action-button.secondary,
+body[class^="page-"] #shareBtn,
+body[class^="page-"] #shuffleBtn,
+body[class^="page-"] #resetBtn,
+body[class^="page-"] .expand-btn,
+body[class^="page-"] .filter-btn[aria-pressed="false"] {
+  background: #ffffff;
+  color: var(--comic-blue);
+  border-color: var(--comic-blue);
+}
+
+body[class^="page-"] .btn.danger,
+body[class^="page-"] button.danger,
+body[class^="page-"] #endBtn,
+body[class^="page-"] .reset {
+  background: linear-gradient(180deg, var(--comic-red), var(--comic-red-dark));
+  color: #ffffff;
+}
+
+body[class^="page-"] .cta-button:hover,
+body[class^="page-"] .btn:hover,
+body[class^="page-"] button:hover,
+body[class^="page-"] .vote-button:hover,
+body[class^="page-"] .action-button:hover,
+body[class^="page-"] .filter-btn:hover,
+body[class^="page-"] .expand-btn:hover,
+body[class^="page-"] .move-button:hover,
+body[class^="page-"] .drag-handle:hover,
+body[class^="page-"] .reset:hover {
+  transform: translate(-1px, -2px);
+  box-shadow: 7px 7px 0 rgba(30, 41, 59, 0.18);
+}
+
+body[class^="page-"] input[type="text"],
+body[class^="page-"] select {
+  background: #fffef9;
+  color: var(--comic-ink);
+  border: 3px solid var(--comic-blue);
+  border-radius: 14px;
+}
+
+body[class^="page-"] .progress-bar,
+body[class^="page-"] .bar-track,
+body[class^="page-"] .match-bar-track {
+  background: rgba(37, 99, 235, 0.12);
+  border: 2px solid rgba(37, 99, 235, 0.3);
+}
+
+body[class^="page-"] .progress-fill,
+body[class^="page-"] .bar-fill,
+body[class^="page-"] .match-bar-fill {
+  background: linear-gradient(90deg, var(--comic-red), var(--comic-yellow));
+}
+
+body.page-battles .image-placeholder,
+body.page-batmobiles .vehicle-image,
+body.page-timeline .entry-art {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(251, 191, 36, 0.35) 0 18%, transparent 18% 100%),
+    linear-gradient(135deg, #dbeafe 0%, #ffffff 100%);
+  border: 3px solid var(--comic-blue);
+}
+
+body.page-battles .pulse,
+body.page-villains .daily-panel,
+body.page-home .cta-button,
+body.page-batmobiles .pill,
+body.page-timeline .jump-link,
+body.page-villains .jump {
+  position: relative;
+}
+
+body.page-battles .pulse::after,
+body.page-home .cta-button::after,
+body.page-timeline .jump-link::after,
+body.page-villains .jump::after {
+  content: "";
+  position: absolute;
+  inset: auto 12px -10px 12px;
+  height: 14px;
+  background: #ffffff;
+  border: 3px solid currentColor;
+  border-top: 0;
+  clip-path: polygon(18% 0, 50% 100%, 82% 0);
+}
+
+body.page-home footer,
+body.page-batmobiles .status,
+body.page-trivia .tiny,
+body.page-villains #searchInputHint,
+body.page-battles .battle-subtitle,
+body.page-timeline .note,
+body.page-timeline .faq-answer,
+body.page-quiz .subtitle,
+body.page-quiz .result-description,
+body.page-trivia .subtitle,
+body.page-home .feature-card p,
+body.page-battles .fighter-desc,
+body.page-villains .daily-body p,
+body.page-timeline .hero p,
+body.page-trivia .meta-row,
+body.page-batmobiles .panel-note {
+  color: var(--comic-ink-soft);
+}
+
+body.page-home .hero {
+  border-radius: 0 0 24px 24px;
+  border-left: 0;
+  border-right: 0;
+}
+
+body.page-home .hero h1,
+body.page-quiz h1,
+body.page-batmobiles h1,
+body.page-battles h1,
+body.page-timeline h1,
+body.page-trivia h1,
+body.page-villains h1 {
+  color: var(--comic-blue);
+}
+
+body.page-home .feature-link,
+body.page-trivia .home-link,
+body.page-trivia .bat-link,
+body.page-batmobiles .share-url,
+body.page-villains .expand-btn,
+body.page-battles .result-name,
+body.page-timeline .expand-hint,
+body.page-quiz .result-name {
+  color: var(--comic-blue);
+}
+
+body.page-home .feature-link:hover,
+body.page-trivia .home-link:hover,
+body.page-trivia .bat-link:hover {
+  color: var(--comic-red);
+}
+
+body.page-quiz .option,
+body.page-trivia .option-btn,
+body.page-batmobiles .ranking-item,
+body.page-villains .villain-detail,
+body.page-timeline .entry-body {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(37, 99, 235, 0.35);
+}
+
+body.page-quiz .option.selected,
+body.page-trivia .option-btn.selected,
+body.page-timeline .filter-btn[aria-pressed="true"],
+body.page-villains .chip.street,
+body.page-villains .chip.city,
+body.page-villains .chip.global,
+body.page-battles .vote-button.voted {
+  background: linear-gradient(180deg, #dbeafe, #bfdbfe);
+  color: var(--comic-blue);
+  border-color: var(--comic-blue);
+}
+
+body.page-villains .chip.global,
+body.page-villains .chip.threat-global,
+body.page-villains .chip.legendary {
+  border-color: var(--comic-red);
+  color: var(--comic-red-dark);
+}
+
+body.page-villains .chip.city,
+body.page-villains .chip.threat-city {
+  border-color: var(--comic-orange);
+  color: #b45309;
+}
+
+body.page-villains .chip.street,
+body.page-villains .chip.threat-street {
+  border-color: var(--comic-blue);
+  color: var(--comic-blue);
+}
+
+body.page-timeline .timeline-shell::before {
+  background: linear-gradient(90deg, transparent, var(--comic-red), transparent);
+  height: 4px;
+}
+
+body.page-timeline .pill,
+body.page-timeline .entry-meta-badge .pill {
+  background: linear-gradient(180deg, var(--comic-yellow), #fde68a);
+  border-color: var(--comic-line);
+  color: var(--comic-line);
+}
+
+body.page-trivia .leaderboard-list li,
+body.page-batmobiles .community-list li,
+body.page-villains .seo-item,
+body.page-villains .empty-state,
+body.page-batmobiles .empty-state {
+  background: rgba(255,255,255,0.92);
+  border: 3px solid rgba(37, 99, 235, 0.35);
+}
+
+body.page-home .footer-note {
+  margin-top: 12px;
+  font-size: 0.9rem;
+}
+
+body.page-trivia .stack-gap-sm,
+body.page-trivia .tiny.top-gap {
+  margin-top: 8px;
+}
+
+body.page-villains .filter-inline-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+body.page-villains #searchInputHint {
+  font-size: 0.92rem;
+}
+
+body.page-quiz .results-heading {
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+}

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Which Batman Are You? | The Ultimate Batman Personality Quiz</title>
+  <meta name="description" content="Discover which iconic Batman you are! Take our 10-question personality quiz and find out if you're Adam West, Michael Keaton, Christian Bale, Ben Affleck, Robert Pattinson, or another legendary Dark Knight.">
+  
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Which Batman Are You? | Ultimate Personality Quiz">
+  <meta property="og:description" content="10 questions. 8 legendary Batmen. Discover which Dark Knight matches your personality!">
+  <meta property="og:url" content="https://whichbatman.com/quiz.html">
+  <meta property="og:image" content="https://whichbatman.com/assets/og-quiz.jpg">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Which Batman Are You?">
+  <meta name="twitter:description" content="Discover your Batman personality in 10 questions!">
+  <meta name="twitter:image" content="https://whichbatman.com/assets/og-quiz.jpg">
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Quiz",
+    "name": "Which Batman Are You?",
+    "description": "A personality quiz matching users with iconic Batman portrayals",
+    "about": {
+      "@type": "Thing",
+      "name": "Batman"
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-quiz">
+  <div class="container">
+    <header>
+      <h1>🦇 Which Batman Are You?</h1>
+      <p class="subtitle">The Ultimate Dark Knight Personality Quiz</p>
+    </header>
+    
+    <div class="quiz-card">
+      <div class="progress">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+        </div>
+        <span class="progress-text" id="progressText">1/10</span>
+      </div>
+      
+      <!-- Question 1 -->
+      <div class="question active" data-question="1">
+        <h2 class="question-title">A criminal threatens innocent people. What's your first move?</h2>
+        <div class="options">
+          <div class="option" data-value="west">Use logic and deduction to outsmart them</div>
+          <div class="option" data-value="keaton">Strike from the shadows and disappear</div>
+          <div class="option" data-value="bale">Study their psychology and exploit their fear</div>
+          <div class="option" data-value="affleck">Overpower them with superior tactics and strength</div>
+          <div class="option" data-value="pattinson">Investigate methodically, gather evidence</div>
+        </div>
+      </div>
+      
+      <!-- Question 2 -->
+      <div class="question" data-question="2">
+        <h2 class="question-title">How do you prefer to operate?</h2>
+        <div class="options">
+          <div class="option" data-value="west">In broad daylight, working with authorities</div>
+          <div class="option" data-value="keaton">As a mysterious legend no one understands</div>
+          <div class="option" data-value="bale">Through careful planning and resources</div>
+          <div class="option" data-value="affleck">With brutal efficiency and experience</div>
+          <div class="option" data-value="pattinson">Solo, trusting only yourself</div>
+        </div>
+      </div>
+      
+      <!-- Question 3 -->
+      <div class="question" data-question="3">
+        <h2 class="question-title">What's your relationship with your public identity?</h2>
+        <div class="options">
+          <div class="option" data-value="west">They complement each other perfectly</div>
+          <div class="option" data-value="keaton">It's a necessary disguise, nothing more</div>
+          <div class="option" data-value="bale">A carefully crafted facade to protect my mission</div>
+          <div class="option" data-value="affleck">Both identities are worn down and weary</div>
+          <div class="option" data-value="pattinson">I barely maintain it; Batman is who I really am</div>
+        </div>
+      </div>
+      
+      <!-- Question 4 -->
+      <div class="question" data-question="4">
+        <h2 class="question-title">A villain offers you a moral dilemma. How do you respond?</h2>
+        <div class="options">
+          <div class="option" data-value="west">Find the honorable solution that saves everyone</div>
+          <div class="option" data-value="keaton">Do what needs to be done, no matter how dark</div>
+          <div class="option" data-value="bale">Never compromise your principles, even in crisis</div>
+          <div class="option" data-value="affleck">The mission justifies harsh choices</div>
+          <div class="option" data-value="pattinson">Struggle with the weight of the decision</div>
+        </div>
+      </div>
+      
+      <!-- Question 5 -->
+      <div class="question" data-question="5">
+        <h2 class="question-title">What drives you?</h2>
+        <div class="options">
+          <div class="option" data-value="west">A sense of civic duty and justice</div>
+          <div class="option" data-value="keaton">A need to become something beyond human</div>
+          <div class="option" data-value="bale">A vow to prevent others from suffering your loss</div>
+          <div class="option" data-value="affleck">Anger at a world that took everything</div>
+          <div class="option" data-value="pattinson">Vengeance against those who hurt your city</div>
+        </div>
+      </div>
+      
+      <!-- Question 6 -->
+      <div class="question" data-question="6">
+        <h2 class="question-title">How do you view your gadgets and technology?</h2>
+        <div class="options">
+          <div class="option" data-value="west">Clever tools for every situation</div>
+          <div class="option" data-value="keaton">Extensions of your otherworldly presence</div>
+          <div class="option" data-value="bale">Military-grade equipment for serious threats</div>
+          <div class="option" data-value="affleck">Battle-tested arsenal from years of war</div>
+          <div class="option" data-value="pattinson">DIY creations that barely hold together</div>
+        </div>
+      </div>
+      
+      <!-- Question 7 -->
+      <div class="question" data-question="7">
+        <h2 class="question-title">What's your relationship with allies?</h2>
+        <div class="options">
+          <div class="option" data-value="west">Close partnership built on trust</div>
+          <div class="option" data-value="keaton">Keep them at arm's length</div>
+          <div class="option" data-value="bale">They're essential but must prove themselves</div>
+          <div class="option" data-value="affleck">Lost too many; keep your distance</div>
+          <div class="option" data-value="pattinson">Still learning to trust anyone</div>
+        </div>
+      </div>
+      
+      <!-- Question 8 -->
+      <div class="question" data-question="8">
+        <h2 class="question-title">How do you handle failure?</h2>
+        <div class="options">
+          <div class="option" data-value="west">Learn from it and try again with optimism</div>
+          <div class="option" data-value="keaton">Become more isolated and vengeful</div>
+          <div class="option" data-value="bale">Use it as motivation to be better</div>
+          <div class="option" data-value="affleck">Let it confirm your darkest beliefs</div>
+          <div class="option" data-value="pattinson">Question everything about your approach</div>
+        </div>
+      </div>
+      
+      <!-- Question 9 -->
+      <div class="question" data-question="9">
+        <h2 class="question-title">What's your fighting style?</h2>
+        <div class="options">
+          <div class="option" data-value="west">Theatrical punches with sound effects</div>
+          <div class="option" data-value="keaton">Graceful, almost supernatural movements</div>
+          <div class="option" data-value="bale">Ninja training meets street brawling</div>
+          <div class="option" data-value="affleck">Raw power and decades of experience</div>
+          <div class="option" data-value="pattinson">Brutal, relentless pounding</div>
+        </div>
+      </div>
+      
+      <!-- Question 10 -->
+      <div class="question" data-question="10">
+        <h2 class="question-title">What's your vision for Gotham's future?</h2>
+        <div class="options">
+          <div class="option" data-value="west">A shining example of law and order</div>
+          <div class="option" data-value="keaton">A city that fears its protector</div>
+          <div class="option" data-value="bale">A place that doesn't need Batman anymore</div>
+          <div class="option" data-value="affleck">Saved despite itself, by any means</div>
+          <div class="option" data-value="pattinson">Hope, even if you don't see it yet</div>
+        </div>
+      </div>
+      
+      <div class="nav-buttons">
+        <button class="secondary" id="prevBtn" onclick="previousQuestion()" disabled>← Back</button>
+        <button id="nextBtn" onclick="nextQuestion()" disabled>Next →</button>
+      </div>
+    </div>
+    
+    <!-- Results Screen -->
+    <div class="quiz-card results" id="results">
+      <h2 class="results-heading">Your Batman is...</h2>
+      <div class="result-batman" id="resultEmoji"></div>
+      <h3 class="result-name" id="resultName"></h3>
+      <p class="result-description" id="resultDescription"></p>
+      <div class="result-traits" id="resultTraits"></div>
+      
+      <div class="share-buttons">
+        <button onclick="shareResult()">📤 Share Result</button>
+        <button class="secondary" onclick="restartQuiz()">🔄 Take Again</button>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    const quizData = {
+      west: {
+        name: "Adam West's Batman",
+        emoji: "🎭",
+        description: "You're the campy, colorful, utterly earnest Dark Knight of the 1960s! You solve crimes with logic, gadgets, and unshakeable optimism. Evil-doers beware: you've got a Bat-solution for everything!",
+        traits: ["Optimistic", "By-the-book", "Gadget master", "Team player", "Honorable"]
+      },
+      keaton: {
+        name: "Michael Keaton's Batman",
+        emoji: "🦇",
+        description: "You're the gothic, mysterious Batman who emerged from the shadows in 1989. Brooding, unpredictable, and slightly unhinged — you're the urban legend criminals whisper about in fear.",
+        traits: ["Mysterious", "Haunted", "Intimidating", "Theatrical", "Gothic"]
+      },
+      bale: {
+        name: "Christian Bale's Batman",
+        emoji: "⚔️",
+        description: "You're the tactical, highly-trained Dark Knight of Nolan's trilogy. You've turned trauma into purpose, building an arsenal of military-grade equipment and unwavering principles. You're Batman as special forces operative.",
+        traits: ["Strategic", "Principled", "Tactical", "Determined", "Incorruptible"]
+      },
+      affleck: {
+        name: "Ben Affleck's Batman",
+        emoji: "💪",
+        description: "You're the battle-worn, brutal Batman of the DCEU. Twenty years of fighting crime has left you jaded and willing to cross lines. You're what happens when Batman stops pulling punches.",
+        traits: ["Experienced", "Brutal", "Cynical", "Powerful", "Ruthless"]
+      },
+      pattinson: {
+        name: "Robert Pattinson's Batman",
+        emoji: "🔍",
+        description: "You're the Year Two detective Batman — emo, methodical, and still figuring it out. You're less superhero, more damaged investigator using vengeance as therapy. Batman as a crime scene in a cape.",
+        traits: ["Methodical", "Vengeful", "Isolated", "Detective", "Raw"]
+      }
+    };
+    
+    let currentQuestion = 1;
+    let answers = {};
+    
+    // Option selection
+    document.querySelectorAll('.option').forEach(option => {
+      option.addEventListener('click', function() {
+        const question = this.closest('.question');
+        const questionNum = question.dataset.question;
+        
+        // Remove selected from siblings
+        question.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+        
+        // Mark this option as selected
+        this.classList.add('selected');
+        
+        // Store answer
+        answers[questionNum] = this.dataset.value;
+        
+        // Enable next button
+        document.getElementById('nextBtn').disabled = false;
+      });
+    });
+    
+    function updateProgress() {
+      const progress = (currentQuestion / 10) * 100;
+      document.getElementById('progressFill').style.width = progress + '%';
+      document.getElementById('progressText').textContent = currentQuestion + '/10';
+    }
+    
+    function showQuestion(num) {
+      document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
+      document.querySelector(`[data-question="${num}"]`).classList.add('active');
+      
+      // Update button states
+      document.getElementById('prevBtn').disabled = num === 1;
+      const hasAnswer = answers[num] !== undefined;
+      document.getElementById('nextBtn').disabled = !hasAnswer;
+      document.getElementById('nextBtn').textContent = num === 10 ? 'See Results →' : 'Next →';
+      
+      // Restore selected option if exists
+      if (hasAnswer) {
+        const question = document.querySelector(`[data-question="${num}"]`);
+        question.querySelector(`[data-value="${answers[num]}"]`).classList.add('selected');
+      }
+      
+      currentQuestion = num;
+      updateProgress();
+    }
+    
+    function nextQuestion() {
+      if (currentQuestion < 10) {
+        showQuestion(currentQuestion + 1);
+      } else {
+        showResults();
+      }
+    }
+    
+    function previousQuestion() {
+      if (currentQuestion > 1) {
+        showQuestion(currentQuestion - 1);
+      }
+    }
+    
+    function showResults() {
+      // Count up answers
+      const scores = {};
+      Object.values(answers).forEach(answer => {
+        scores[answer] = (scores[answer] || 0) + 1;
+      });
+      
+      // Find winner
+      let winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+      const result = quizData[winner];
+      
+      // Display result
+      document.getElementById('resultEmoji').textContent = result.emoji;
+      document.getElementById('resultName').textContent = result.name;
+      document.getElementById('resultDescription').textContent = result.description;
+      
+      const traitsHTML = result.traits.map(trait => `<span class="trait">${trait}</span>`).join('');
+      document.getElementById('resultTraits').innerHTML = traitsHTML;
+      
+      // Hide quiz, show results
+      document.querySelector('.quiz-card:not(.results)').style.display = 'none';
+      document.getElementById('results').classList.add('active');
+      
+      // Track completion
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'quiz_complete', {
+          'event_category': 'engagement',
+          'event_label': winner,
+          'value': 1
+        });
+      }
+      
+      // Save to localStorage
+      localStorage.setItem('whichBatmanResult', winner);
+      
+      // Update URL for sharing
+      if (history.pushState) {
+        const newUrl = window.location.pathname + '?result=' + winner;
+        history.pushState({result: winner}, '', newUrl);
+      }
+    }
+    
+    function shareResult() {
+      const result = localStorage.getItem('whichBatmanResult');
+      const batman = quizData[result];
+      const url = window.location.origin + window.location.pathname + '?result=' + result;
+      const text = `I got ${batman.name} on the Which Batman Are You quiz! 🦇`;
+      
+      if (navigator.share) {
+        navigator.share({
+          title: 'Which Batman Are You?',
+          text: text,
+          url: url
+        });
+      } else {
+        // Fallback: copy to clipboard
+        navigator.clipboard.writeText(`${text} ${url}`);
+        alert('Result link copied to clipboard!');
+      }
+      
+      // Track share
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'share', {
+          'event_category': 'engagement',
+          'event_label': 'quiz_result',
+          'value': 1
+        });
+      }
+    }
+    
+    function restartQuiz() {
+      currentQuestion = 1;
+      answers = {};
+      
+      document.getElementById('results').classList.remove('active');
+      document.querySelector('.quiz-card:not(.results)').style.display = 'block';
+      
+      showQuestion(1);
+      
+      // Clear URL
+      if (history.pushState) {
+        history.pushState(null, '', window.location.pathname);
+      }
+    }
+    
+    // Check for shared result in URL
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const result = urlParams.get('result');
+      
+      if (result && quizData[result]) {
+        // Show that result immediately
+        Object.keys(quizData).forEach((key, index) => {
+          answers[index + 1] = key === result ? result : Object.keys(quizData)[0];
+        });
+        currentQuestion = 10;
+        showResults();
+      }
+      
+      // Track quiz start
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'quiz_start', {
+          'event_category': 'engagement',
+          'value': 1
+        });
+      }
+    });
+    
+    // Save progress to localStorage
+    window.addEventListener('beforeunload', () => {
+      if (Object.keys(answers).length > 0 && currentQuestion < 10) {
+        localStorage.setItem('whichBatmanProgress', JSON.stringify({
+          currentQuestion,
+          answers
+        }));
+      }
+    });
+    
+    // Restore progress on load
+    const savedProgress = localStorage.getItem('whichBatmanProgress');
+    if (savedProgress && !window.location.search.includes('result=')) {
+      const {currentQuestion: saved, answers: savedAnswers} = JSON.parse(savedProgress);
+      if (saved > 1) {
+        if (confirm('Continue where you left off?')) {
+          answers = savedAnswers;
+          showQuestion(saved);
+        } else {
+          localStorage.removeItem('whichBatmanProgress');
+        }
+      }
+    }
+  </script>
+  
+  <!-- Analytics placeholder - replace with actual GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+</body>
+</html>
