@@ -1,0 +1,707 @@
+:root,
+html[data-theme="gotham"] {
+  --theme-color: #0f0f14;
+  --bg-primary: #0f0f14;
+  --bg-secondary: #1a1a24;
+  --bg-card: rgba(21, 22, 34, 0.9);
+  --bg-elevated: rgba(32, 28, 54, 0.92);
+  --text-primary: #f0f0f5;
+  --text-secondary: #a6adca;
+  --heading-color: #f6f4ff;
+  --accent-primary: #a855f7;
+  --accent-secondary: #6366f1;
+  --accent-strong: #c084fc;
+  --button-text: #ffffff;
+  --chip-bg: rgba(18, 18, 30, 0.9);
+  --chip-text: #f5f3ff;
+  --border-color: rgba(168, 85, 247, 0.4);
+  --line-color: rgba(192, 132, 252, 0.18);
+  --panel-shadow: 0 20px 55px rgba(8, 6, 19, 0.55);
+  --hover-shadow: 0 26px 60px rgba(26, 17, 53, 0.62);
+  --soft-shadow: 0 12px 30px rgba(8, 6, 19, 0.34);
+  --card-radius: 24px;
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --heading-shadow: 0 0 18px rgba(168, 85, 247, 0.2);
+  --surface-background:
+    linear-gradient(145deg, rgba(31, 29, 46, 0.96), rgba(12, 12, 18, 0.94));
+  --page-background:
+    radial-gradient(circle at top right, rgba(99, 102, 241, 0.2), transparent 30%),
+    radial-gradient(circle at 20% 20%, rgba(168, 85, 247, 0.18), transparent 35%),
+    linear-gradient(180deg, #141420 0%, #09090d 100%);
+  --image-background:
+    radial-gradient(circle at top, rgba(192, 132, 252, 0.16), transparent 45%),
+    linear-gradient(135deg, rgba(35, 32, 58, 0.98), rgba(13, 14, 22, 0.98));
+  --button-background: linear-gradient(135deg, #8b5cf6 0%, #4f46e5 100%);
+  --button-secondary-background: rgba(12, 12, 20, 0.8);
+  --button-secondary-text: #ebe9ff;
+  --button-danger-background: linear-gradient(135deg, #ef4444 0%, #991b1b 100%);
+  --page-texture:
+    linear-gradient(rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.025)),
+    repeating-linear-gradient(
+      135deg,
+      transparent 0,
+      transparent 18px,
+      rgba(168, 85, 247, 0.035) 18px,
+      rgba(168, 85, 247, 0.035) 36px
+    );
+  --surface-highlight: linear-gradient(120deg, rgba(255, 255, 255, 0.06), transparent 45%);
+  --ad-background:
+    linear-gradient(135deg, rgba(99, 102, 241, 0.18), rgba(168, 85, 247, 0.1)),
+    rgba(10, 10, 16, 0.9);
+  --ad-border: rgba(192, 132, 252, 0.32);
+  --ad-text: #d8ccff;
+  --panel-border-width: 2px;
+}
+
+html[data-theme="west"] {
+  --theme-color: #ffeb3b;
+  --bg-primary: #ffeb3b;
+  --bg-secondary: #fff3a3;
+  --bg-card: rgba(255, 255, 255, 0.96);
+  --bg-elevated: rgba(255, 255, 255, 0.98);
+  --text-primary: #111111;
+  --text-secondary: #303030;
+  --heading-color: #0052cc;
+  --accent-primary: #ff0000;
+  --accent-secondary: #0066ff;
+  --accent-strong: #ff6b6b;
+  --button-text: #111111;
+  --chip-bg: #ffffff;
+  --chip-text: #111111;
+  --border-color: #111111;
+  --line-color: rgba(0, 0, 0, 0.16);
+  --panel-shadow: 12px 12px 0 rgba(0, 0, 0, 0.22);
+  --hover-shadow: 14px 14px 0 rgba(0, 102, 255, 0.22);
+  --soft-shadow: 0 8px 24px rgba(17, 17, 17, 0.16);
+  --card-radius: 12px;
+  --heading-shadow: 3px 3px 0 rgba(255, 255, 255, 0.95);
+  --surface-background:
+    radial-gradient(circle at 15% 20%, rgba(255, 0, 0, 0.14) 0 2px, transparent 2px 100%),
+    radial-gradient(circle at 75% 25%, rgba(0, 102, 255, 0.14) 0 2px, transparent 2px 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 244, 177, 0.96));
+  --page-background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.65), transparent 25%),
+    radial-gradient(circle at 20px 20px, rgba(0, 102, 255, 0.12) 0 2px, transparent 2px 100%),
+    radial-gradient(circle at 0 0, rgba(255, 0, 0, 0.1) 0 1.5px, transparent 1.5px 100%),
+    linear-gradient(135deg, #ffeb3b 0%, #fff59d 48%, #ffffff 100%);
+  --image-background:
+    radial-gradient(circle at 30% 30%, rgba(255, 0, 0, 0.24) 0 16%, transparent 16% 100%),
+    linear-gradient(135deg, #ffffff 0%, #dbeafe 100%);
+  --button-background: linear-gradient(180deg, #ffd700 0%, #ff8f00 100%);
+  --button-secondary-background: #ffffff;
+  --button-secondary-text: #0052cc;
+  --button-danger-background: linear-gradient(180deg, #ff4b4b 0%, #cc0000 100%);
+  --page-texture:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 34px,
+      rgba(17, 17, 17, 0.05) 34px,
+      rgba(17, 17, 17, 0.05) 36px
+    );
+  --surface-highlight: linear-gradient(120deg, rgba(0, 102, 255, 0.08), transparent 45%);
+  --ad-background:
+    linear-gradient(135deg, rgba(255, 0, 0, 0.12), rgba(0, 102, 255, 0.1)),
+    rgba(255, 255, 255, 0.95);
+  --ad-border: rgba(17, 17, 17, 0.28);
+  --ad-text: #111111;
+  --panel-border-width: 4px;
+  --font-heading: "Bangers", cursive;
+  --font-body: "Archivo", sans-serif;
+}
+
+html[data-theme="keaton"] {
+  --theme-color: #0a0a0f;
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #1a1a2e;
+  --bg-card: rgba(15, 14, 26, 0.94);
+  --bg-elevated: rgba(26, 0, 51, 0.92);
+  --text-primary: #e5e2ee;
+  --text-secondary: #b9add7;
+  --heading-color: #f3e8ff;
+  --accent-primary: #9d4edd;
+  --accent-secondary: #52b788;
+  --accent-strong: #c77dff;
+  --button-text: #f8f5ff;
+  --chip-bg: rgba(22, 15, 37, 0.96);
+  --chip-text: #ece7f8;
+  --border-color: rgba(157, 78, 221, 0.42);
+  --line-color: rgba(82, 183, 136, 0.18);
+  --panel-shadow: 0 20px 55px rgba(0, 0, 0, 0.6);
+  --hover-shadow: 0 26px 60px rgba(157, 78, 221, 0.24);
+  --soft-shadow: 0 12px 32px rgba(0, 0, 0, 0.42);
+  --card-radius: 28px;
+  --heading-shadow: 0 0 24px rgba(157, 78, 221, 0.18);
+  --surface-background:
+    linear-gradient(160deg, rgba(25, 15, 37, 0.96), rgba(10, 10, 15, 0.94)),
+    linear-gradient(90deg, rgba(82, 183, 136, 0.08), transparent 35%);
+  --page-background:
+    radial-gradient(circle at top, rgba(157, 78, 221, 0.18), transparent 22%),
+    radial-gradient(circle at bottom left, rgba(82, 183, 136, 0.16), transparent 26%),
+    linear-gradient(180deg, #11111a 0%, #050507 100%);
+  --image-background:
+    radial-gradient(circle at 50% 0%, rgba(157, 78, 221, 0.2), transparent 40%),
+    linear-gradient(135deg, #1d102e 0%, #07120f 100%);
+  --button-background: linear-gradient(135deg, #6d28d9 0%, #14532d 100%);
+  --button-secondary-background: rgba(21, 13, 31, 0.82);
+  --button-secondary-text: #efe9ff;
+  --button-danger-background: linear-gradient(135deg, #7c2d12 0%, #581c87 100%);
+  --page-texture:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 54px,
+      rgba(255, 255, 255, 0.022) 54px,
+      rgba(255, 255, 255, 0.022) 55px
+    );
+  --surface-highlight: linear-gradient(120deg, rgba(255, 255, 255, 0.045), transparent 42%);
+  --ad-background:
+    linear-gradient(135deg, rgba(157, 78, 221, 0.16), rgba(82, 183, 136, 0.1)),
+    rgba(10, 10, 15, 0.92);
+  --ad-border: rgba(157, 78, 221, 0.28);
+  --ad-text: #e8def8;
+  --font-heading: "Cinzel", serif;
+  --font-body: "Lato", sans-serif;
+}
+
+html[data-theme="kilmer"] {
+  --theme-color: #0f0f1a;
+  --bg-primary: #0f0f1a;
+  --bg-secondary: #1a1a2e;
+  --bg-card: rgba(16, 20, 34, 0.92);
+  --bg-elevated: rgba(25, 20, 44, 0.92);
+  --text-primary: #e8ecf8;
+  --text-secondary: #c1b8ea;
+  --heading-color: #d8f7ff;
+  --accent-primary: #00ced1;
+  --accent-secondary: #9370db;
+  --accent-strong: #ff6ec7;
+  --button-text: #02131d;
+  --chip-bg: rgba(10, 17, 30, 0.92);
+  --chip-text: #e8fbff;
+  --border-color: rgba(0, 206, 209, 0.34);
+  --line-color: rgba(255, 110, 199, 0.16);
+  --panel-shadow: 0 20px 55px rgba(0, 0, 0, 0.55);
+  --hover-shadow: 0 24px 58px rgba(0, 206, 209, 0.2);
+  --soft-shadow: 0 10px 30px rgba(147, 112, 219, 0.18);
+  --card-radius: 22px;
+  --heading-shadow: 0 0 16px rgba(0, 255, 255, 0.38);
+  --surface-background:
+    linear-gradient(160deg, rgba(12, 16, 30, 0.96), rgba(24, 20, 44, 0.94)),
+    linear-gradient(90deg, rgba(0, 206, 209, 0.08), rgba(255, 110, 199, 0.06));
+  --page-background:
+    radial-gradient(circle at top left, rgba(0, 255, 255, 0.14), transparent 18%),
+    radial-gradient(circle at bottom right, rgba(255, 110, 199, 0.16), transparent 22%),
+    linear-gradient(180deg, #0a0c17 0%, #06070d 100%);
+  --image-background:
+    linear-gradient(135deg, rgba(0, 255, 255, 0.12), transparent 55%),
+    linear-gradient(145deg, #111425 0%, #21183a 100%);
+  --button-background: linear-gradient(135deg, #00ced1 0%, #9370db 55%, #ff6ec7 100%);
+  --button-secondary-background: rgba(11, 15, 28, 0.84);
+  --button-secondary-text: #dffcff;
+  --button-danger-background: linear-gradient(135deg, #ff6ec7 0%, #6d28d9 100%);
+  --page-texture:
+    linear-gradient(rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0.015)),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 36px,
+      rgba(0, 255, 255, 0.04) 36px,
+      rgba(0, 255, 255, 0.04) 37px
+    );
+  --surface-highlight: linear-gradient(120deg, rgba(255, 255, 255, 0.04), transparent 45%);
+  --ad-background:
+    linear-gradient(135deg, rgba(0, 255, 255, 0.14), rgba(255, 110, 199, 0.12)),
+    rgba(11, 14, 25, 0.92);
+  --ad-border: rgba(0, 206, 209, 0.28);
+  --ad-text: #e4fdff;
+  --font-heading: "Exo 2", sans-serif;
+  --font-body: "Roboto", sans-serif;
+}
+
+html[data-theme="clooney"] {
+  --theme-color: #e0ffff;
+  --bg-primary: #f0f8ff;
+  --bg-secondary: #e0ffff;
+  --bg-card: rgba(255, 255, 255, 0.96);
+  --bg-elevated: rgba(241, 251, 255, 0.96);
+  --text-primary: #0f3050;
+  --text-secondary: #395b78;
+  --heading-color: #0b4870;
+  --accent-primary: #00bfff;
+  --accent-secondary: #c0c0c0;
+  --accent-strong: #87ceeb;
+  --button-text: #063252;
+  --chip-bg: rgba(255, 255, 255, 0.92);
+  --chip-text: #124161;
+  --border-color: rgba(70, 130, 180, 0.34);
+  --line-color: rgba(0, 191, 255, 0.16);
+  --panel-shadow: 0 20px 48px rgba(70, 130, 180, 0.14);
+  --hover-shadow: 0 24px 56px rgba(0, 191, 255, 0.18);
+  --soft-shadow: 0 10px 28px rgba(135, 206, 235, 0.18);
+  --card-radius: 24px;
+  --heading-shadow: 0 0 16px rgba(255, 255, 255, 0.8);
+  --surface-background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(224, 255, 255, 0.94)),
+    linear-gradient(90deg, rgba(192, 192, 192, 0.16), transparent 40%);
+  --page-background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.85), transparent 26%),
+    radial-gradient(circle at 80% 18%, rgba(135, 206, 235, 0.22), transparent 18%),
+    linear-gradient(180deg, #f8fdff 0%, #dff6ff 100%);
+  --image-background:
+    radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.82), transparent 25%),
+    linear-gradient(135deg, #effaff 0%, #c8efff 100%);
+  --button-background: linear-gradient(135deg, #00bfff 0%, #c0c0c0 100%);
+  --button-secondary-background: rgba(255, 255, 255, 0.92);
+  --button-secondary-text: #0b4870;
+  --button-danger-background: linear-gradient(135deg, #4682b4 0%, #0f3050 100%);
+  --page-texture:
+    repeating-linear-gradient(
+      45deg,
+      transparent 0,
+      transparent 22px,
+      rgba(70, 130, 180, 0.035) 22px,
+      rgba(70, 130, 180, 0.035) 44px
+    );
+  --surface-highlight: linear-gradient(120deg, rgba(255, 255, 255, 0.5), transparent 45%);
+  --ad-background:
+    linear-gradient(135deg, rgba(0, 191, 255, 0.12), rgba(192, 192, 192, 0.12)),
+    rgba(255, 255, 255, 0.96);
+  --ad-border: rgba(70, 130, 180, 0.22);
+  --ad-text: #0f3050;
+  --font-heading: "Orbitron", sans-serif;
+  --font-body: "Nunito", sans-serif;
+}
+
+html[data-theme="bale"] {
+  --theme-color: #0a0a0a;
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #161616;
+  --bg-card: rgba(22, 22, 22, 0.94);
+  --bg-elevated: rgba(29, 29, 29, 0.94);
+  --text-primary: #e7e5e4;
+  --text-secondary: #b2b2b2;
+  --heading-color: #f5f5f4;
+  --accent-primary: #d4af37;
+  --accent-secondary: #4a5568;
+  --accent-strong: #f2d675;
+  --button-text: #111111;
+  --chip-bg: rgba(17, 17, 17, 0.96);
+  --chip-text: #f3f2ed;
+  --border-color: rgba(212, 175, 55, 0.24);
+  --line-color: rgba(255, 255, 255, 0.08);
+  --panel-shadow: 0 18px 46px rgba(0, 0, 0, 0.56);
+  --hover-shadow: 0 22px 54px rgba(0, 0, 0, 0.64);
+  --soft-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+  --card-radius: 10px;
+  --heading-shadow: none;
+  --surface-background:
+    linear-gradient(145deg, rgba(31, 31, 31, 0.96), rgba(11, 11, 11, 0.96)),
+    linear-gradient(90deg, rgba(212, 175, 55, 0.04), transparent 40%);
+  --page-background:
+    linear-gradient(rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.02)),
+    linear-gradient(180deg, #121212 0%, #050505 100%);
+  --image-background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent 48%),
+    linear-gradient(145deg, #242424 0%, #0d0d0d 100%);
+  --button-background: linear-gradient(135deg, #d4af37 0%, #7c6a22 100%);
+  --button-secondary-background: rgba(12, 12, 12, 0.86);
+  --button-secondary-text: #e9e6d8;
+  --button-danger-background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%);
+  --page-texture:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.02) 0,
+      rgba(255, 255, 255, 0.02) 2px,
+      transparent 2px,
+      transparent 8px
+    );
+  --surface-highlight: linear-gradient(120deg, rgba(255, 255, 255, 0.03), transparent 48%);
+  --ad-background:
+    linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(74, 85, 104, 0.08)),
+    rgba(11, 11, 11, 0.92);
+  --ad-border: rgba(212, 175, 55, 0.18);
+  --ad-text: #ebe8dd;
+  --font-heading: "Rajdhani", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+html[data-theme="affleck"] {
+  --theme-color: #1a1a1a;
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --bg-card: rgba(33, 33, 33, 0.96);
+  --bg-elevated: rgba(39, 39, 39, 0.94);
+  --text-primary: #c5c1bb;
+  --text-secondary: #9d9890;
+  --heading-color: #e9e2d8;
+  --accent-primary: #8b7355;
+  --accent-secondary: #5f6b7a;
+  --accent-strong: #b59a77;
+  --button-text: #f4efe8;
+  --chip-bg: rgba(32, 32, 32, 0.94);
+  --chip-text: #dfd6ca;
+  --border-color: rgba(139, 115, 85, 0.24);
+  --line-color: rgba(95, 107, 122, 0.14);
+  --panel-shadow: 0 18px 50px rgba(0, 0, 0, 0.52);
+  --hover-shadow: 0 22px 58px rgba(0, 0, 0, 0.6);
+  --soft-shadow: 0 10px 28px rgba(0, 0, 0, 0.32);
+  --card-radius: 14px;
+  --heading-shadow: none;
+  --surface-background:
+    linear-gradient(155deg, rgba(46, 44, 43, 0.96), rgba(24, 24, 24, 0.96)),
+    linear-gradient(90deg, rgba(139, 115, 85, 0.06), transparent 40%);
+  --page-background:
+    radial-gradient(circle at top right, rgba(95, 107, 122, 0.1), transparent 18%),
+    linear-gradient(180deg, #2a2724 0%, #121212 100%);
+  --image-background:
+    linear-gradient(135deg, rgba(139, 115, 85, 0.08), transparent 46%),
+    linear-gradient(145deg, #3a3733 0%, #1a1a1a 100%);
+  --button-background: linear-gradient(135deg, #8b7355 0%, #4a5568 100%);
+  --button-secondary-background: rgba(26, 26, 26, 0.88);
+  --button-secondary-text: #e7ddd0;
+  --button-danger-background: linear-gradient(135deg, #5f6b7a 0%, #2b2b2b 100%);
+  --page-texture:
+    linear-gradient(rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0.018)),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 6px,
+      rgba(255, 255, 255, 0.022) 6px,
+      rgba(255, 255, 255, 0.022) 7px
+    );
+  --surface-highlight: linear-gradient(120deg, rgba(255, 255, 255, 0.028), transparent 46%);
+  --ad-background:
+    linear-gradient(135deg, rgba(139, 115, 85, 0.08), rgba(95, 107, 122, 0.08)),
+    rgba(26, 26, 26, 0.92);
+  --ad-border: rgba(139, 115, 85, 0.16);
+  --ad-text: #ddd4c8;
+  --font-heading: "Bebas Neue", sans-serif;
+  --font-body: "Source Sans 3", sans-serif;
+}
+
+html[data-theme="pattinson"] {
+  --theme-color: #0a0a0a;
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #1a0a0a;
+  --bg-card: rgba(18, 10, 10, 0.95);
+  --bg-elevated: rgba(24, 10, 10, 0.94);
+  --text-primary: #ebe7e7;
+  --text-secondary: #bca4a4;
+  --heading-color: #f4eaea;
+  --accent-primary: #8b0000;
+  --accent-secondary: #ff0000;
+  --accent-strong: #ff5c5c;
+  --button-text: #fff1f1;
+  --chip-bg: rgba(14, 6, 6, 0.94);
+  --chip-text: #f2e9e9;
+  --border-color: rgba(139, 0, 0, 0.34);
+  --line-color: rgba(255, 255, 255, 0.08);
+  --panel-shadow: 0 20px 55px rgba(0, 0, 0, 0.65);
+  --hover-shadow: 0 24px 58px rgba(139, 0, 0, 0.28);
+  --soft-shadow: 0 12px 28px rgba(0, 0, 0, 0.42);
+  --card-radius: 16px;
+  --heading-shadow: 0 0 20px rgba(255, 0, 0, 0.22);
+  --surface-background:
+    linear-gradient(155deg, rgba(22, 8, 8, 0.96), rgba(8, 8, 8, 0.98)),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.05), transparent 35%);
+  --page-background:
+    radial-gradient(circle at top, rgba(139, 0, 0, 0.2), transparent 22%),
+    linear-gradient(180deg, #150707 0%, #050505 100%);
+  --image-background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 42%),
+    linear-gradient(145deg, #220b0b 0%, #050505 100%);
+  --button-background: linear-gradient(135deg, #8b0000 0%, #3b0000 100%);
+  --button-secondary-background: rgba(10, 10, 10, 0.9);
+  --button-secondary-text: #f4eded;
+  --button-danger-background: linear-gradient(135deg, #ff0000 0%, #5c0000 100%);
+  --page-texture:
+    repeating-linear-gradient(
+      100deg,
+      transparent 0,
+      transparent 18px,
+      rgba(255, 255, 255, 0.028) 18px,
+      rgba(255, 255, 255, 0.028) 19px
+    );
+  --surface-highlight: linear-gradient(120deg, rgba(255, 255, 255, 0.028), transparent 46%);
+  --ad-background:
+    linear-gradient(135deg, rgba(139, 0, 0, 0.14), rgba(255, 0, 0, 0.08)),
+    rgba(8, 8, 8, 0.94);
+  --ad-border: rgba(139, 0, 0, 0.24);
+  --ad-text: #f0dede;
+  --font-heading: "Audiowide", sans-serif;
+  --font-body: "Oxygen", sans-serif;
+}
+
+body[class^="page-"] {
+  font-family: var(--font-body, "Inter", sans-serif);
+  color: var(--text-primary);
+  background: var(--page-texture), var(--page-background);
+  background-color: var(--bg-primary);
+  color-scheme: dark;
+  min-height: 100vh;
+}
+
+html[data-theme="west"] body[class^="page-"],
+html[data-theme="clooney"] body[class^="page-"] {
+  color-scheme: light;
+}
+
+body[class^="page-"] h1,
+body[class^="page-"] h2,
+body[class^="page-"] h3,
+body[class^="page-"] .section-title,
+body[class^="page-"] .results-title,
+body[class^="page-"] .battle-kicker,
+body[class^="page-"] .hero-kicker,
+body[class^="page-"] .hero-eyebrow,
+body[class^="page-"] .hero-title,
+body[class^="page-"] .hero-eyebrow,
+body[class^="page-"] .eyebrow,
+body[class^="page-"] .bat-kicker {
+  font-family: var(--font-heading, "Space Grotesk", sans-serif);
+  color: var(--heading-color);
+  text-shadow: var(--heading-shadow);
+}
+
+body[class^="page-"] .hero,
+body[class^="page-"] .quiz-card,
+body[class^="page-"] .panel,
+body[class^="page-"] .battle-card,
+body[class^="page-"] .results-card,
+body[class^="page-"] .daily-panel,
+body[class^="page-"] .filters,
+body[class^="page-"] .timeline-shell,
+body[class^="page-"] .bat-header,
+body[class^="page-"] .faq-item,
+body[class^="page-"] .seo-item,
+body[class^="page-"] .seo-zone {
+  background: var(--surface-highlight), var(--surface-background);
+  border: var(--panel-border-width) solid var(--border-color);
+  border-radius: var(--card-radius);
+  box-shadow: var(--panel-shadow);
+  color: var(--text-primary);
+}
+
+body[class^="page-"] .feature-card,
+body[class^="page-"] .fighter,
+body[class^="page-"] .ranking-item,
+body[class^="page-"] .timeline-entry,
+body[class^="page-"] .villain-card,
+body[class^="page-"] .stat-card,
+body[class^="page-"] .result-bar-card,
+body[class^="page-"] .seo-item,
+body[class^="page-"] .faq-item {
+  background: linear-gradient(180deg, var(--bg-card), var(--bg-elevated));
+  border: max(1px, calc(var(--panel-border-width) - 1px)) solid var(--border-color);
+  box-shadow: var(--soft-shadow);
+  color: var(--text-primary);
+}
+
+body[class^="page-"] .feature-card:hover,
+body[class^="page-"] .fighter:hover,
+body[class^="page-"] .ranking-item:hover,
+body[class^="page-"] .villain-card:hover,
+body[class^="page-"] .timeline-entry:hover,
+body[class^="page-"] .seo-item:hover,
+body[class^="page-"] .faq-item:hover {
+  box-shadow: var(--hover-shadow);
+}
+
+body[class^="page-"] .crumbs a,
+body[class^="page-"] .crumb,
+body[class^="page-"] .jump,
+body[class^="page-"] .jump-link,
+body[class^="page-"] .pill-link,
+body[class^="page-"] .pill,
+body[class^="page-"] .hero-pill,
+body[class^="page-"] .hero-chip,
+body[class^="page-"] .meta-chip,
+body[class^="page-"] .hero-meta span,
+body[class^="page-"] .daily-meta span,
+body[class^="page-"] .trait,
+body[class^="page-"] .chip,
+body[class^="page-"] .entry-meta-badge .pill {
+  background: var(--chip-bg);
+  color: var(--chip-text);
+  border: max(1px, calc(var(--panel-border-width) - 1px)) solid var(--border-color);
+  box-shadow: var(--soft-shadow);
+}
+
+body[class^="page-"] .cta-button,
+body[class^="page-"] .btn,
+body[class^="page-"] button,
+body[class^="page-"] .vote-button,
+body[class^="page-"] .action-button,
+body[class^="page-"] .filter-btn,
+body[class^="page-"] .expand-btn,
+body[class^="page-"] .move-button,
+body[class^="page-"] .drag-handle,
+body[class^="page-"] .reset {
+  background: var(--button-background);
+  color: var(--button-text);
+  border: max(1px, calc(var(--panel-border-width) - 1px)) solid var(--border-color);
+  box-shadow: var(--soft-shadow);
+}
+
+body[class^="page-"] .btn.secondary,
+body[class^="page-"] button.secondary,
+body[class^="page-"] .action-button.secondary,
+body[class^="page-"] #shareBtn,
+body[class^="page-"] #shuffleBtn,
+body[class^="page-"] #resetBtn,
+body[class^="page-"] .expand-btn,
+body[class^="page-"] .filter-btn[aria-pressed="false"] {
+  background: var(--button-secondary-background);
+  color: var(--button-secondary-text);
+  border-color: var(--border-color);
+}
+
+body[class^="page-"] .btn.danger,
+body[class^="page-"] button.danger,
+body[class^="page-"] #endBtn,
+body[class^="page-"] .reset {
+  background: var(--button-danger-background);
+  color: var(--button-text);
+}
+
+body[class^="page-"] input[type="text"],
+body[class^="page-"] select {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+  border: max(1px, calc(var(--panel-border-width) - 1px)) solid var(--border-color);
+}
+
+body[class^="page-"] .progress-bar,
+body[class^="page-"] .bar-track,
+body[class^="page-"] .match-bar-track {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-color);
+}
+
+body[class^="page-"] .progress-fill,
+body[class^="page-"] .bar-fill,
+body[class^="page-"] .match-bar-fill {
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+}
+
+body[class^="page-"] .image-placeholder,
+body[class^="page-"] .vehicle-image,
+body[class^="page-"] .entry-art,
+body[class^="page-"] .result-batman {
+  background: var(--image-background);
+  border: max(1px, calc(var(--panel-border-width) - 1px)) solid var(--border-color);
+  color: var(--heading-color);
+}
+
+body[class^="page-"] a {
+  color: var(--accent-strong);
+}
+
+body[class^="page-"] p,
+body[class^="page-"] li,
+body[class^="page-"] dd,
+body[class^="page-"] dt,
+body[class^="page-"] .subtitle,
+body[class^="page-"] .battle-subtitle,
+body[class^="page-"] .fighter-desc,
+body[class^="page-"] .question-title,
+body[class^="page-"] .status,
+body[class^="page-"] .tiny,
+body[class^="page-"] .results-footer,
+body[class^="page-"] .footer-note,
+body[class^="page-"] .entry-body,
+body[class^="page-"] .note {
+  color: var(--text-secondary);
+}
+
+body[class^="page-"] code {
+  color: var(--accent-strong);
+}
+
+body[class^="page-"] .option {
+  background: linear-gradient(180deg, var(--bg-card), var(--bg-elevated));
+  border: max(1px, calc(var(--panel-border-width) - 1px)) solid var(--border-color);
+  color: var(--text-primary);
+}
+
+body[class^="page-"] .option.selected,
+body[class^="page-"] .option:hover {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.03), var(--soft-shadow);
+}
+
+body[class^="page-"] .topbar,
+body[class^="page-"] footer,
+body[class^="page-"] .results-bar,
+body[class^="page-"] .controls,
+body[class^="page-"] .action-row,
+body[class^="page-"] .nav-buttons {
+  color: var(--text-primary);
+}
+
+body[class^="page-"] .ad-slot {
+  margin: 1.5rem 0 2rem;
+  padding: 1.1rem 1.25rem;
+  background: var(--ad-background);
+  border: 1px dashed var(--ad-border);
+  border-radius: calc(var(--card-radius) * 0.8);
+  box-shadow: var(--soft-shadow);
+  text-align: center;
+}
+
+body[class^="page-"] .ad-slot-banner {
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body[class^="page-"] .ad-slot-inline {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+body[class^="page-"] .ad-slot-result {
+  margin-top: 1.75rem;
+}
+
+body[class^="page-"] .ad-label {
+  display: inline-block;
+  margin-bottom: 0.65rem;
+  padding: 0.25rem 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ad-text);
+  border: 1px solid var(--ad-border);
+  border-radius: 999px;
+}
+
+body[class^="page-"] .ad-copy {
+  display: block;
+  color: var(--ad-text);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+body[class^="page-"] .ad-copy strong {
+  color: var(--heading-color);
+}
+
+body[class^="page-"] .theme-note {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+body[class^="page-"] .results.active {
+  display: block;
+}
+
+@media (max-width: 720px) {
+  body[class^="page-"] .ad-slot {
+    padding: 1rem;
+    margin: 1rem 0 1.5rem;
+  }
+}

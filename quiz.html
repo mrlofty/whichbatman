@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Which Batman Are You? | The Ultimate Batman Personality Quiz</title>
-  <meta name="description" content="Discover which iconic Batman you are! Take our 10-question personality quiz and find out if you're Adam West, Michael Keaton, Christian Bale, Ben Affleck, Robert Pattinson, or another legendary Dark Knight.">
+  <meta name="description" content="Discover which iconic Batman you are. Take our 10-question personality quiz and unlock one of seven live-action Batman site skins: West, Keaton, Kilmer, Clooney, Bale, Affleck, or Pattinson.">
   
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Which Batman Are You? | Ultimate Personality Quiz">
-  <meta property="og:description" content="10 questions. 8 legendary Batmen. Discover which Dark Knight matches your personality!">
+  <meta property="og:description" content="10 questions. 7 live-action Batmen. Discover which Dark Knight matches your personality and unlock the matching site skin.">
   <meta property="og:url" content="https://whichbatman.com/quiz.html">
   <meta property="og:image" content="https://whichbatman.com/assets/og-quiz.jpg">
   
@@ -18,6 +18,7 @@
   <meta name="twitter:title" content="Which Batman Are You?">
   <meta name="twitter:description" content="Discover your Batman personality in 10 questions!">
   <meta name="twitter:image" content="https://whichbatman.com/assets/og-quiz.jpg">
+  <meta name="theme-color" content="#0f0f14">
   
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -34,15 +35,24 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <script src="theme-loader.js"></script>
+  <script>window.WhichBatmanTheme.initDocumentTheme();</script>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&family=Audiowide&family=Bangers&family=Bebas+Neue&family=Cinzel:wght@400;600;700&family=Exo+2:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Lato:wght@400;700&family=Nunito:wght@400;600;700&family=Orbitron:wght@400;600;700&family=Oxygen:wght@400;700&family=Rajdhani:wght@500;600;700&family=Roboto:wght@400;500;700&family=Source+Sans+3:wght@400;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="themes.css">
 </head>
 <body class="page-quiz">
   <div class="container">
     <header>
       <h1>🦇 Which Batman Are You?</h1>
       <p class="subtitle">The Ultimate Dark Knight Personality Quiz</p>
+      <p class="theme-note">Finish the quiz and the whole site shifts into your Batman skin for the next 30 days.</p>
     </header>
+
+    <div class="ad-slot ad-slot-banner" aria-label="Advertisement">
+      <span class="ad-label">Advertisement</span>
+      <span class="ad-copy"><strong>Top Banner Placeholder</strong><br>Reserved for the sitewide quiz sponsor banner.</span>
+    </div>
     
     <div class="quiz-card">
       <div class="progress">
@@ -58,6 +68,8 @@
         <div class="options">
           <div class="option" data-value="west">Use logic and deduction to outsmart them</div>
           <div class="option" data-value="keaton">Strike from the shadows and disappear</div>
+          <div class="option" data-value="kilmer">Talk fast, stay cool, and improvise with style</div>
+          <div class="option" data-value="clooney">Turn the save into a polished gadget spectacle</div>
           <div class="option" data-value="bale">Study their psychology and exploit their fear</div>
           <div class="option" data-value="affleck">Overpower them with superior tactics and strength</div>
           <div class="option" data-value="pattinson">Investigate methodically, gather evidence</div>
@@ -70,6 +82,8 @@
         <div class="options">
           <div class="option" data-value="west">In broad daylight, working with authorities</div>
           <div class="option" data-value="keaton">As a mysterious legend no one understands</div>
+          <div class="option" data-value="kilmer">With empathy, precision, and a little theatrical polish</div>
+          <div class="option" data-value="clooney">With allies, infrastructure, and full Bat-family momentum</div>
           <div class="option" data-value="bale">Through careful planning and resources</div>
           <div class="option" data-value="affleck">With brutal efficiency and experience</div>
           <div class="option" data-value="pattinson">Solo, trusting only yourself</div>
@@ -82,6 +96,8 @@
         <div class="options">
           <div class="option" data-value="west">They complement each other perfectly</div>
           <div class="option" data-value="keaton">It's a necessary disguise, nothing more</div>
+          <div class="option" data-value="kilmer">It's messy, emotional, and always under review</div>
+          <div class="option" data-value="clooney">Charm is part of the mission, so use it</div>
           <div class="option" data-value="bale">A carefully crafted facade to protect my mission</div>
           <div class="option" data-value="affleck">Both identities are worn down and weary</div>
           <div class="option" data-value="pattinson">I barely maintain it; Batman is who I really am</div>
@@ -94,6 +110,8 @@
         <div class="options">
           <div class="option" data-value="west">Find the honorable solution that saves everyone</div>
           <div class="option" data-value="keaton">Do what needs to be done, no matter how dark</div>
+          <div class="option" data-value="kilmer">Feel every side of it, then choose the humane answer</div>
+          <div class="option" data-value="clooney">Keep the team together and solve it with heart</div>
           <div class="option" data-value="bale">Never compromise your principles, even in crisis</div>
           <div class="option" data-value="affleck">The mission justifies harsh choices</div>
           <div class="option" data-value="pattinson">Struggle with the weight of the decision</div>
@@ -106,6 +124,8 @@
         <div class="options">
           <div class="option" data-value="west">A sense of civic duty and justice</div>
           <div class="option" data-value="keaton">A need to become something beyond human</div>
+          <div class="option" data-value="kilmer">Healing old wounds without losing your soul</div>
+          <div class="option" data-value="clooney">Helping people while keeping the family intact</div>
           <div class="option" data-value="bale">A vow to prevent others from suffering your loss</div>
           <div class="option" data-value="affleck">Anger at a world that took everything</div>
           <div class="option" data-value="pattinson">Vengeance against those who hurt your city</div>
@@ -118,6 +138,8 @@
         <div class="options">
           <div class="option" data-value="west">Clever tools for every situation</div>
           <div class="option" data-value="keaton">Extensions of your otherworldly presence</div>
+          <div class="option" data-value="kilmer">Sleek tools that look as good as they perform</div>
+          <div class="option" data-value="clooney">A chrome-plated arsenal for every possible emergency</div>
           <div class="option" data-value="bale">Military-grade equipment for serious threats</div>
           <div class="option" data-value="affleck">Battle-tested arsenal from years of war</div>
           <div class="option" data-value="pattinson">DIY creations that barely hold together</div>
@@ -130,6 +152,8 @@
         <div class="options">
           <div class="option" data-value="west">Close partnership built on trust</div>
           <div class="option" data-value="keaton">Keep them at arm's length</div>
+          <div class="option" data-value="kilmer">You care deeply, even when you're conflicted</div>
+          <div class="option" data-value="clooney">Lean into teamwork and keep morale high</div>
           <div class="option" data-value="bale">They're essential but must prove themselves</div>
           <div class="option" data-value="affleck">Lost too many; keep your distance</div>
           <div class="option" data-value="pattinson">Still learning to trust anyone</div>
@@ -142,6 +166,8 @@
         <div class="options">
           <div class="option" data-value="west">Learn from it and try again with optimism</div>
           <div class="option" data-value="keaton">Become more isolated and vengeful</div>
+          <div class="option" data-value="kilmer">Internalize it, reflect, then come back sharper</div>
+          <div class="option" data-value="clooney">Mask it with confidence and keep moving forward</div>
           <div class="option" data-value="bale">Use it as motivation to be better</div>
           <div class="option" data-value="affleck">Let it confirm your darkest beliefs</div>
           <div class="option" data-value="pattinson">Question everything about your approach</div>
@@ -154,6 +180,8 @@
         <div class="options">
           <div class="option" data-value="west">Theatrical punches with sound effects</div>
           <div class="option" data-value="keaton">Graceful, almost supernatural movements</div>
+          <div class="option" data-value="kilmer">Fast, athletic, and more acrobatic than people expect</div>
+          <div class="option" data-value="clooney">Clean, crowd-pleasing heroics with big finish energy</div>
           <div class="option" data-value="bale">Ninja training meets street brawling</div>
           <div class="option" data-value="affleck">Raw power and decades of experience</div>
           <div class="option" data-value="pattinson">Brutal, relentless pounding</div>
@@ -166,6 +194,8 @@
         <div class="options">
           <div class="option" data-value="west">A shining example of law and order</div>
           <div class="option" data-value="keaton">A city that fears its protector</div>
+          <div class="option" data-value="kilmer">A city where pain is understood instead of repeated</div>
+          <div class="option" data-value="clooney">A city protected by community, family, and optimism</div>
           <div class="option" data-value="bale">A place that doesn't need Batman anymore</div>
           <div class="option" data-value="affleck">Saved despite itself, by any means</div>
           <div class="option" data-value="pattinson">Hope, even if you don't see it yet</div>
@@ -190,6 +220,11 @@
         <button onclick="shareResult()">📤 Share Result</button>
         <button class="secondary" onclick="restartQuiz()">🔄 Take Again</button>
       </div>
+
+      <div class="ad-slot ad-slot-result" aria-label="Advertisement">
+        <span class="ad-label">Advertisement</span>
+        <span class="ad-copy"><strong>Result Slot Placeholder</strong><br>Reserved for the post-result AdSense unit shown after each theme reveal.</span>
+      </div>
     </div>
   </div>
   
@@ -206,6 +241,18 @@
         emoji: "🦇",
         description: "You're the gothic, mysterious Batman who emerged from the shadows in 1989. Brooding, unpredictable, and slightly unhinged — you're the urban legend criminals whisper about in fear.",
         traits: ["Mysterious", "Haunted", "Intimidating", "Theatrical", "Gothic"]
+      },
+      kilmer: {
+        name: "Val Kilmer's Batman",
+        emoji: "🟣",
+        description: "You're the overlooked 1995 Batman: stylish, emotionally open, and more introspective than people remember. You balance neon spectacle with a surprisingly human Bruce Wayne underneath the cape.",
+        traits: ["Reflective", "Stylish", "Underrated", "Empathetic", "Agile"]
+      },
+      clooney: {
+        name: "George Clooney's Batman",
+        emoji: "❄️",
+        description: "You're the polished, over-the-top guardian of the Schumacher ice age. You believe charisma, teamwork, and a fully stocked utility belt can solve almost anything, preferably with dramatic lighting.",
+        traits: ["Charming", "Playful", "Collaborative", "Confident", "Maximalist"]
       },
       bale: {
         name: "Christian Bale's Batman",
@@ -300,6 +347,7 @@
       // Find winner
       let winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
       const result = quizData[winner];
+      window.WhichBatmanTheme.setThemeForBatman(winner);
       
       // Display result
       document.getElementById('resultEmoji').textContent = result.emoji;

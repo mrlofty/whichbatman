@@ -16,6 +16,7 @@
   <meta name="twitter:title" content="Batman vs Battles">
   <meta name="twitter:description" content="Vote on the best Batman and share the matchup results.">
   <meta name="twitter:image" content="https://whichbatman.com/assets/og-battles.jpg">
+  <meta name="theme-color" content="#0f0f14">
 
   <script type="application/ld+json">
   {
@@ -27,8 +28,11 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <script src="theme-loader.js"></script>
+  <script>window.WhichBatmanTheme.initDocumentTheme();</script>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&family=Audiowide&family=Bangers&family=Bebas+Neue&family=Cinzel:wght@400;600;700&family=Exo+2:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Lato:wght@400;700&family=Nunito:wght@400;600;700&family=Orbitron:wght@400;600;700&family=Oxygen:wght@400;700&family=Rajdhani:wght@500;600;700&family=Roboto:wght@400;500;700&family=Source+Sans+3:wght@400;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="themes.css">
 </head>
 <body class="page-battles">
   <div class="container">
@@ -38,6 +42,11 @@
         <a href="quiz.html">Take Quiz</a>
       </div>
       <a href="#results" class="pill-link">Jump to Results</a>
+    </div>
+
+    <div class="ad-slot ad-slot-banner" aria-label="Advertisement">
+      <span class="ad-label">Advertisement</span>
+      <span class="ad-copy"><strong>Top Banner Placeholder</strong><br>Reserved for the battles page sponsor banner.</span>
     </div>
 
     <header class="hero">
@@ -102,6 +111,11 @@
         <button class="action-button secondary" id="shareButton">Share Results</button>
       </div>
     </section>
+
+    <div class="ad-slot ad-slot-inline" aria-label="Advertisement">
+      <span class="ad-label">Advertisement</span>
+      <span class="ad-copy"><strong>Mid-Content Placeholder</strong><br>Reserved for a responsive AdSense block between matchups and live results.</span>
+    </div>
 
     <section class="results-card" id="results">
       <div class="results-header">
