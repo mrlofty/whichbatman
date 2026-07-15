@@ -1,57 +1,59 @@
 :root,
 html[data-theme="gotham"] {
-  --theme-color: #0f0f14;
-  --bg-primary: #0f0f14;
-  --bg-secondary: #1a1a24;
-  --bg-card: rgba(21, 22, 34, 0.9);
-  --bg-elevated: rgba(32, 28, 54, 0.92);
-  --text-primary: #f0f0f5;
-  --text-secondary: #a6adca;
-  --heading-color: #f6f4ff;
-  --accent-primary: #a855f7;
-  --accent-secondary: #6366f1;
-  --accent-strong: #c084fc;
-  --button-text: #ffffff;
-  --chip-bg: rgba(18, 18, 30, 0.9);
-  --chip-text: #f5f3ff;
-  --border-color: rgba(168, 85, 247, 0.4);
-  --line-color: rgba(192, 132, 252, 0.18);
-  --panel-shadow: 0 20px 55px rgba(8, 6, 19, 0.55);
-  --hover-shadow: 0 26px 60px rgba(26, 17, 53, 0.62);
-  --soft-shadow: 0 12px 30px rgba(8, 6, 19, 0.34);
-  --card-radius: 24px;
-  --font-heading: "Space Grotesk", sans-serif;
+  --theme-color: #0a0a0f;
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #111218;
+  --bg-card: rgba(20, 20, 25, 0.92);
+  --bg-elevated: rgba(24, 23, 29, 0.94);
+  --text-primary: #f3efe6;
+  --text-secondary: #8a8a9a;
+  --heading-color: #fff6dc;
+  --accent-primary: #d4a644;
+  --accent-secondary: #8b7230;
+  --accent-strong: #f4d03f;
+  --button-text: #090908;
+  --chip-bg: rgba(16, 16, 20, 0.94);
+  --chip-text: #f3efe6;
+  --border-color: rgba(212, 166, 68, 0.4);
+  --line-color: rgba(244, 208, 63, 0.18);
+  --panel-shadow: 0 24px 70px rgba(0, 0, 0, 0.64);
+  --hover-shadow: 0 28px 70px rgba(212, 166, 68, 0.18);
+  --soft-shadow: 0 14px 34px rgba(0, 0, 0, 0.38);
+  --card-radius: 22px;
+  --font-heading: "Cinzel", serif;
   --font-body: "Inter", sans-serif;
-  --heading-shadow: 0 0 18px rgba(168, 85, 247, 0.2);
+  --font-label: "Bebas Neue", sans-serif;
+  --heading-shadow: 0 0 18px rgba(212, 166, 68, 0.22);
   --surface-background:
-    linear-gradient(145deg, rgba(31, 29, 46, 0.96), rgba(12, 12, 18, 0.94));
+    radial-gradient(circle at top right, rgba(212, 166, 68, 0.1), transparent 30%),
+    linear-gradient(145deg, rgba(22, 22, 27, 0.96), rgba(8, 9, 13, 0.96));
   --page-background:
-    radial-gradient(circle at top right, rgba(99, 102, 241, 0.2), transparent 30%),
-    radial-gradient(circle at 20% 20%, rgba(168, 85, 247, 0.18), transparent 35%),
-    linear-gradient(180deg, #141420 0%, #09090d 100%);
+    radial-gradient(circle at top right, rgba(212, 166, 68, 0.14), transparent 30%),
+    radial-gradient(circle at 18% 20%, rgba(70, 82, 103, 0.14), transparent 35%),
+    linear-gradient(180deg, #0a0a0f 0%, #05060a 100%);
   --image-background:
-    radial-gradient(circle at top, rgba(192, 132, 252, 0.16), transparent 45%),
-    linear-gradient(135deg, rgba(35, 32, 58, 0.98), rgba(13, 14, 22, 0.98));
-  --button-background: linear-gradient(135deg, #8b5cf6 0%, #4f46e5 100%);
-  --button-secondary-background: rgba(12, 12, 20, 0.8);
-  --button-secondary-text: #ebe9ff;
-  --button-danger-background: linear-gradient(135deg, #ef4444 0%, #991b1b 100%);
+    radial-gradient(circle at top, rgba(244, 208, 63, 0.12), transparent 45%),
+    linear-gradient(135deg, rgba(24, 24, 28, 0.98), rgba(8, 9, 13, 0.98));
+  --button-background: linear-gradient(135deg, #f4d03f 0%, #d4a644 48%, #8b7230 100%);
+  --button-secondary-background: rgba(12, 12, 16, 0.82);
+  --button-secondary-text: #f0e5c8;
+  --button-danger-background: linear-gradient(135deg, #7f1d1d 0%, #2b0b0b 100%);
   --page-texture:
-    linear-gradient(rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.025)),
+    linear-gradient(rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0.018)),
     repeating-linear-gradient(
       135deg,
       transparent 0,
       transparent 18px,
-      rgba(168, 85, 247, 0.035) 18px,
-      rgba(168, 85, 247, 0.035) 36px
+      rgba(212, 166, 68, 0.026) 18px,
+      rgba(212, 166, 68, 0.026) 36px
     );
-  --surface-highlight: linear-gradient(120deg, rgba(255, 255, 255, 0.06), transparent 45%);
+  --surface-highlight: linear-gradient(120deg, rgba(255, 255, 255, 0.045), transparent 45%);
   --ad-background:
-    linear-gradient(135deg, rgba(99, 102, 241, 0.18), rgba(168, 85, 247, 0.1)),
-    rgba(10, 10, 16, 0.9);
-  --ad-border: rgba(192, 132, 252, 0.32);
-  --ad-text: #d8ccff;
-  --panel-border-width: 2px;
+    linear-gradient(135deg, rgba(212, 166, 68, 0.13), rgba(255, 255, 255, 0.035)),
+    rgba(10, 10, 15, 0.92);
+  --ad-border: rgba(212, 166, 68, 0.32);
+  --ad-text: #ead9aa;
+  --panel-border-width: 1px;
 }
 
 html[data-theme="west"] {
@@ -107,8 +109,8 @@ html[data-theme="west"] {
   --ad-border: rgba(17, 17, 17, 0.28);
   --ad-text: #111111;
   --panel-border-width: 4px;
-  --font-heading: "Bangers", cursive;
-  --font-body: "Archivo", sans-serif;
+  --font-heading: "Cinzel", serif;
+  --font-body: "Inter", sans-serif;
 }
 
 html[data-theme="keaton"] {
@@ -162,7 +164,7 @@ html[data-theme="keaton"] {
   --ad-border: rgba(157, 78, 221, 0.28);
   --ad-text: #e8def8;
   --font-heading: "Cinzel", serif;
-  --font-body: "Lato", sans-serif;
+  --font-body: "Inter", sans-serif;
 }
 
 html[data-theme="kilmer"] {
@@ -216,8 +218,8 @@ html[data-theme="kilmer"] {
     rgba(11, 14, 25, 0.92);
   --ad-border: rgba(0, 206, 209, 0.28);
   --ad-text: #e4fdff;
-  --font-heading: "Exo 2", sans-serif;
-  --font-body: "Roboto", sans-serif;
+  --font-heading: "Cinzel", serif;
+  --font-body: "Inter", sans-serif;
 }
 
 html[data-theme="clooney"] {
@@ -270,8 +272,8 @@ html[data-theme="clooney"] {
     rgba(255, 255, 255, 0.96);
   --ad-border: rgba(70, 130, 180, 0.22);
   --ad-text: #0f3050;
-  --font-heading: "Orbitron", sans-serif;
-  --font-body: "Nunito", sans-serif;
+  --font-heading: "Cinzel", serif;
+  --font-body: "Inter", sans-serif;
 }
 
 html[data-theme="bale"] {
@@ -323,7 +325,7 @@ html[data-theme="bale"] {
     rgba(11, 11, 11, 0.92);
   --ad-border: rgba(212, 175, 55, 0.18);
   --ad-text: #ebe8dd;
-  --font-heading: "Rajdhani", sans-serif;
+  --font-heading: "Cinzel", serif;
   --font-body: "Inter", sans-serif;
 }
 
@@ -377,8 +379,8 @@ html[data-theme="affleck"] {
     rgba(26, 26, 26, 0.92);
   --ad-border: rgba(139, 115, 85, 0.16);
   --ad-text: #ddd4c8;
-  --font-heading: "Bebas Neue", sans-serif;
-  --font-body: "Source Sans 3", sans-serif;
+  --font-heading: "Cinzel", serif;
+  --font-body: "Inter", sans-serif;
 }
 
 html[data-theme="pattinson"] {
@@ -430,8 +432,8 @@ html[data-theme="pattinson"] {
     rgba(8, 8, 8, 0.94);
   --ad-border: rgba(139, 0, 0, 0.24);
   --ad-text: #f0dede;
-  --font-heading: "Audiowide", sans-serif;
-  --font-body: "Oxygen", sans-serif;
+  --font-heading: "Cinzel", serif;
+  --font-body: "Inter", sans-serif;
 }
 
 body[class^="page-"] {
@@ -460,7 +462,7 @@ body[class^="page-"] .hero-title,
 body[class^="page-"] .hero-eyebrow,
 body[class^="page-"] .eyebrow,
 body[class^="page-"] .bat-kicker {
-  font-family: var(--font-heading, "Space Grotesk", sans-serif);
+  font-family: var(--font-heading, "Cinzel", serif);
   color: var(--heading-color);
   text-shadow: var(--heading-shadow);
 }

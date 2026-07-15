@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="Which Batman Are You?">
   <meta name="twitter:description" content="Discover your Batman personality in 10 questions!">
   <meta name="twitter:image" content="https://whichbatman.com/assets/og-quiz.jpg">
-  <meta name="theme-color" content="#0f0f14">
+  <meta name="theme-color" content="#0a0a0f">
   
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -37,33 +37,60 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <script src="theme-loader.js"></script>
   <script>window.WhichBatmanTheme.initDocumentTheme();</script>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&family=Audiowide&family=Bangers&family=Bebas+Neue&family=Cinzel:wght@400;600;700&family=Exo+2:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Lato:wght@400;700&family=Nunito:wght@400;600;700&family=Orbitron:wght@400;600;700&family=Oxygen:wght@400;700&family=Rajdhani:wght@500;600;700&family=Roboto:wght@400;500;700&family=Source+Sans+3:wght@400;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="themes.css">
 </head>
 <body class="page-quiz">
+  <header class="bat-nav" aria-label="Primary navigation">
+    <a class="bat-brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span><strong>WhichBatman</strong></a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="quiz.html" aria-current="page">Quiz</a>
+      <a href="battles.html">Battles</a>
+      <a href="timeline.html">Timeline</a>
+      <a href="villains.html">Villains</a>
+      <a href="batmobiles.html">Batmobiles</a>
+    </nav>
+  </header>
+
   <div class="container">
-    <header>
-      <h1>🦇 Which Batman Are You?</h1>
-      <p class="subtitle">The Ultimate Dark Knight Personality Quiz</p>
+    <header class="quiz-hero">
+      <span class="quiz-kicker">Gotham identity scan</span>
+      <h1>Which Batman Are You?</h1>
+      <p class="subtitle">Discover your Gotham alter ego in ten choices.</p>
       <p class="theme-note">Finish the quiz and the whole site shifts into your Batman skin for the next 30 days.</p>
     </header>
 
     <div class="ad-slot ad-slot-banner" aria-label="Advertisement">
       <span class="ad-label">Advertisement</span>
-      <span class="ad-copy"><strong>Top Banner Placeholder</strong><br>Reserved for the sitewide quiz sponsor banner.</span>
+      <span class="ad-copy"><strong>Case file sponsor slot</strong><br>Reserved for the sitewide quiz sponsor banner.</span>
     </div>
     
-    <div class="quiz-card">
-      <div class="progress">
-        <div class="progress-bar">
-          <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+    <div class="quiz-card" id="quizCard">
+      <div class="scan-header" aria-live="polite">
+        <div>
+          <span class="scan-label">Case file / identity scan</span>
+          <strong id="scanStatus">Gotham identity scan: 10% complete</strong>
         </div>
         <span class="progress-text" id="progressText">1/10</span>
       </div>
+
+      <div class="progress" aria-label="Quiz progress">
+        <div class="progress-dots" id="progressDots" aria-hidden="true"></div>
+        <div class="progress-bar" aria-hidden="true">
+          <div class="progress-fill" id="progressFill" style="width: 10%"></div>
+        </div>
+      </div>
       
-      <!-- Question 1 -->
-      <div class="question active" data-question="1">
+      <div class="identity-aura" id="identityAura" aria-hidden="true">
+        <span class="aura-bat"></span>
+        <span class="aura-copy">Signal unresolved</span>
+      </div>
+
+      <div class="question-stage" id="questionStage">
+        <!-- Question 1 -->
+        <div class="question active" data-question="1">
         <h2 class="question-title">A criminal threatens innocent people. What's your first move?</h2>
         <div class="options">
           <div class="option" data-value="west">Use logic and deduction to outsmart them</div>
@@ -201,6 +228,17 @@
           <div class="option" data-value="pattinson">Hope, even if you don't see it yet</div>
         </div>
       </div>
+      </div>
+
+      <div class="selection-callout" id="selectionCallout" aria-live="polite">
+        <span class="selection-signal" aria-hidden="true"></span>
+        <span id="selectionCopy">Pick your approach to light the next signal.</span>
+      </div>
+
+      <div class="quiz-interrupt" id="midQuizAd" aria-label="Advertisement">
+        <span class="ad-label">Advertisement</span>
+        <span class="ad-copy"><strong>Evidence break</strong> A quiet sponsor placement between case files.</span>
+      </div>
       
       <div class="nav-buttons">
         <button class="secondary" id="prevBtn" onclick="previousQuestion()" disabled>← Back</button>
@@ -210,11 +248,43 @@
     
     <!-- Results Screen -->
     <div class="quiz-card results" id="results">
-      <h2 class="results-heading">Your Batman is...</h2>
-      <div class="result-batman" id="resultEmoji"></div>
-      <h3 class="result-name" id="resultName"></h3>
-      <p class="result-description" id="resultDescription"></p>
-      <div class="result-traits" id="resultTraits"></div>
+      <div class="result-dossier" id="resultDossier">
+        <aside class="result-era-panel" aria-label="Era dossier">
+          <span class="scan-label">Era file</span>
+          <div class="result-signal" id="resultSignal" aria-hidden="true">
+            <span></span>
+          </div>
+          <div class="era-year" id="resultYear"></div>
+          <h3 id="resultEra"></h3>
+          <p id="resultDirective"></p>
+          <dl class="era-facts">
+            <div>
+              <dt>Operating mode</dt>
+              <dd id="resultMode"></dd>
+            </div>
+            <div>
+              <dt>Gotham readout</dt>
+              <dd id="resultReadout"></dd>
+            </div>
+          </dl>
+        </aside>
+
+        <div class="result-card" id="resultCard">
+          <span class="scan-label">Identity confirmed</span>
+          <h2 class="results-heading">You are</h2>
+          <div class="result-batman" id="resultEmoji"></div>
+          <h3 class="result-name" id="resultName"></h3>
+          <div class="match-strength">
+            <span id="matchLabel">Match strength</span>
+            <strong id="matchPercent">100%</strong>
+            <div class="match-track"><span id="matchFill"></span></div>
+          </div>
+          <blockquote class="result-quote" id="resultQuote"></blockquote>
+          <p class="result-description" id="resultDescription"></p>
+          <div class="result-traits" id="resultTraits"></div>
+          <div class="personality-breakdown" id="personalityBreakdown" aria-label="Personality breakdown"></div>
+        </div>
+      </div>
       
       <div class="share-buttons">
         <button onclick="shareResult()">📤 Share Result</button>
@@ -233,94 +303,294 @@
       west: {
         name: "Adam West's Batman",
         emoji: "🎭",
+        quote: "Some days you just can't get rid of a bomb!",
         description: "You're the campy, colorful, utterly earnest Dark Knight of the 1960s! You solve crimes with logic, gadgets, and unshakeable optimism. Evil-doers beware: you've got a Bat-solution for everything!",
         traits: ["Optimistic", "By-the-book", "Gadget master", "Team player", "Honorable"]
       },
       keaton: {
         name: "Michael Keaton's Batman",
         emoji: "🦇",
+        quote: "I'm Batman.",
         description: "You're the gothic, mysterious Batman who emerged from the shadows in 1989. Brooding, unpredictable, and slightly unhinged — you're the urban legend criminals whisper about in fear.",
         traits: ["Mysterious", "Haunted", "Intimidating", "Theatrical", "Gothic"]
       },
       kilmer: {
         name: "Val Kilmer's Batman",
         emoji: "🟣",
+        quote: "It's the car, right? Chicks love the car.",
         description: "You're the overlooked 1995 Batman: stylish, emotionally open, and more introspective than people remember. You balance neon spectacle with a surprisingly human Bruce Wayne underneath the cape.",
         traits: ["Reflective", "Stylish", "Underrated", "Empathetic", "Agile"]
       },
       clooney: {
         name: "George Clooney's Batman",
         emoji: "❄️",
+        quote: "This is why Superman works alone.",
         description: "You're the polished, over-the-top guardian of the Schumacher ice age. You believe charisma, teamwork, and a fully stocked utility belt can solve almost anything, preferably with dramatic lighting.",
         traits: ["Charming", "Playful", "Collaborative", "Confident", "Maximalist"]
       },
       bale: {
         name: "Christian Bale's Batman",
         emoji: "⚔️",
+        quote: "It's not who I am underneath, but what I do that defines me.",
         description: "You're the tactical, highly-trained Dark Knight of Nolan's trilogy. You've turned trauma into purpose, building an arsenal of military-grade equipment and unwavering principles. You're Batman as special forces operative.",
         traits: ["Strategic", "Principled", "Tactical", "Determined", "Incorruptible"]
       },
       affleck: {
         name: "Ben Affleck's Batman",
         emoji: "💪",
+        quote: "Do you bleed? You will.",
         description: "You're the battle-worn, brutal Batman of the DCEU. Twenty years of fighting crime has left you jaded and willing to cross lines. You're what happens when Batman stops pulling punches.",
         traits: ["Experienced", "Brutal", "Cynical", "Powerful", "Ruthless"]
       },
       pattinson: {
         name: "Robert Pattinson's Batman",
         emoji: "🔍",
+        quote: "I'm vengeance.",
         description: "You're the Year Two detective Batman — emo, methodical, and still figuring it out. You're less superhero, more damaged investigator using vengeance as therapy. Batman as a crime scene in a cape.",
         traits: ["Methodical", "Vengeful", "Isolated", "Detective", "Raw"]
+      }
+    };
+    const eraProfiles = {
+      west: {
+        year: "1966",
+        era: "Bright signal operations",
+        directive: "Keep Gotham legible, lawful, and weirdly cheerful. Your case file is civic duty with a utility belt.",
+        mode: "Public heroics",
+        readout: "High optimism / low shadow"
+      },
+      keaton: {
+        year: "1989",
+        era: "Gothic urban legend",
+        directive: "Let the city talk itself into fear. Your strongest weapon is the rumor criminals spread for you.",
+        mode: "Myth and misdirection",
+        readout: "Cathedral skyline / unstable signal"
+      },
+      kilmer: {
+        year: "1995",
+        era: "Neon psyche case",
+        directive: "Treat the cowl like a mirror. You win when style and self-knowledge stop fighting each other.",
+        mode: "Empathy under neon",
+        readout: "Human center / high theatricality"
+      },
+      clooney: {
+        year: "1997",
+        era: "Bat-family spectacle",
+        directive: "Bring the team, bring the gadgets, and keep the ice from reaching the heart of the mission.",
+        mode: "Team command",
+        readout: "Chrome optimism / family channel"
+      },
+      bale: {
+        year: "2005-2012",
+        era: "Nolan tactical doctrine",
+        directive: "Become a symbol with rules. Your Gotham changes when fear is disciplined into restraint.",
+        mode: "Strategic escalation",
+        readout: "Grounded threat / controlled burn"
+      },
+      affleck: {
+        year: "2016",
+        era: "War-room veteran",
+        directive: "You are what the mission costs after too many years. The file says power, grief, and no patience left.",
+        mode: "Heavy armor response",
+        readout: "Battle fatigue / maximum force"
+      },
+      pattinson: {
+        year: "2022",
+        era: "Rain-soaked detective",
+        directive: "Follow the evidence until vengeance becomes something useful. Hope is the last clue in the room.",
+        mode: "Crime-scene obsession",
+        readout: "Low trust / rising signal"
       }
     };
     
     let currentQuestion = 1;
     let answers = {};
+    const totalQuestions = 10;
+    const batmanLabels = {
+      west: "Classic",
+      keaton: "Gothic",
+      kilmer: "Neon",
+      clooney: "Legacy",
+      bale: "Tactical",
+      affleck: "Brutal",
+      pattinson: "Detective"
+    };
+    const batmanSelectionCopy = {
+      west: "Clean deduction. Classic Gotham logic is now on file.",
+      keaton: "Shadow profile logged. The myth is taking shape.",
+      kilmer: "Stylish read. The signal just picked up a neon edge.",
+      clooney: "Family-channel energy logged. The case file is smiling back.",
+      bale: "Tactical answer secured. Fear has entered the equation.",
+      affleck: "Heavy response locked. This profile carries battle damage.",
+      pattinson: "Detective signal marked. The rain is getting louder."
+    };
+    const auraCopy = [
+      "Signal unresolved",
+      "Trace evidence logged",
+      "Behavioral pattern forming",
+      "Cowl profile sharpening",
+      "Gotham identity lock nearby"
+    ];
+
+    function initializeProgressDots() {
+      const dots = document.getElementById('progressDots');
+      if (!dots || dots.children.length) return;
+      for (let i = 1; i <= totalQuestions; i++) {
+        const dot = document.createElement('span');
+        dot.className = 'progress-dot';
+        dot.dataset.step = i;
+        dots.appendChild(dot);
+      }
+    }
+
+    function decorateOptions() {
+      document.querySelectorAll('.option').forEach(option => {
+        if (option.querySelector('.option-copy')) return;
+        const value = option.dataset.value;
+        const copy = option.textContent.trim();
+        option.setAttribute('role', 'button');
+        option.setAttribute('tabindex', '0');
+        option.setAttribute('aria-pressed', 'false');
+        option.innerHTML = `<span class="option-mark" aria-hidden="true"></span><span class="option-copy">${copy}</span><span class="option-code">${batmanLabels[value] || 'Case'}</span><span class="option-stamp" aria-hidden="true"></span>`;
+      });
+    }
+
+    function updateSelectionCallout(value) {
+      const callout = document.getElementById('selectionCallout');
+      const copy = document.getElementById('selectionCopy');
+      if (!callout || !copy) return;
+      callout.classList.toggle('active', Boolean(value));
+      callout.dataset.signal = value || 'gotham';
+      copy.textContent = value
+        ? `${batmanSelectionCopy[value] || 'Choice locked.'} Lock it in when ready.`
+        : 'Pick your approach to light the next signal.';
+    }
+
+    function updateNextButton() {
+      const nextBtn = document.getElementById('nextBtn');
+      if (!nextBtn) return;
+      const hasAnswer = answers[currentQuestion] !== undefined;
+      nextBtn.disabled = !hasAnswer;
+      if (!hasAnswer) {
+        nextBtn.textContent = 'Choose a signal';
+      } else {
+        nextBtn.textContent = currentQuestion === totalQuestions ? 'Reveal Identity →' : 'Lock It In →';
+      }
+    }
+
+    function selectOption(option) {
+      const question = option.closest('.question');
+      const questionNum = question.dataset.question;
+      const value = option.dataset.value;
+
+      question.querySelectorAll('.option').forEach(opt => {
+        opt.classList.remove('selected');
+        opt.setAttribute('aria-pressed', 'false');
+      });
+
+      question.querySelector('.options')?.classList.add('has-selected');
+      option.classList.add('selected');
+      option.setAttribute('aria-pressed', 'true');
+      answers[questionNum] = value;
+
+      updateSelectionCallout(value);
+      updateNextButton();
+      updateProgress();
+    }
     
     // Option selection
     document.querySelectorAll('.option').forEach(option => {
       option.addEventListener('click', function() {
-        const question = this.closest('.question');
-        const questionNum = question.dataset.question;
-        
-        // Remove selected from siblings
-        question.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-        
-        // Mark this option as selected
-        this.classList.add('selected');
-        
-        // Store answer
-        answers[questionNum] = this.dataset.value;
-        
-        // Enable next button
-        document.getElementById('nextBtn').disabled = false;
+        selectOption(this);
+      });
+      option.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          selectOption(this);
+        }
       });
     });
     
     function updateProgress() {
-      const progress = (currentQuestion / 10) * 100;
+      const answeredCount = Object.keys(answers).length;
+      const progress = (currentQuestion / totalQuestions) * 100;
+      const scanPercent = Math.max(10, Math.round((answeredCount / totalQuestions) * 100));
       document.getElementById('progressFill').style.width = progress + '%';
-      document.getElementById('progressText').textContent = currentQuestion + '/10';
+      document.getElementById('progressText').textContent = currentQuestion + '/' + totalQuestions;
+
+      const scanStatus = document.getElementById('scanStatus');
+      if (scanStatus) scanStatus.textContent = `Gotham identity scan: ${scanPercent}% complete`;
+
+      document.querySelectorAll('.progress-dot').forEach(dot => {
+        const step = Number(dot.dataset.step);
+        dot.classList.toggle('complete', step < currentQuestion || answers[step] !== undefined);
+        dot.classList.toggle('current', step === currentQuestion);
+      });
+
+      const topResult = getLeadingResult();
+      const aura = document.getElementById('identityAura');
+      if (aura) {
+        aura.dataset.signal = topResult || 'gotham';
+        aura.querySelector('.aura-copy').textContent = auraCopy[Math.min(auraCopy.length - 1, Math.floor(answeredCount / 2))];
+      }
+
+      const midQuizAd = document.getElementById('midQuizAd');
+      if (midQuizAd) midQuizAd.classList.toggle('active', currentQuestion === 6);
     }
     
     function showQuestion(num) {
-      document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
-      document.querySelector(`[data-question="${num}"]`).classList.add('active');
+      const previous = currentQuestion;
+      currentQuestion = num;
+      const direction = num >= previous ? 'forward' : 'back';
+      const activeQuestion = document.querySelector('.question.active');
+      const nextQuestionEl = document.querySelector(`[data-question="${num}"]`);
+
+      document.getElementById('questionStage').dataset.direction = direction;
+      document.querySelectorAll('.question').forEach(q => q.classList.remove('leaving'));
+      if (activeQuestion && activeQuestion !== nextQuestionEl) activeQuestion.classList.add('leaving');
+      window.setTimeout(() => {
+        document.querySelectorAll('.question').forEach(q => q.classList.remove('active', 'leaving'));
+        nextQuestionEl.classList.add('active');
+      }, activeQuestion && activeQuestion !== nextQuestionEl ? 120 : 0);
       
       // Update button states
       document.getElementById('prevBtn').disabled = num === 1;
       const hasAnswer = answers[num] !== undefined;
-      document.getElementById('nextBtn').disabled = !hasAnswer;
-      document.getElementById('nextBtn').textContent = num === 10 ? 'See Results →' : 'Next →';
+      updateNextButton();
       
       // Restore selected option if exists
+      document.querySelectorAll('.options').forEach(options => options.classList.remove('has-selected'));
+      document.querySelectorAll('.option').forEach(opt => {
+        opt.classList.remove('selected');
+        opt.setAttribute('aria-pressed', 'false');
+      });
       if (hasAnswer) {
-        const question = document.querySelector(`[data-question="${num}"]`);
-        question.querySelector(`[data-value="${answers[num]}"]`).classList.add('selected');
+          const question = document.querySelector(`[data-question="${num}"]`);
+          const selected = question.querySelector(`[data-value="${answers[num]}"]`);
+          if (selected) {
+            question.querySelector('.options')?.classList.add('has-selected');
+            selected.classList.add('selected');
+            selected.setAttribute('aria-pressed', 'true');
+          }
       }
+      updateSelectionCallout(hasAnswer ? answers[num] : null);
       
-      currentQuestion = num;
       updateProgress();
+    }
+
+    function getScoreMap() {
+      const scores = {};
+      Object.values(answers).forEach(answer => {
+        scores[answer] = (scores[answer] || 0) + 1;
+      });
+      return scores;
+    }
+
+    function getLeadingResult() {
+      const scores = getScoreMap();
+      const entries = Object.entries(scores);
+      if (!entries.length) return null;
+      entries.sort((a, b) => b[1] - a[1]);
+      return entries[0][0];
     }
     
     function nextQuestion() {
@@ -337,54 +607,78 @@
       }
     }
     
-    function showResults() {
-      // Count up answers
-      const scores = {};
-      Object.values(answers).forEach(answer => {
-        scores[answer] = (scores[answer] || 0) + 1;
-      });
-      
-      // Find winner
-      let winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+    function displayResult(winner, options = {}) {
+      const settings = options || {};
       const result = quizData[winner];
+      if (!result) return;
+
       window.WhichBatmanTheme.setThemeForBatman(winner);
-      
-      // Display result
+      document.body.dataset.result = winner;
+      document.body.classList.add('result-active');
+
       document.getElementById('resultEmoji').textContent = result.emoji;
       document.getElementById('resultName').textContent = result.name;
+      document.getElementById('resultQuote').textContent = `“${result.quote}”`;
       document.getElementById('resultDescription').textContent = result.description;
-      
+      const era = eraProfiles[winner];
+      if (era) {
+        document.getElementById('resultDossier').dataset.result = winner;
+        document.getElementById('resultYear').textContent = era.year;
+        document.getElementById('resultEra').textContent = era.era;
+        document.getElementById('resultDirective').textContent = era.directive;
+        document.getElementById('resultMode').textContent = era.mode;
+        document.getElementById('resultReadout').textContent = era.readout;
+      }
+
       const traitsHTML = result.traits.map(trait => `<span class="trait">${trait}</span>`).join('');
       document.getElementById('resultTraits').innerHTML = traitsHTML;
-      
-      // Hide quiz, show results
+
+      const scores = settings.scores || {[winner]: totalQuestions};
+      const topScore = Math.max(...Object.values(scores), 1);
+      const matchPercent = Math.max(62, Math.round((topScore / totalQuestions) * 100));
+      document.getElementById('matchPercent').textContent = matchPercent + '%';
+      document.getElementById('matchFill').style.width = matchPercent + '%';
+
+      const breakdown = Object.entries(quizData).map(([key, data]) => {
+        const score = scores[key] || 0;
+        const width = Math.round((score / totalQuestions) * 100);
+        return `<div class="breakdown-row" data-batman="${key}"><span>${batmanLabels[key]}</span><div><i style="width:${width}%"></i></div><strong>${score}</strong></div>`;
+      }).join('');
+      document.getElementById('personalityBreakdown').innerHTML = breakdown;
+
       document.querySelector('.quiz-card:not(.results)').style.display = 'none';
       document.getElementById('results').classList.add('active');
-      
-      // Track completion
-      if (typeof gtag !== 'undefined') {
+      document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      localStorage.setItem('whichBatmanResult', winner);
+      localStorage.setItem('whichBatmanResultName', result.name);
+      localStorage.removeItem('whichBatmanProgress');
+
+      if (settings.track !== false && typeof gtag !== 'undefined') {
         gtag('event', 'quiz_complete', {
           'event_category': 'engagement',
           'event_label': winner,
           'value': 1
         });
       }
-      
-      // Save to localStorage
-      localStorage.setItem('whichBatmanResult', winner);
-      
-      // Update URL for sharing
-      if (history.pushState) {
+
+      if (settings.updateUrl !== false && history.pushState) {
         const newUrl = window.location.pathname + '?result=' + winner;
         history.pushState({result: winner}, '', newUrl);
       }
+    }
+
+    function showResults() {
+      const scores = getScoreMap();
+      const winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+      displayResult(winner, { scores });
     }
     
     function shareResult() {
       const result = localStorage.getItem('whichBatmanResult');
       const batman = quizData[result];
       const url = window.location.origin + window.location.pathname + '?result=' + result;
-      const text = `I got ${batman.name} on the Which Batman Are You quiz! 🦇`;
+      const text = `I got ${batman.name} on the Which Batman Are You quiz: “${batman.quote}” 🦇`;
       
       if (navigator.share) {
         navigator.share({
@@ -413,15 +707,30 @@
       answers = {};
       
       document.getElementById('results').classList.remove('active');
+      delete document.body.dataset.result;
+      document.body.classList.remove('result-active');
+      window.WhichBatmanTheme.setTheme('gotham');
       document.querySelector('.quiz-card:not(.results)').style.display = 'block';
       
       showQuestion(1);
+      document.querySelectorAll('.option').forEach(opt => {
+        opt.classList.remove('selected');
+        opt.setAttribute('aria-pressed', 'false');
+      });
+      document.querySelectorAll('.options').forEach(options => options.classList.remove('has-selected'));
+      updateSelectionCallout(null);
+      localStorage.removeItem('whichBatmanProgress');
       
       // Clear URL
       if (history.pushState) {
         history.pushState(null, '', window.location.pathname);
       }
     }
+
+    initializeProgressDots();
+    decorateOptions();
+    updateProgress();
+    updateNextButton();
     
     // Check for shared result in URL
     window.addEventListener('DOMContentLoaded', () => {
@@ -429,12 +738,8 @@
       const result = urlParams.get('result');
       
       if (result && quizData[result]) {
-        // Show that result immediately
-        Object.keys(quizData).forEach((key, index) => {
-          answers[index + 1] = key === result ? result : Object.keys(quizData)[0];
-        });
         currentQuestion = 10;
-        showResults();
+        displayResult(result, { updateUrl: false, track: false });
       }
       
       // Track quiz start

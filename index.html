@@ -5,92 +5,162 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WhichBatman - The Ultimate Batman Fan Hub</title>
   <meta name="description" content="Which Batman Are You? Take personality quizzes, vote in Batman vs battles, rank Batmobiles, and explore the complete Dark Knight timeline. The ultimate Batman fan destination.">
-  
+
   <meta property="og:type" content="website">
   <meta property="og:title" content="WhichBatman - The Ultimate Batman Fan Hub">
   <meta property="og:description" content="Quizzes, battles, rankings, and more for every Batman fan!">
   <meta property="og:url" content="https://whichbatman.com">
   <meta property="og:image" content="https://whichbatman.com/assets/og-home.jpg">
-  
+
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#0f0f14">
+  <meta name="theme-color" content="#0a0a0f">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <script src="theme-loader.js"></script>
   <script>window.WhichBatmanTheme.initDocumentTheme();</script>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&family=Audiowide&family=Bangers&family=Bebas+Neue&family=Cinzel:wght@400;600;700&family=Exo+2:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Lato:wght@400;700&family=Nunito:wght@400;600;700&family=Orbitron:wght@400;600;700&family=Oxygen:wght@400;700&family=Rajdhani:wght@500;600;700&family=Roboto:wght@400;500;700&family=Source+Sans+3:wght@400;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="themes.css">
 </head>
 <body class="page-home">
-  <div class="hero">
-    <h1>🦇 WhichBatman</h1>
-    <p>The ultimate destination for Batman fans — quizzes, battles, rankings, and deep dives into every Dark Knight.</p>
-    <p class="theme-note">Seven movie-era skins. One Gotham default. Your quiz result reskins the whole site for 30 days.</p>
-    <a href="quiz.html" class="cta-button">Take the Quiz →</a>
-  </div>
+  <header class="bat-nav" aria-label="Primary navigation">
+    <a class="bat-brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span><strong>WhichBatman</strong></a>
+    <nav>
+      <a href="quiz.html">Quiz</a>
+      <a href="battles.html">Battles</a>
+      <a href="timeline.html">Timeline</a>
+      <a href="villains.html">Villains</a>
+      <a href="batmobiles.html">Batmobiles</a>
+      <a href="trivia.html">Trivia</a>
+    </nav>
+  </header>
 
-  <div class="ad-slot ad-slot-banner" aria-label="Advertisement">
-    <span class="ad-label">Advertisement</span>
-    <span class="ad-copy"><strong>Top Banner Placeholder</strong><br>Reserved for a 970x90 AdSense unit above the main fan hub modules.</span>
-  </div>
-  
-  <div class="features">
-    <div class="feature-card">
-      <div class="feature-icon">🎭</div>
-      <h3>Personality Quiz</h3>
-      <p>Discover which iconic Batman matches your personality. 10 questions, 7 live-action Dark Knights, and a full-site skin switch every time you retake it.</p>
-      <a href="quiz.html" class="feature-link">Start Quiz →</a>
+  <main>
+    <section class="hero hero-gotham-feed">
+      <div class="signal-orb" aria-hidden="true"></div>
+      <div class="gotham-rain" aria-hidden="true"></div>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="hero-kicker">Gotham intelligence feed</div>
+          <h1><span>Which Batman</span><br>Are You?</h1>
+          <p class="hero-lede">Seven Dark Knights. One identity scan. Your Gotham awaits.</p>
+          <p class="theme-note">Take the quiz and the whole site reskins to your movie-era Batman for 30 days.</p>
+          <div class="hero-actions">
+            <a href="quiz.html" class="cta-button">Take the Quiz →</a>
+            <a href="timeline.html" class="ghost-button">Open Timeline</a>
+            <a href="battles.html" class="ghost-button">Vote Battles</a>
+          </div>
+
+          <div class="batman-arc" aria-label="Batman era archetypes">
+            <a class="batman-card classic" href="quiz.html"><span class="bat-cowl"></span><strong>Classic</strong><small>West</small></a>
+            <a class="batman-card chivalrous" href="quiz.html"><span class="bat-cowl"></span><strong>Chivalrous</strong><small>Keaton</small></a>
+            <a class="batman-card noir" href="quiz.html"><span class="bat-cowl"></span><strong>Noir</strong><small>Kilmer</small></a>
+            <a class="batman-card dark-knight" href="quiz.html"><span class="bat-cowl"></span><strong>Dark Knight</strong><small>Bale</small></a>
+            <a class="batman-card vengeful" href="quiz.html"><span class="bat-cowl"></span><strong>Vengeful</strong><small>Pattinson</small></a>
+            <a class="batman-card brutal" href="quiz.html"><span class="bat-cowl"></span><strong>Brutal</strong><small>Affleck</small></a>
+            <a class="batman-card legacy" href="quiz.html"><span class="bat-cowl"></span><strong>Legacy</strong><small>Clooney</small></a>
+          </div>
+        </div>
+
+        <aside class="batcomputer-panel" aria-label="Batman identity scan preview">
+          <div class="panel-topline"><span class="live-dot"></span> Identity scan ready</div>
+          <div class="scan-card outgoing">
+            <span class="scan-label">Prompt</span>
+            <strong>Who is your Batman?</strong>
+            <p>Choose instincts, tactics, fear, loyalty, and chaos tolerance.</p>
+          </div>
+          <div class="scan-stack" aria-label="Batman eras">
+            <div class="era-chip west">1966 · West</div>
+            <div class="era-chip keaton">1989 · Keaton</div>
+            <div class="era-chip kilmer">1995 · Kilmer</div>
+            <div class="era-chip clooney">1997 · Clooney</div>
+            <div class="era-chip bale">2005 · Bale</div>
+            <div class="era-chip affleck">2016 · Affleck</div>
+            <div class="era-chip pattinson">2022 · Pattinson</div>
+          </div>
+          <div class="system-note">Result output: personality profile, era skin, shareable fan identity.</div>
+        </aside>
+      </div>
+      <div class="gotham-skyline" aria-hidden="true"></div>
+    </section>
+
+    <div class="ad-slot ad-slot-banner" aria-label="Advertisement">
+      <span class="ad-label">Gotham Gazette Classified</span>
+      <span class="ad-copy"><strong>Advertisement</strong><br>Reserved 970x90 AdSense unit — styled as an intentional dossier break.</span>
     </div>
-    
-    <div class="feature-card">
-      <div class="feature-icon">⚔️</div>
-      <h3>Batman vs Battles</h3>
-      <p>Vote between two Batman versions and see live results. Keaton vs Bale? Pattinson vs Affleck? You decide.</p>
-      <a href="battles.html" class="feature-link">Enter the Arena →</a>
-    </div>
-    
-    <div class="feature-card">
-      <div class="feature-icon">🚗</div>
-      <h3>Batmobile Rankings</h3>
-      <p>Rank every Batmobile from the campy to the tank. Drag-and-drop your ultimate list and compare with other fans.</p>
-      <a href="batmobiles.html" class="feature-link">Start Ranking →</a>
-    </div>
-    
-    <div class="feature-card">
-      <div class="feature-icon">📅</div>
-      <h3>Batman Timeline</h3>
-      <p>Visual history of every Batman actor, movie, and era. From 1943 serials to 2026 releases — the complete chronology.</p>
-      <a href="timeline.html" class="feature-link">Explore Timeline →</a>
-    </div>
-    
-    <div class="feature-card">
-      <div class="feature-icon">🦹</div>
-      <h3>Villain Database</h3>
-      <p>Filter and explore every Batman villain across all media. Find your favorite rogues, compare portrayals, discover deep cuts.</p>
-      <a href="villains.html" class="feature-link">Open the database →</a>
-    </div>
-    
-    <div class="feature-card">
-      <div class="feature-icon">🎬</div>
-      <h3>Movie Trivia</h3>
-      <p>Test your Batman movie knowledge with endless trivia. From Schumacher's nipples to Nolan's realism — how deep does your lore go?</p>
-      <a href="trivia.html" class="feature-link">Enter the Batcave →</a>
-    </div>
-  </div>
-  
+
+    <section class="casefile-section" aria-labelledby="casefile-heading">
+      <div class="section-heading">
+        <span class="section-kicker">Select a case file</span>
+        <h2 id="casefile-heading">Explore the Batcave</h2>
+        <p>Quizzes, battles, timelines and databases — redesigned as a living Gotham dashboard.</p>
+      </div>
+
+      <div class="features">
+        <article class="feature-card case-file">
+          <div class="feature-icon" aria-hidden="true"></div>
+          <span class="file-code">WB-01</span>
+          <h3>Personality Quiz</h3>
+          <p>Discover which iconic Batman matches your personality. 10 questions, 7 live-action Dark Knights, and a full-site skin switch every time you retake it.</p>
+          <a href="quiz.html" class="feature-link">Start Quiz →</a>
+        </article>
+
+        <article class="feature-card case-file">
+          <div class="feature-icon" aria-hidden="true"></div>
+          <span class="file-code">WB-02</span>
+          <h3>Batman vs Battles</h3>
+          <p>Vote between two Batman versions and see live results. Keaton vs Bale? Pattinson vs Affleck? You decide.</p>
+          <a href="battles.html" class="feature-link">Enter the Arena →</a>
+        </article>
+
+        <article class="feature-card case-file">
+          <div class="feature-icon" aria-hidden="true"></div>
+          <span class="file-code">WB-03</span>
+          <h3>Batmobile Rankings</h3>
+          <p>Rank every Batmobile from the campy to the tank. Drag-and-drop your ultimate list and compare with other fans.</p>
+          <a href="batmobiles.html" class="feature-link">Start Ranking →</a>
+        </article>
+
+        <article class="feature-card case-file">
+          <div class="feature-icon" aria-hidden="true"></div>
+          <span class="file-code">WB-04</span>
+          <h3>Batman Timeline</h3>
+          <p>Visual history of every Batman actor, movie, and era. From 1943 serials to 2026 releases — the complete chronology.</p>
+          <a href="timeline.html" class="feature-link">Explore Timeline →</a>
+        </article>
+
+        <article class="feature-card case-file">
+          <div class="feature-icon" aria-hidden="true"></div>
+          <span class="file-code">WB-05</span>
+          <h3>Villain Database</h3>
+          <p>Filter and explore every Batman villain across all media. Find your favorite rogues, compare portrayals, discover deep cuts.</p>
+          <a href="villains.html" class="feature-link">Open Database →</a>
+        </article>
+
+        <article class="feature-card case-file">
+          <div class="feature-icon" aria-hidden="true"></div>
+          <span class="file-code">WB-06</span>
+          <h3>Movie Trivia</h3>
+          <p>Test your Batman movie knowledge with endless trivia. From Schumacher's nipples to Nolan's realism — how deep does your lore go?</p>
+          <a href="trivia.html" class="feature-link">Enter the Batcave →</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
   <footer>
+    <div class="footer-signal">🦇</div>
     <p>&copy; 2026 WhichBatman. Not affiliated with DC Comics or Warner Bros. Just fans who love the Dark Knight.</p>
     <p class="footer-note">Built with 🦇 in Melbourne, Australia</p>
   </footer>
-  
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-XXXXXXXXXX');
-    
+
     // Track feature card clicks
     document.querySelectorAll('.feature-link').forEach(link => {
       link.addEventListener('click', (e) => {
