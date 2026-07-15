@@ -404,6 +404,8 @@
     
     let currentQuestion = 1;
     let answers = {};
+    let autoAdvanceTimer = null;
+    let autoAdvanceCountdown = null;
     const totalQuestions = 10;
     const batmanLabels = {
       west: "Classic",
@@ -454,15 +456,26 @@
       });
     }
 
-    function updateSelectionCallout(value) {
+    function clearAutoAdvance() {
+      if (autoAdvanceTimer) {
+        window.clearTimeout(autoAdvanceTimer);
+        autoAdvanceTimer = null;
+      }
+      if (autoAdvanceCountdown) {
+        window.clearInterval(autoAdvanceCountdown);
+        autoAdvanceCountdown = null;
+      }
+    }
+
+    function updateSelectionCallout(value, message) {
       const callout = document.getElementById('selectionCallout');
       const copy = document.getElementById('selectionCopy');
       if (!callout || !copy) return;
       callout.classList.toggle('active', Boolean(value));
       callout.dataset.signal = value || 'gotham';
-      copy.textContent = value
+      copy.textContent = message || (value
         ? `${batmanSelectionCopy[value] || 'Choice locked.'} Lock it in when ready.`
-        : 'Pick your approach to light the next signal.';
+        : 'Pick your approach to light the next signal.');
     }
 
     function updateNextButton() {
@@ -479,9 +492,10 @@
 
     function selectOption(option) {
       const question = option.closest('.question');
-      const questionNum = question.dataset.question;
+      const questionNum = Number(question.dataset.question);
       const value = option.dataset.value;
 
+      clearAutoAdvance();
       question.querySelectorAll('.option').forEach(opt => {
         opt.classList.remove('selected');
         opt.setAttribute('aria-pressed', 'false');
@@ -495,6 +509,27 @@
       updateSelectionCallout(value);
       updateNextButton();
       updateProgress();
+      scheduleAutoAdvance(questionNum, value);
+    }
+
+    function scheduleAutoAdvance(questionNum, value) {
+      let remaining = 2;
+      const label = currentQuestion === totalQuestions ? 'Revealing identity' : 'Advancing';
+      updateSelectionCallout(value, `${batmanSelectionCopy[value] || 'Choice locked.'} ${label} in ${remaining}...`);
+
+      autoAdvanceCountdown = window.setInterval(() => {
+        remaining -= 1;
+        if (remaining > 0) {
+          updateSelectionCallout(value, `${batmanSelectionCopy[value] || 'Choice locked.'} ${label} in ${remaining}...`);
+        }
+      }, 1000);
+
+      autoAdvanceTimer = window.setTimeout(() => {
+        clearAutoAdvance();
+        if (currentQuestion === questionNum && answers[questionNum] === value) {
+          nextQuestion();
+        }
+      }, 2000);
     }
     
     // Option selection
@@ -538,6 +573,7 @@
     }
     
     function showQuestion(num) {
+      clearAutoAdvance();
       const previous = currentQuestion;
       currentQuestion = num;
       const direction = num >= previous ? 'forward' : 'back';
@@ -594,6 +630,7 @@
     }
     
     function nextQuestion() {
+      clearAutoAdvance();
       if (currentQuestion < 10) {
         showQuestion(currentQuestion + 1);
       } else {
@@ -602,12 +639,14 @@
     }
     
     function previousQuestion() {
+      clearAutoAdvance();
       if (currentQuestion > 1) {
         showQuestion(currentQuestion - 1);
       }
     }
     
     function displayResult(winner, options = {}) {
+      clearAutoAdvance();
       const settings = options || {};
       const result = quizData[winner];
       if (!result) return;
@@ -703,6 +742,7 @@
     }
     
     function restartQuiz() {
+      clearAutoAdvance();
       currentQuestion = 1;
       answers = {};
       

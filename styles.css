@@ -1386,7 +1386,7 @@ body.page-quiz .identity-aura {
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-  margin: 0 0 22px;
+  margin: 0 0 18px;
   padding: 12px 14px;
   border: 1px solid color-mix(in srgb, var(--accent-primary) 24%, transparent);
   border-radius: 8px;
@@ -1418,7 +1418,7 @@ body.page-quiz .identity-aura[data-signal="pattinson"] .aura-bat { background: v
 
 body.page-quiz .question-stage {
   position: relative;
-  min-height: 430px;
+  min-height: 390px;
   isolation: isolate;
 }
 
@@ -1427,7 +1427,7 @@ body.page-quiz .question {
   inset: 0;
   display: grid;
   align-content: start;
-  gap: 18px;
+  gap: 14px;
   opacity: 0;
   pointer-events: none;
   transform: translateX(34px);
@@ -1469,7 +1469,7 @@ body.page-quiz .question-title {
 body.page-quiz .options {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 10px;
 }
 
 body.page-quiz .option {
@@ -1697,7 +1697,7 @@ body.page-quiz .nav-buttons {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  margin-top: 22px;
+  margin-top: 16px;
 }
 
 body.page-quiz .nav-buttons button,
@@ -2093,6 +2093,14 @@ body.page-quiz .result-dossier[data-result="pattinson"] .result-era-panel {
 }
 
 @media (max-width: 720px) {
+  body.page-quiz .container {
+    padding-top: 14px;
+    padding-bottom: 40px;
+  }
+  body.page-quiz .quiz-hero,
+  body.page-quiz .ad-slot-banner {
+    display: none !important;
+  }
   body.page-quiz .container { width: min(100% - 22px, 1040px); }
   body.page-quiz .quiz-card::before { display: none; }
   body.page-quiz .quiz-card { padding: 16px; }
@@ -2106,9 +2114,9 @@ body.page-quiz .result-dossier[data-result="pattinson"] .result-era-panel {
   }
   body.page-quiz .scan-header { align-items: stretch; }
   body.page-quiz .options { grid-template-columns: 1fr; gap: 9px; }
-  body.page-quiz .question-stage { min-height: 650px; }
+  body.page-quiz .question-stage { min-height: 540px; }
   body.page-quiz .option {
-    min-height: 76px;
+    min-height: 68px;
     padding: 11px 12px;
     grid-template-columns: 30px minmax(0, 1fr) 24px;
   }
@@ -2126,7 +2134,7 @@ body.page-quiz .result-dossier[data-result="pattinson"] .result-era-panel {
   body.page-quiz .scan-header { flex-direction: column; }
   body.page-quiz .progress-dots { gap: 4px; }
   body.page-quiz .progress-dot { height: 10px; }
-  body.page-quiz .question-stage { min-height: 720px; }
+  body.page-quiz .question-stage { min-height: 580px; }
 }
 
 /* Keep quiz presentation above the later theme-system base selectors. */
