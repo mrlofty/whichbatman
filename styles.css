@@ -1740,6 +1740,8 @@ body.page-quiz .result-card {
 
 body.page-quiz .result-card {
   text-align: center;
+  display: grid;
+  align-content: start;
 }
 
 body.page-quiz .result-era-panel {
@@ -1769,11 +1771,11 @@ body.page-quiz .result-era-panel::before {
 body.page-quiz .result-era-panel::after {
   content: "DOSSIER";
   position: absolute;
-  right: -12px;
-  bottom: 8px;
-  color: color-mix(in srgb, var(--accent-primary) 18%, transparent);
+  right: 10px;
+  bottom: 18px;
+  color: color-mix(in srgb, var(--accent-primary) 12%, transparent);
   font-family: var(--font-label, "Bebas Neue", sans-serif);
-  font-size: clamp(3.8rem, 10vw, 7rem);
+  font-size: clamp(3rem, 8vw, 5.6rem);
   letter-spacing: 0.12em;
   line-height: 0.8;
   transform: rotate(-6deg);
@@ -1891,7 +1893,7 @@ body.page-quiz.result-active .container {
 }
 
 body.page-quiz .results-heading {
-  margin: 6px 0 0;
+  margin: 8px 0 0;
   color: var(--accent-strong);
   font-family: var(--font-label, "Bebas Neue", sans-serif);
   font-size: clamp(1.7rem, 4vw, 2.8rem);
@@ -1902,7 +1904,7 @@ body.page-quiz .results-heading {
 body.page-quiz .result-batman {
   width: clamp(104px, 18vw, 148px);
   height: clamp(104px, 18vw, 148px);
-  margin: 14px auto 16px;
+  margin: 18px auto 20px;
   display: grid;
   place-items: center;
   border-radius: 50%;
@@ -1916,10 +1918,10 @@ body.page-quiz .result-batman {
 
 body.page-quiz .result-name {
   max-width: 780px;
-  margin: 0 auto 14px;
+  margin: 0 auto 20px;
   color: var(--heading-color);
   font-size: clamp(2.25rem, 6vw, 4.4rem);
-  line-height: 0.96;
+  line-height: 1.02;
 }
 
 body.page-quiz .match-strength {
@@ -1928,7 +1930,7 @@ body.page-quiz .match-strength {
   gap: 8px 12px;
   align-items: center;
   max-width: 460px;
-  margin: 0 auto 18px;
+  margin: 0 auto 24px;
   color: var(--text-secondary);
   text-align: left;
   font-weight: 800;
@@ -2095,7 +2097,9 @@ body.page-quiz .result-dossier[data-result="pattinson"] .result-era-panel {
   body.page-quiz .quiz-card::before { display: none; }
   body.page-quiz .quiz-card { padding: 16px; }
   body.page-quiz .result-dossier { grid-template-columns: 1fr; }
+  body.page-quiz .result-card { order: -1; }
   body.page-quiz .result-era-panel { padding: 18px; }
+  body.page-quiz .result-era-panel::after { display: none; }
   body.page-quiz .result-signal {
     width: min(72vw, 220px);
     margin: 2px auto;
@@ -2316,6 +2320,28 @@ body.page-timeline .entry-art::before {
 }
 
 @media (max-width: 680px) {
+  .bat-nav {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .bat-nav nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    gap: 8px 14px;
+    justify-content: stretch;
+  }
+
+  .bat-nav nav a {
+    width: 100%;
+    min-width: 0;
+    font-size: 0.92rem;
+    letter-spacing: 0.12em;
+    line-height: 1.15;
+  }
+
   body:not(.page-home) .container,
   body:not(.page-home) .page {
     width: min(100% - 22px, 1180px);
